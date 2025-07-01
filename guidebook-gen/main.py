@@ -4,6 +4,50 @@ import frontmatter
 import sys
 import builtins
 import functools
+import re
+
+# --- NEW MINECRAFT FORMATTING PARSER ---
+
+def parse_minecraft_formatting(text):
+    """
+    Converts specific Markdown syntax into Minecraft formatting codes.
+    """
+    if not isinstance(text, str):
+        return text
+    
+    # Order of operations is important to avoid conflicts (e.g., ** vs *)
+    
+    # Links: [link text](url) -> link text
+    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)
+    # Bold: **text** -> §ltext§r
+    text = re.sub(r'\*\*(.*?)\*\*', r'§l\1§r', text)
+    # Underline: __text__ -> §ntext§r
+    text = re.sub(r'__(.*?)__', r'§n\1§r', text)
+    # Strikethrough: ~~text~~ -> §mtext§r
+    text = re.sub(r'~~(.*?)~~', r'§m\1§r', text)
+    # Italic: *text* -> §otext§r
+    text = re.sub(r'\*(.*?)\*', r'§o\1§r', text)
+    # Code: `text` -> §7text§r
+    text = re.sub(r'`(.*?)`', r'§7\1§r', text)
+    
+    return text
+
+def recursive_parse(data):
+    """
+    Recursively traverses a dictionary or list and applies Minecraft
+    formatting to all string values.
+    """
+    if isinstance(data, dict):
+        for key, value in data.items():
+            data[key] = recursive_parse(value)
+    elif isinstance(data, list):
+        for i, item in enumerate(data):
+            data[i] = recursive_parse(item)
+    elif isinstance(data, str):
+        return parse_minecraft_formatting(data)
+    return data
+
+# --- SCRIPT CORE LOGIC (UNCHANGED) ---
 
 # Always use UTF-8 encoding for open, but only for text mode
 original_open = builtins.open
@@ -52,27 +96,23 @@ def gather_guidebook_pages(source_dir):
                     page_json = page_data.metadata
                     page_json['body'] = page_data.content.strip()
 
-                    # --- NEW ID GENERATION LOGIC ---
+                    # --- ID GENERATION LOGIC ---
                     relative_path = os.path.relpath(file_path, source_dir)
-                    # Use forward slashes for consistency
                     normalized_path = relative_path.replace(os.path.sep, '/')
-                    
-                    # Get the filename without extension (e.g., 'main' or 'page2')
                     filename_base, _ = os.path.splitext(os.path.basename(normalized_path))
                     
                     if filename_base == 'main':
-                        # If the file is main.md, its ID is the path to its parent directory.
-                        # os.path.dirname('page1/main.md') -> 'page1'
-                        # os.path.dirname('main.md') -> '' (empty string)
                         page_id = os.path.dirname(normalized_path)
-                        # For the root main.md, the dirname is empty, so we name it 'main'.
                         if not page_id:
                             page_id = 'main'
                     else:
-                        # Otherwise, the ID is the full path without the .md extension.
                         page_id, _ = os.path.splitext(normalized_path)
                     
                     page_json['id'] = page_id
+                    
+                    # --- APPLY FORMATTING PARSER ---
+                    # This will parse the body, title, and all other string values.
+                    page_json = recursive_parse(page_json)
                     # --- END OF NEW LOGIC ---
 
                     all_pages.append(page_json)
@@ -82,7 +122,7 @@ def gather_guidebook_pages(source_dir):
 
 def main():
     settings = parse_settings()
-    source_dir = 'data/guidebook/' # Changed from gametests to guidebook as per previous examples
+    source_dir = 'data/guidebook/'
     
     try:
         bp_dir = find_bp_dir()
