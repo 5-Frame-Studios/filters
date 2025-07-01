@@ -10,25 +10,27 @@ import re
 
 def parse_minecraft_formatting(text):
     """
-    Converts specific Markdown syntax into Minecraft formatting codes.
+    Converts specific Markdown syntax and color codes into Minecraft formatting codes.
     """
     if not isinstance(text, str):
         return text
     
-    # Order of operations is important to avoid conflicts (e.g., ** vs *)
+    # Order of operations is important to avoid conflicts.
     
-    # Links: [link text](url) -> link text
+    # 1. Links: [link text](url) -> link text
     text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)
-    # Bold: **text** -> §ltext§r
+    # 2. Bold: **text** -> §ltext§r
     text = re.sub(r'\*\*(.*?)\*\*', r'§l\1§r', text)
-    # Underline: __text__ -> §ntext§r
+    # 3. Underline: __text__ -> §ntext§r
     text = re.sub(r'__(.*?)__', r'§n\1§r', text)
-    # Strikethrough: ~~text~~ -> §mtext§r
+    # 4. Strikethrough: ~~text~~ -> §mtext§r
     text = re.sub(r'~~(.*?)~~', r'§m\1§r', text)
-    # Italic: *text* -> §otext§r
+    # 5. Italic: *text* -> §otext§r
     text = re.sub(r'\*(.*?)\*', r'§o\1§r', text)
-    # Code: `text` -> §7text§r
+    # 6. Code: `text` -> §7text§r
     text = re.sub(r'`(.*?)`', r'§7\1§r', text)
+    # 7. Color Codes: &0 -> §0, &c -> §c, etc.
+    text = re.sub(r'&([0-9a-fk-or])', r'§\1', text)
     
     return text
 
