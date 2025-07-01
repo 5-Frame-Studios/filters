@@ -1,10 +1,18 @@
 {
-    "description": "Creates a guidebook based on markdown documents",
+    "description": "Generates a guidebook JSON file from markdown documents with frontmatter metadata. Scans data/guidebook/ directory for .md files and creates a structured guidebook for Minecraft Bedrock Edition.",
+    "version": "1.0.0",
+    "author": "Filter System",
     "filters": [
         {
             "runWith": "python",
             "script": "./main.py",
-            "name": "guidebook-generator"
+            "name": "Guidebook Generator",
+            "description": "Converts markdown files to guidebook JSON format"
         }
-    ]
+    ],
+    "settings": {
+        "source_dir": "data/guidebook/",
+        "output": "scripts/guidebook.json",
+        "supported_formats": [".md"]
+    }
 }

@@ -1,0 +1,17 @@
+{
+    "description": "Automatically applies and increments version numbers in Minecraft Bedrock Edition manifest files (RP/manifest.json and BP/manifest.json). Updates version in header, resource/data modules, and dependencies with UUIDs.",
+    "version": "1.0.0",
+    "author": "Filter System",
+    "filters": [
+        {
+            "runWith": "python",
+            "script": "./main.py",
+            "name": "Apply Manifest Version",
+            "description": "Increments version and applies to all relevant manifest files"
+        }
+    ],
+    "settings": {
+        "version_file": "./data/bump_manifest/version.json",
+        "targets": ["RP/manifest.json", "BP/manifest.json"]
+    }
+}
