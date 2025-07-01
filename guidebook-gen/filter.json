@@ -1,0 +1,10 @@
+{
+    "description": "Creates a guidebook based on markdown documents",
+    "filters": [
+        {
+            "runWith": "python",
+            "script": "./main.py",
+            "name": "guidebook-generator"
+        }
+    ]
+}
