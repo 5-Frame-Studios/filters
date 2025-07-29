@@ -2,6 +2,8 @@
 
 Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Incorporates advanced patterns from the Blockbench filter with sophisticated file processing, complex validation, and advanced error handling. Uses pydub for audio processing - no external ffmpeg installation required.
 
+**Regolith Integration**: This filter is designed to work seamlessly with Regolith's non-destructive editing system, operating in temporary directories and applying changes only after successful completion. Features intelligent directory detection for flexible project structures.
+
 ## ✅ Features
 
 - **Multi-Format Support**: Converts .wav, .mp3, .m4a, .aac, .flac, .aiff to .ogg
@@ -18,6 +20,8 @@ Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Inco
 - **Backup System**: Optional backup of original files
 - **Minecraft Optimization**: Specialized settings for Minecraft performance
 - **No External Dependencies**: Uses pydub - no ffmpeg installation required
+- **Regolith Compatible**: Works with Regolith's non-destructive editing system
+- **Intelligent Directory Detection**: Automatically finds audio directories in RP and BP folders
 
 ## 🚀 Quick Start
 
@@ -31,15 +35,83 @@ pip install pydub
 
 That's it! No external ffmpeg installation required. pydub handles all audio processing internally.
 
+### Regolith Installation
+
+1. **Add to your project's config.json:**
+```json
+{
+  "filters": [
+    {
+      "url": "path/to/audio_converter",
+      "venvSlot": 0
+    }
+  ]
+}
+```
+
+2. **Install the filter:**
+```bash
+regolith install
+```
+
+3. **Run the filter:**
+```bash
+regolith run
+```
+
 ### Basic Usage
 
-The filter will automatically scan for audio files and convert them to .ogg format:
+The filter will automatically detect and scan for audio files:
 
 ```json
 {
-    "source_dirs": ["RP/sounds/", "BP/sounds/"],
     "supported_formats": [".wav", ".mp3", ".m4a", ".aac", ".flac", ".aiff"],
     "output_format": ".ogg",
+    "quality": 6
+}
+```
+
+## Intelligent Directory Detection
+
+### Automatic Discovery
+
+The filter automatically detects audio directories using intelligent pattern matching:
+
+#### **Primary Detection**
+- **RP Directories**: Finds any directory containing "RP" in the name
+- **BP Directories**: Finds any directory containing "BP" in the name
+- **Sounds Subdirectories**: Looks for `sounds/` folders within RP/BP directories
+- **Direct Audio Files**: Checks if RP/BP directories contain audio files directly
+
+#### **Fallback Detection**
+If no audio directories are found, the filter checks these standard locations:
+- `packs/resource/sounds`
+- `packs/behavior/sounds`
+- `RP/sounds`
+- `BP/sounds`
+- `sounds`
+
+#### **Supported Directory Structures**
+```
+Project/
+├── RP/                    # ✅ Detected
+│   └── sounds/           # ✅ Audio files processed
+├── BP/                    # ✅ Detected
+│   └── sounds/           # ✅ Audio files processed
+├── resource_pack/         # ✅ Detected (contains "RP")
+│   └── sounds/           # ✅ Audio files processed
+├── behavior_pack/         # ✅ Detected (contains "BP")
+│   └── sounds/           # ✅ Audio files processed
+└── custom_audio/          # ❌ Not detected (manual specification needed)
+```
+
+### Manual Directory Specification
+
+You can still specify directories manually if needed:
+
+```json
+{
+    "source_dirs": ["RP/sounds/", "custom/audio/"],
     "quality": 6
 }
 ```
@@ -50,7 +122,7 @@ The filter will automatically scan for audio files and convert them to .ogg form
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| `source_dirs` | array | `["RP/sounds/", "BP/sounds/"]` | Directories to scan for audio files |
+| `source_dirs` | array/null | `null` | Directories to scan (null = auto-detect) |
 | `supported_formats` | array | `[".wav", ".mp3", ".m4a", ".aac", ".flac", ".aiff"]` | Audio formats to convert |
 | `output_format` | string | `".ogg"` | Output format (currently only .ogg supported) |
 | `quality` | integer | `6` | Audio quality (0-10, higher = better quality, larger file) |
@@ -131,10 +203,17 @@ RP/sounds/
 
 ## Examples
 
-### Basic Configuration
+### Basic Configuration (Auto-Detection)
 ```json
 {
-    "source_dirs": ["RP/sounds/"],
+    "quality": 6
+}
+```
+
+### Manual Directory Specification
+```json
+{
+    "source_dirs": ["RP/sounds/", "custom/audio/"],
     "quality": 6
 }
 ```
@@ -142,7 +221,7 @@ RP/sounds/
 ### Advanced Configuration
 ```json
 {
-    "source_dirs": ["RP/sounds/", "BP/sounds/", "custom/audio/"],
+    "source_dirs": ["RP/sounds/", "custom/audio/"],
     "supported_formats": [".wav", ".mp3", ".flac"],
     "quality": 8,
     "delete_originals": true,
@@ -184,10 +263,11 @@ RP/sounds/
 ## Processing Behavior
 
 ### File Discovery
-1. **Recursive Scanning**: Searches all subdirectories for audio files
-2. **Pattern Matching**: Uses glob patterns to find files by extension and type
-3. **Categorization**: Automatically categorizes files by audio type
-4. **Validation**: Checks each file is a valid audio file using pydub
+1. **Intelligent Detection**: Automatically finds RP/BP directories
+2. **Recursive Scanning**: Searches all subdirectories for audio files
+3. **Pattern Matching**: Uses glob patterns to find files by extension and type
+4. **Categorization**: Automatically categorizes files by audio type
+5. **Validation**: Checks each file is a valid audio file using pydub
 
 ### Conversion Process
 1. **Parallel Processing**: Converts multiple files simultaneously
@@ -202,6 +282,31 @@ RP/sounds/
 3. **Organization**: Optionally organizes files by type
 4. **Cleanup**: Optionally removes original files or creates backups
 
+## Regolith Integration
+
+### Working Directory Structure
+
+The filter operates in Regolith's temporary directory structure:
+```
+./RP/          # Resource pack files
+./BP/          # Behavior pack files  
+./data/        # Data files (if needed)
+```
+
+### Non-Destructive Editing
+
+- **Temporary Processing**: All conversions happen in temporary directories
+- **Safe Operation**: Original project files are never modified during processing
+- **Change Application**: Changes are only applied after successful filter completion
+- **Error Recovery**: Failed runs don't affect your project files
+
+### Environment Variables
+
+The filter can access Regolith's environment variables if needed:
+- `ROOT_DIR`: Project root directory path
+- `FILTER_DIR`: Filter definition directory path
+- `WORKING_DIR`: Current working directory (temporary)
+
 ## Error Handling
 
 ### Common Issues
@@ -210,6 +315,14 @@ RP/sounds/
 **Solution**: Install pydub
 ```bash
 pip install pydub
+```
+
+#### "No audio directories found"
+**Solution**: The filter will use fallback directories or you can specify manually
+```json
+{
+    "source_dirs": ["your/audio/directory/"]
+}
 ```
 
 #### "Invalid audio file"
@@ -269,7 +382,11 @@ Typical conversion speeds (varies by system):
 
 ```
 [audio_converter] INFO: Starting advanced audio conversion process with pydub
-[audio_converter] INFO: Scanning directory: RP/sounds/
+[audio_converter] INFO: Working in Regolith temporary directory - changes will be applied after successful run
+[audio_converter] INFO: No source directories specified, using intelligent detection
+[audio_converter] INFO: Discovered audio directories: ['RP/sounds', 'BP/sounds']
+[audio_converter] INFO: Scanning directory: RP/sounds
+[audio_converter] INFO: Scanning directory: BP/sounds
 [audio_converter] INFO: Total audio files found: 15
 [audio_converter] INFO:   music: 5 files
 [audio_converter] INFO:   effects: 8 files
@@ -286,6 +403,7 @@ Typical conversion speeds (varies by system):
 [audio_converter] INFO:   music: 5/5 successful
 [audio_converter] INFO:   effects: 8/8 successful
 [audio_converter] INFO:   ui: 2/2 successful
+[audio_converter] INFO: Changes will be applied to project files after successful filter run
 ```
 
 ## Troubleshooting
@@ -309,6 +427,18 @@ Typical conversion speeds (varies by system):
 2. **Memory usage**: Process smaller batches of files
 3. **Disk space**: Ensure sufficient space for output files
 
+### Regolith-Specific Issues
+
+1. **Filter not found**: Check filter URL in config.json
+2. **Virtual environment issues**: Verify venvSlot configuration
+3. **Cache problems**: Run `regolith clean` to clear caches
+
+### Directory Detection Issues
+
+1. **No audio directories found**: Check project structure or specify manually
+2. **Wrong directories detected**: Use manual specification with `source_dirs`
+3. **Missing audio files**: Verify audio files exist in detected directories
+
 ## Best Practices
 
 ### File Organization
@@ -325,6 +455,16 @@ Typical conversion speeds (varies by system):
 - Process files in logical groups
 - Monitor system resources during conversion
 - Keep backups of original files
+
+### Regolith Integration
+- Use appropriate venvSlot for dependency management
+- Test filters in development before production
+- Monitor filter cache and clean when needed
+
+### Directory Detection
+- Let the filter auto-detect when possible
+- Use manual specification for custom directory structures
+- Test with different project layouts
 
 ## Advanced Features
 
@@ -350,6 +490,12 @@ Typical conversion speeds (varies by system):
 - Audio normalization
 - Bitrate optimization
 
+### Intelligent Detection
+- Automatic RP/BP directory discovery
+- Flexible naming convention support
+- Fallback directory checking
+- Audio file presence validation
+
 ## Installation
 
 ### Simple Installation
@@ -359,6 +505,25 @@ Typical conversion speeds (varies by system):
 pip install pydub
 
 # That's it! No external dependencies required.
+```
+
+### Regolith Installation
+
+1. **Add to config.json:**
+```json
+{
+  "filters": [
+    {
+      "url": "path/to/audio_converter",
+      "venvSlot": 0
+    }
+  ]
+}
+```
+
+2. **Install:**
+```bash
+regolith install
 ```
 
 ### Alternative Installation Methods
@@ -373,7 +538,7 @@ pip install pydub>=0.25.1
 
 ## Version History
 
-- **v1.0.0**: Initial release with comprehensive audio conversion capabilities using pydub
+- **v1.0.0**: Initial release with comprehensive audio conversion capabilities using pydub, Regolith integration, and intelligent directory detection
 
 ## Support
 
@@ -382,5 +547,6 @@ For issues and questions:
 2. Verify pydub installation with `pip install pydub`
 3. Review log output for specific error messages
 4. Test with a small batch of files first
+5. Check Regolith documentation for filter-specific issues
 
-The filter is designed to be both powerful and user-friendly, with comprehensive error handling and detailed logging to help diagnose any issues. Installation is simple with just one Python package required. 
+The filter is designed to be both powerful and user-friendly, with comprehensive error handling and detailed logging to help diagnose any issues. Installation is simple with just one Python package required, and it integrates seamlessly with Regolith's non-destructive editing system while providing intelligent directory detection for maximum flexibility. 

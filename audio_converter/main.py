@@ -10,6 +10,7 @@ Regolith Integration:
 - Works in temporary directory with RP/, BP/, and data/ subdirectories
 - Non-destructive editing - changes only apply after successful run
 - Uses environment variables for external file access if needed
+- Intelligent directory detection for flexible project structures
 """
 
 import os
@@ -92,6 +93,84 @@ class AudioProcessor:
             logger.error("Please install pydub: pip install pydub")
             sys.exit(1)
         logger.debug("pydub is available")
+
+def find_audio_dirs() -> List[str]:
+    """
+    Find audio directories in RP and BP folders using intelligent detection.
+    
+    Returns:
+        List of discovered audio directory paths
+    """
+    audio_dirs = []
+    
+    # In Regolith's temp environment, CWD is the project root
+    for entry in os.listdir('.'):
+        if os.path.isdir(entry):
+            # Check for RP (Resource Pack) directories
+            if 'RP' in entry.upper():
+                rp_sounds = os.path.join(entry, 'sounds')
+                if os.path.exists(rp_sounds):
+                    audio_dirs.append(rp_sounds)
+                    logger.debug(f"Found RP sounds directory: {rp_sounds}")
+                else:
+                    # If no sounds subdirectory, check if the RP directory itself contains audio files
+                    if has_audio_files(entry):
+                        audio_dirs.append(entry)
+                        logger.debug(f"Found RP directory with audio files: {entry}")
+            
+            # Check for BP (Behavior Pack) directories
+            elif 'BP' in entry.upper():
+                bp_sounds = os.path.join(entry, 'sounds')
+                if os.path.exists(bp_sounds):
+                    audio_dirs.append(bp_sounds)
+                    logger.debug(f"Found BP sounds directory: {bp_sounds}")
+                else:
+                    # If no sounds subdirectory, check if the BP directory itself contains audio files
+                    if has_audio_files(entry):
+                        audio_dirs.append(entry)
+                        logger.debug(f"Found BP directory with audio files: {entry}")
+    
+    # Fallback for local testing or standard project structure
+    fallback_dirs = [
+        'packs/resource/sounds',
+        'packs/behavior/sounds',
+        'RP/sounds',
+        'BP/sounds',
+        'sounds'
+    ]
+    
+    for fallback_dir in fallback_dirs:
+        if os.path.exists(fallback_dir) and fallback_dir not in audio_dirs:
+            audio_dirs.append(fallback_dir)
+            logger.debug(f"Found fallback audio directory: {fallback_dir}")
+    
+    if not audio_dirs:
+        logger.warning("No audio directories found. Using default RP/sounds/")
+        audio_dirs = ['RP/sounds/']
+    
+    return audio_dirs
+
+def has_audio_files(directory: str) -> bool:
+    """
+    Check if a directory contains audio files.
+    
+    Args:
+        directory: Directory path to check
+        
+    Returns:
+        True if directory contains audio files, False otherwise
+    """
+    audio_extensions = {'.wav', '.mp3', '.m4a', '.aac', '.flac', '.aiff', '.ogg'}
+    
+    try:
+        for root, _, files in os.walk(directory):
+            for file in files:
+                if any(file.lower().endswith(ext) for ext in audio_extensions):
+                    return True
+    except (OSError, PermissionError):
+        pass
+    
+    return False
 
 class AudioFileDiscoverer:
     """Advanced file discovery with pattern matching and categorization."""
@@ -493,7 +572,6 @@ def main():
             logger.debug(f"Project root: {env_info['ROOT_DIR']}")
         
         # Get configuration
-        source_dirs = settings.get('source_dirs', ['RP/sounds/', 'BP/sounds/'])
         log_level = settings.get('log_level', 'INFO')
         
         # Set log level
@@ -504,6 +582,15 @@ def main():
         
         # Initialize converter
         converter = AudioConverter(settings)
+        
+        # Intelligent directory detection
+        source_dirs = settings.get('source_dirs')
+        if not source_dirs:
+            logger.info("No source directories specified, using intelligent detection")
+            source_dirs = find_audio_dirs()
+            logger.info(f"Discovered audio directories: {source_dirs}")
+        else:
+            logger.info(f"Using specified source directories: {source_dirs}")
         
         # Discover and categorize audio files
         categorized_files = converter.discoverer.discover_audio_files(source_dirs)
