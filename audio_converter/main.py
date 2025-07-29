@@ -417,6 +417,11 @@ class AudioConverter:
             if not is_valid:
                 return False, f"Invalid audio file: {file_path}", {}
             
+            # Check if file is already in acceptable format (WAV or OGG)
+            input_ext = Path(file_path).suffix.lower()
+            if input_ext in ['.wav', '.ogg']:
+                return True, f"Skipped (acceptable format): {file_path}", {'skipped': True, 'reason': 'acceptable_format'}
+            
             # Detect audio type if not provided
             if audio_type == AudioType.UNKNOWN:
                 audio_type = self.detect_audio_type(file_path)
