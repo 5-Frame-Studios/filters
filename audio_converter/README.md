@@ -1,27 +1,22 @@
 # Audio Converter Filter v1.0.0
 
-Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Incorporates advanced patterns from the Blockbench filter with sophisticated file processing, complex validation, and advanced error handling. Uses pydub for audio processing - no external ffmpeg installation required.
+Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Incorporates advanced patterns from the Blockbench filter with sophisticated file processing, complex validation, and advanced error handling. Uses pydub for audio processing - no external ffmpeg installation required. Works like the Blockbench filter - finds files with glob patterns and replaces originals with converted files. Includes intelligent caching to skip unchanged files.
 
-**Regolith Integration**: This filter is designed to work seamlessly with Regolith's non-destructive editing system, operating in temporary directories and applying changes only after successful completion. Features intelligent directory detection for flexible project structures.
+**Note**: WAV files are automatically skipped since both WAV and OGG are acceptable output formats for Minecraft Bedrock Edition.
 
 ## ✅ Features
 
-- **Multi-Format Support**: Converts .wav, .mp3, .m4a, .aac, .flac, .aiff to .ogg
-- **Advanced Audio Type Detection**: Automatically categorizes files (music, effects, ambient, UI, voice)
-- **Batch Processing**: Converts multiple files in parallel for faster processing
-- **Quality Control**: Type-specific quality settings with intelligent optimization
-- **Smart File Discovery**: Recursively finds audio files with pattern matching
-- **File Validation**: Comprehensive audio file validation using pydub
-- **Progress Reporting**: Real-time progress updates and detailed logging
-- **Error Handling**: Robust error handling with graceful degradation
-- **Directory Organization**: Optional automatic directory organization by type
-- **Incremental Processing**: Skips files that are already converted and up-to-date
-- **Hash-Based Integrity**: SHA-256 hash calculation for file validation
-- **Backup System**: Optional backup of original files
-- **Minecraft Optimization**: Specialized settings for Minecraft performance
+- **Multi-Format Support**: Converts `.mp3`, `.m4a`, `.aac`, `.flac`, `.aiff` to `.ogg`
+- **WAV Skipping**: Automatically skips `.wav` files (both WAV and OGG are acceptable)
+- **Quality Control**: Configurable quality settings (0-10 scale)
+- **Batch Processing**: Processes multiple files efficiently
+- **Audio Type Detection**: Automatically categorizes audio by type (music, effects, ambient, UI, voice)
+- **Minecraft Optimization**: Optimized settings for Minecraft Bedrock Edition
+- **Intelligent Caching**: Skips unchanged files using hash-based detection
 - **No External Dependencies**: Uses pydub - no ffmpeg installation required
 - **Regolith Compatible**: Works with Regolith's non-destructive editing system
-- **Intelligent Directory Detection**: Automatically finds audio directories in RP and BP folders
+- **Blockbench-Style File Handling**: Finds files with glob patterns and replaces originals
+- **Intelligent Caching**: Skips conversion for unchanged files using hashing
 
 ## 🚀 Quick Start
 
@@ -194,12 +189,17 @@ RP/sounds/
 
 | Format | Description | Notes |
 |--------|-------------|-------|
-| `.wav` | Waveform Audio | Uncompressed, high quality |
 | `.mp3` | MPEG Audio | Compressed, widely supported |
 | `.m4a` | MPEG-4 Audio | Apple format, good quality |
 | `.aac` | Advanced Audio Coding | High efficiency |
 | `.flac` | Free Lossless Audio Codec | Lossless compression |
 | `.aiff` | Audio Interchange File Format | Apple format, uncompressed |
+
+### Skipped Formats (Already Acceptable)
+
+| Format | Description | Notes |
+|--------|-------------|-------|
+| `.wav` | Waveform Audio | Skipped - already acceptable for Minecraft Bedrock Edition |
 
 ## Examples
 
