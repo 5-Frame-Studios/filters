@@ -112,100 +112,45 @@ class AudioProcessor:
             sys.exit(1)
         logger.debug("pydub is available and ready to use")
 
-def find_audio_dirs() -> List[str]:
+def find_audio_files() -> List[str]:
     """
-    Find audio directories in RP and BP folders using intelligent detection.
+    Find audio files using glob patterns like the Blockbench filter.
     
     Returns:
-        List of discovered audio directory paths
+        List of discovered audio file paths
     """
-    audio_dirs = []
+    audio_files = []
+    supported_formats = ['.wav', '.mp3', '.m4a', '.aac', '.flac', '.aiff']
     
-    logger.debug(f"Current working directory: {os.getcwd()}")
-    logger.debug(f"Directory contents: {os.listdir('.')}")
+    logger.debug("Using Blockbench-style file discovery with glob patterns")
     
-    # In Regolith's temp environment, CWD is the project root
-    for entry in os.listdir('.'):
-        if os.path.isdir(entry):
-            logger.debug(f"Checking directory: {entry}")
-            # Check for RP (Resource Pack) directories
-            if 'RP' in entry.upper():
-                logger.debug(f"Found RP directory: {entry}")
-                rp_sounds = os.path.join(entry, 'sounds')
-                if os.path.exists(rp_sounds):
-                    audio_dirs.append(rp_sounds)
-                    logger.debug(f"Found RP sounds directory: {rp_sounds}")
-                else:
-                    logger.debug(f"RP sounds directory not found: {rp_sounds}")
-                    # If no sounds subdirectory, check if the RP directory itself contains audio files
-                    if has_audio_files(entry):
-                        audio_dirs.append(entry)
-                        logger.debug(f"Found RP directory with audio files: {entry}")
-                    else:
-                        logger.debug(f"RP directory does not contain audio files: {entry}")
-            
-            # Check for BP (Behavior Pack) directories
-            elif 'BP' in entry.upper():
-                logger.debug(f"Found BP directory: {entry}")
-                bp_sounds = os.path.join(entry, 'sounds')
-                if os.path.exists(bp_sounds):
-                    audio_dirs.append(bp_sounds)
-                    logger.debug(f"Found BP sounds directory: {bp_sounds}")
-                else:
-                    logger.debug(f"BP sounds directory not found: {bp_sounds}")
-                    # If no sounds subdirectory, check if the BP directory itself contains audio files
-                    if has_audio_files(entry):
-                        audio_dirs.append(entry)
-                        logger.debug(f"Found BP directory with audio files: {entry}")
-                    else:
-                        logger.debug(f"BP directory does not contain audio files: {entry}")
-    
-    # Fallback for local testing or standard project structure
-    fallback_dirs = [
-        'packs/resource/sounds',
-        'packs/behavior/sounds',
-        'RP/sounds',
-        'BP/sounds',
-        'sounds'
-    ]
-    
-    for fallback_dir in fallback_dirs:
-        if os.path.exists(fallback_dir) and fallback_dir not in audio_dirs:
-            audio_dirs.append(fallback_dir)
-            logger.debug(f"Found fallback audio directory: {fallback_dir}")
-    
-    if not audio_dirs:
-        logger.warning("No audio directories found. Using default RP/sounds/")
-        audio_dirs = ['RP/sounds/']
-    
-    logger.debug(f"Final audio directories: {audio_dirs}")
-    return audio_dirs
-
-def has_audio_files(directory: str) -> bool:
-    """
-    Check if a directory contains audio files.
-    
-    Args:
-        directory: Directory path to check
+    # Use glob patterns to find audio files directly, just like the Blockbench filter
+    for format_ext in supported_formats:
+        # Look for files in RP/sounds/**/*.ext
+        rp_pattern = f"RP/sounds/**/*{format_ext}"
+        logger.debug(f"Searching for files matching: {rp_pattern}")
+        rp_files = glob.glob(rp_pattern, recursive=True)
+        audio_files.extend(rp_files)
+        if rp_files:
+            logger.debug(f"Found {len(rp_files)} {format_ext} files in RP/sounds")
         
-    Returns:
-        True if directory contains audio files, False otherwise
-    """
-    audio_extensions = {'.wav', '.mp3', '.m4a', '.aac', '.flac', '.aiff', '.ogg'}
+        # Look for files in BP/sounds/**/*.ext
+        bp_pattern = f"BP/sounds/**/*{format_ext}"
+        logger.debug(f"Searching for files matching: {bp_pattern}")
+        bp_files = glob.glob(bp_pattern, recursive=True)
+        audio_files.extend(bp_files)
+        if bp_files:
+            logger.debug(f"Found {len(bp_files)} {format_ext} files in BP/sounds")
     
-    logger.debug(f"Checking for audio files in: {directory}")
+    # Remove duplicates and normalize paths
+    audio_files = list(set(audio_files))
+    audio_files = [os.path.normpath(f) for f in audio_files]
     
-    try:
-        for root, _, files in os.walk(directory):
-            for file in files:
-                if any(file.lower().endswith(ext) for ext in audio_extensions):
-                    logger.debug(f"Found audio file: {os.path.join(root, file)}")
-                    return True
-    except (OSError, PermissionError) as e:
-        logger.debug(f"Error checking directory {directory}: {e}")
+    logger.info(f"Total audio files found: {len(audio_files)}")
+    for file_path in audio_files:
+        logger.debug(f"Found audio file: {file_path}")
     
-    logger.debug(f"No audio files found in: {directory}")
-    return False
+    return audio_files
 
 class AudioFileDiscoverer:
     """Advanced file discovery with pattern matching and categorization."""
@@ -284,34 +229,19 @@ class AudioFileDiscoverer:
                 
             logger.info(f"Scanning directory: {source_dir}")
             
-            # First, find ALL audio files in the directory (including direct files)
-            all_audio_files = []
+            # Use simple glob patterns like the Blockbench filter
             for format_ext in self.supported_formats:
-                # Look for files directly in the directory
-                direct_pattern = os.path.join(source_dir, f"*{format_ext}")
-                direct_files = glob.glob(direct_pattern)
-                all_audio_files.extend(direct_files)
+                pattern = os.path.join(source_dir, f"**/*{format_ext}")
+                logger.debug(f"Searching for files matching: {pattern}")
+                files = glob.glob(pattern, recursive=True)
                 
-                # Look for files in subdirectories
-                recursive_pattern = os.path.join(source_dir, f"**/*{format_ext}")
-                recursive_files = glob.glob(recursive_pattern, recursive=True)
-                all_audio_files.extend(recursive_files)
-            
-            # Remove duplicates and normalize paths
-            all_audio_files = list(set(all_audio_files))
-            all_audio_files = [os.path.normpath(f) for f in all_audio_files]
-            
-            logger.debug(f"Found {len(all_audio_files)} total audio files in {source_dir}")
-            
-            # Log individual files for debugging
-            for file_path in all_audio_files:
-                logger.debug(f"  Found audio file: {file_path}")
-            
-            # Categorize files by type
-            for file_path in all_audio_files:
-                audio_type = self._categorize_file(file_path, source_dir)
-                categorized_files[audio_type].append(file_path)
-                logger.debug(f"  Categorized {file_path} as {audio_type.value}")
+                if files:
+                    logger.debug(f"Found {len(files)} {format_ext} files in {source_dir}")
+                    # Categorize files by type
+                    for file_path in files:
+                        audio_type = self._categorize_file(file_path, source_dir)
+                        categorized_files[audio_type].append(file_path)
+                        logger.debug(f"Categorized {file_path} as {audio_type.value}")
         
         # Log summary
         total_files = sum(len(files) for files in categorized_files.values())
@@ -821,25 +751,28 @@ def main():
         logger.debug("AudioConverter initialized successfully")
         
         # Intelligent directory detection
-        logger.debug("Starting intelligent directory detection...")
+        logger.debug("Starting Blockbench-style file discovery...")
         source_dirs = settings.get('source_dirs')
         logger.debug(f"Source directories from settings: {source_dirs}")
         
         if not source_dirs:
-            logger.info("No source directories specified, using intelligent detection")
-            logger.debug("Calling find_audio_dirs() for automatic detection...")
-            source_dirs = find_audio_dirs()
-            logger.info(f"Discovered audio directories: {source_dirs}")
+            logger.info("No source directories specified, using Blockbench-style discovery")
+            logger.debug("Calling find_audio_files() for direct file discovery...")
+            audio_files = find_audio_files()
+            logger.info(f"Discovered {len(audio_files)} audio files")
+            
+            if not audio_files:
+                logger.warning("No audio files found to convert")
+                logger.debug("Exiting due to no files found")
+                return
+            
+            # Convert the file list to a simple categorization
+            categorized_files = {AudioType.UNKNOWN: audio_files}
         else:
             logger.info(f"Using specified source directories: {source_dirs}")
-        
-        logger.debug(f"Final source directories to process: {source_dirs}")
-        
-        # Discover and categorize audio files
-        logger.debug("Starting audio file discovery and categorization...")
-        logger.debug(f"Calling discoverer.discover_audio_files with: {source_dirs}")
-        categorized_files = converter.discoverer.discover_audio_files(source_dirs)
-        logger.debug(f"Discovery completed. Categorized files: {json.dumps({k.value: len(v) for k, v in categorized_files.items()}, indent=2)}")
+            logger.debug(f"Calling discoverer.discover_audio_files with: {source_dirs}")
+            categorized_files = converter.discoverer.discover_audio_files(source_dirs)
+            logger.debug(f"Discovery completed. Categorized files: {json.dumps({k.value: len(v) for k, v in categorized_files.items()}, indent=2)}")
         
         if not any(files for files in categorized_files.values()):
             logger.warning("No audio files found to convert")
@@ -873,48 +806,36 @@ def main():
                 'skipped': 0
             }
             
-            # Convert files of this type
-            max_workers = settings.get('max_workers', 4)
-            logger.debug(f"Using ThreadPoolExecutor with max_workers={max_workers}")
-            
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                logger.debug(f"Submitting {len(files)} conversion tasks to executor...")
-                future_to_file = {
-                    executor.submit(converter.convert_audio_file_advanced, file, audio_type): file 
-                    for file in files
-                }
-                logger.debug(f"Submitted tasks: {list(future_to_file.values())}")
-                
-                logger.debug("Processing completed tasks...")
-                for future in as_completed(future_to_file):
-                    file = future_to_file[future]
-                    logger.debug(f"Processing result for file: {file}")
-                    try:
-                        success, message, conversion_info = future.result()
-                        logger.debug(f"Conversion result for {file}: success={success}, message='{message}'")
-                        
-                        if success:
-                            if conversion_info.get('skipped'):
-                                total_stats['skipped'] += 1
-                                total_stats['by_type'][audio_type.value]['skipped'] += 1
-                                logger.debug(f"File skipped: {file}")
-                                logger.debug(message)
-                            else:
-                                total_stats['successful'] += 1
-                                total_stats['by_type'][audio_type.value]['successful'] += 1
-                                logger.debug(f"File converted successfully: {file}")
-                                logger.info(message)
+            # Convert files of this type - use simple processing like Blockbench filter
+            logger.debug(f"Processing {len(files)} files for {audio_type.value}")
+            for file_path in files:
+                logger.debug(f"Processing file: {file_path}")
+                try:
+                    success, message, conversion_info = converter.convert_audio_file_advanced(file_path, audio_type)
+                    logger.debug(f"Conversion result for {file_path}: success={success}, message='{message}'")
+                    
+                    if success:
+                        if conversion_info.get('skipped'):
+                            total_stats['skipped'] += 1
+                            total_stats['by_type'][audio_type.value]['skipped'] += 1
+                            logger.debug(f"File skipped: {file_path}")
+                            logger.debug(message)
                         else:
-                            total_stats['failed'] += 1
-                            total_stats['by_type'][audio_type.value]['failed'] += 1
-                            logger.debug(f"File conversion failed: {file}")
-                            logger.error(message)
-                            
-                    except Exception as e:
+                            total_stats['successful'] += 1
+                            total_stats['by_type'][audio_type.value]['successful'] += 1
+                            logger.debug(f"File converted successfully: {file_path}")
+                            logger.info(message)
+                    else:
                         total_stats['failed'] += 1
                         total_stats['by_type'][audio_type.value]['failed'] += 1
-                        logger.debug(f"Unexpected error processing {file}: {str(e)}")
-                        logger.error(f"Unexpected error processing {file}: {str(e)}")
+                        logger.debug(f"File conversion failed: {file_path}")
+                        logger.error(message)
+                        
+                except Exception as e:
+                    total_stats['failed'] += 1
+                    total_stats['by_type'][audio_type.value]['failed'] += 1
+                    logger.debug(f"Unexpected error processing {file_path}: {str(e)}")
+                    logger.error(f"Unexpected error processing {file_path}: {str(e)}")
         
         # Report detailed results
         logger.info("=" * 60)

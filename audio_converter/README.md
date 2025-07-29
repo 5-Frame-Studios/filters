@@ -307,6 +307,93 @@ The filter can access Regolith's environment variables if needed:
 - `FILTER_DIR`: Filter definition directory path
 - `WORKING_DIR`: Current working directory (temporary)
 
+### Important: Temporary Directory File Access
+
+**⚠️ Common Issue**: Regolith's temporary directory may not contain the actual audio files, only the directory structure. This is a known limitation of Regolith's non-destructive editing system.
+
+**Symptoms**:
+- Filter detects `RP/sounds` directory but finds 0 audio files
+- Warning messages about temporary directory not containing files
+- No files are processed despite files existing in the original project
+
+**Solutions**:
+
+#### 1. Automatic Detection (Recommended)
+The filter now automatically detects when the temporary directory doesn't contain files and tries to use the original project directory instead.
+
+#### 2. Manual Directory Specification
+Specify the original project directory manually in your filter settings:
+
+```json
+{
+    "source_dirs": ["C:/Users/yourname/Documents/GitHub/YourProject/packs/RP/sounds"],
+    "quality": 6
+}
+```
+
+#### 3. Relative Path Specification
+Use relative paths from your project root:
+
+```json
+{
+    "source_dirs": ["packs/RP/sounds", "packs/BP/sounds"],
+    "quality": 6
+}
+```
+
+#### 4. Multiple Directory Support
+Specify multiple directories to scan:
+
+```json
+{
+    "source_dirs": [
+        "packs/RP/sounds",
+        "packs/BP/sounds", 
+        "custom/audio"
+    ],
+    "quality": 6
+}
+```
+
+### Troubleshooting Regolith Issues
+
+#### "No audio files found in any detected directories"
+
+**Cause**: Regolith's temporary directory doesn't contain the actual audio files.
+
+**Solutions**:
+1. **Use manual directory specification** (see above)
+2. **Check original project structure**: Verify files exist in `packs/RP/sounds/`
+3. **Use absolute paths**: Specify the full path to your audio directories
+4. **Check file extensions**: Ensure files have supported extensions (`.wav`, `.mp3`, etc.)
+
+#### "Filter not found"
+
+**Cause**: Filter URL or configuration issue.
+
+**Solutions**:
+1. Check filter URL in `config.json`
+2. Run `regolith install` to reinstall the filter
+3. Verify filter directory structure
+
+#### "Virtual environment issues"
+
+**Cause**: Python dependencies not installed correctly.
+
+**Solutions**:
+1. Check `venvSlot` configuration
+2. Run `regolith install` to reinstall dependencies
+3. Verify `requirements.txt` exists and is correct
+
+#### "Cache problems"
+
+**Cause**: Stale cache data.
+
+**Solutions**:
+1. Run `regolith clean` to clear project cache
+2. Run `regolith clean --filter-cache` to clear filter cache
+3. Reinstall the filter with `regolith install`
+
 ## Error Handling
 
 ### Common Issues
