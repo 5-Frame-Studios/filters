@@ -1,10 +1,15 @@
 """
-Audio Converter Filter
+Audio Converter Filter for Regolith
 
 Converts various audio formats to .ogg files for Minecraft Bedrock Edition.
 Incorporates advanced patterns from the Blockbench filter with sophisticated
 file processing, complex validation, and advanced error handling.
 Uses pydub for audio processing - no external ffmpeg installation required.
+
+Regolith Integration:
+- Works in temporary directory with RP/, BP/, and data/ subdirectories
+- Non-destructive editing - changes only apply after successful run
+- Uses environment variables for external file access if needed
 """
 
 import os
@@ -467,11 +472,25 @@ def parse_settings() -> Dict[str, Any]:
         logger.error(f"Failed to parse settings: {e}")
         return {}
 
+def get_regolith_environment() -> Dict[str, str]:
+    """Get Regolith environment variables for external file access if needed."""
+    return {
+        'ROOT_DIR': os.environ.get('ROOT_DIR', ''),
+        'FILTER_DIR': os.environ.get('FILTER_DIR', ''),
+        'WORKING_DIR': os.getcwd()
+    }
+
 def main():
     """Main execution function."""
     try:
         # Parse settings
         settings = parse_settings()
+        
+        # Get Regolith environment info
+        env_info = get_regolith_environment()
+        logger.debug(f"Working directory: {env_info['WORKING_DIR']}")
+        if env_info['ROOT_DIR']:
+            logger.debug(f"Project root: {env_info['ROOT_DIR']}")
         
         # Get configuration
         source_dirs = settings.get('source_dirs', ['RP/sounds/', 'BP/sounds/'])
@@ -481,6 +500,7 @@ def main():
         logging.getLogger().setLevel(getattr(logging, log_level.upper()))
         
         logger.info("Starting advanced audio conversion process with pydub")
+        logger.info("Working in Regolith temporary directory - changes will be applied after successful run")
         
         # Initialize converter
         converter = AudioConverter(settings)
@@ -563,6 +583,7 @@ def main():
             sys.exit(1)
         else:
             logger.info("All conversions completed successfully")
+            logger.info("Changes will be applied to project files after successful filter run")
             
     except Exception as e:
         logger.error(f"Fatal error during advanced audio conversion: {e}")
