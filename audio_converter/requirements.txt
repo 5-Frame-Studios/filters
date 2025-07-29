@@ -1,0 +1,20 @@
+# Audio Converter Filter Requirements
+# 
+# This filter uses pydub for audio processing, which provides audio conversion
+# capabilities without requiring external ffmpeg installation.
+
+# Python Dependencies:
+pydub>=0.25.1
+
+# Optional: For better audio processing performance
+# numpy>=1.21.0
+
+# System Requirements:
+# - No external ffmpeg installation required
+# - pydub handles audio conversion internally
+
+# Installation:
+# pip install pydub
+
+# Note: pydub may use ffmpeg internally on some systems, but it's handled
+# automatically and doesn't require manual installation in most cases. 
