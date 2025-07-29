@@ -737,6 +737,7 @@ def main():
         logger.info(f"Failed: {total_stats['failed']}")
         logger.info(f"Skipped: {total_stats['skipped']}")
         logger.info(f"Cached (unchanged): {total_stats['cached']}")
+        logger.info("Note: WAV and OGG files are considered acceptable formats and are skipped")
         
         # Report by type
         for audio_type, stats in total_stats['by_type'].items():
