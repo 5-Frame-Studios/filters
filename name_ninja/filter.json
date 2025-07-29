@@ -1,19 +1,22 @@
 {
-    "description": "Automatically generates localization names for entities, blocks, items, and spawn eggs in Minecraft Bedrock Edition. Supports custom name fields, auto-generation from identifiers, and UTF-8 encoding.",
-    "version": "1.0.0",
+    "description": "Automatically generates localization names for entities, blocks, items, and spawn eggs in Minecraft Bedrock Edition. Supports custom name fields, auto-generation from identifiers, and UTF-8 encoding. Features improved error handling, progress reporting, and cleaner code structure.",
+    "version": "1.1.0",
     "author": "Filter System",
     "filters": [
         {
             "runWith": "python",
             "script": "./main.py",
             "name": "Name Ninja",
-            "description": "Generates localization names for game assets"
+            "description": "Generates localization names for game assets with enhanced error handling and progress reporting"
         }
     ],
     "settings": {
         "supported_assets": ["entities", "blocks", "items", "spawn_eggs"],
         "default_language": "en_US.lang",
         "ignored_namespaces": ["minecraft"],
-        "encoding": "utf-8"
+        "encoding": "utf-8",
+        "log_level": "INFO",
+        "overwrite": false,
+        "sort": true
     }
 }
