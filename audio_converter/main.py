@@ -69,7 +69,8 @@ class AudioProcessor:
     
     def __init__(self, settings: Dict[str, Any]):
         self.settings = settings
-        self.supported_formats = settings.get('supported_formats', ['.wav', '.mp3', '.m4a', '.aac', '.flac', '.aiff'])
+        # Remove .wav from supported formats since it's already an acceptable output
+        self.supported_formats = settings.get('supported_formats', ['.mp3', '.m4a', '.aac', '.flac', '.aiff'])
         self.output_format = settings.get('output_format', '.ogg')
         self.quality = settings.get('quality', 6)
         self.max_workers = settings.get('max_workers', 4)
@@ -516,6 +517,11 @@ class AudioConverter:
     
     def _should_skip_conversion(self, input_file: str, output_file: str, file_info: Dict[str, Any]) -> bool:
         """Determine if conversion should be skipped."""
+        # Skip conversion if input file is already WAV or OGG (acceptable formats)
+        input_ext = Path(input_file).suffix.lower()
+        if input_ext in ['.wav', '.ogg']:
+            return True
+        
         if not os.path.exists(output_file):
             return False
         
