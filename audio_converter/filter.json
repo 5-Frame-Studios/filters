@@ -1,5 +1,5 @@
 {
-    "description": "Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Supports multiple input formats including .wav, .mp3, .m4a, .aac, .flac, and .aiff. Features batch processing, quality control, automatic directory organization, and advanced audio type detection. Uses pydub for audio processing - no external ffmpeg installation required. Includes intelligent directory detection for flexible project structures.",
+    "description": "Converts various audio formats to .ogg files for Minecraft Bedrock Edition. Supports multiple input formats including .wav, .mp3, .m4a, .aac, .flac, and .aiff. Features batch processing, quality control, and advanced audio type detection. Uses pydub for audio processing - no external ffmpeg installation required. Works like the Blockbench filter - finds files with glob patterns and replaces originals with converted files. Includes intelligent caching to skip unchanged files.",
     "version": "1.0.0",
     "author": "Filter System",
     "filters": [
@@ -16,15 +16,13 @@
         "supported_formats": [".wav", ".mp3", ".m4a", ".aac", ".flac", ".aiff"],
         "output_format": ".ogg",
         "quality": 6,
-        "delete_originals": false,
-        "organize_by_type": true,
         "log_level": "INFO",
         "max_workers": 4,
         "timeout": 300,
         "validate_files": true,
         "calculate_hashes": true,
-        "backup_originals": false,
         "optimize_for_minecraft": true,
-        "normalize_audio": false
+        "normalize_audio": false,
+        "enable_cache": true
     }
 } 
