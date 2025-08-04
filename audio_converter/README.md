@@ -60,7 +60,7 @@ The filter will automatically detect and scan for audio files:
 
 ```json
 {
-    "supported_formats": [".wav", ".mp3", ".m4a", ".aac", ".flac", ".aiff"],
+    "supported_formats": [".mp3", ".m4a", ".aac", ".flac", ".aiff"],
     "output_format": ".ogg",
     "quality": 6
 }
@@ -118,7 +118,7 @@ You can still specify directories manually if needed:
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
 | `source_dirs` | array/null | `null` | Directories to scan (null = auto-detect) |
-| `supported_formats` | array | `[".wav", ".mp3", ".m4a", ".aac", ".flac", ".aiff"]` | Audio formats to convert |
+| `supported_formats` | array | `[".mp3", ".m4a", ".aac", ".flac", ".aiff"]` | Audio formats to convert (WAV files are automatically skipped) |
 | `output_format` | string | `".ogg"` | Output format (currently only .ogg supported) |
 | `quality` | integer | `6` | Audio quality (0-10, higher = better quality, larger file) |
 | `delete_originals` | boolean | `false` | Whether to delete original files after conversion |
