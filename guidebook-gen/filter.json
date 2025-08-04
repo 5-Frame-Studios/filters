@@ -1,13 +1,13 @@
 {
-    "description": "Generates a guidebook JSON file from markdown documents with frontmatter metadata. Scans data/guidebook/ directory for .md files and creates a structured guidebook for Minecraft Bedrock Edition. Features improved error handling, progress reporting, and simplified formatting conversion.",
-    "version": "1.1.0",
+    "description": "Advanced guidebook generator with comprehensive frontmatter support including interactive elements, page versioning, form fields, and property system integration. Converts markdown documents to structured guidebook JSON for Minecraft Bedrock Edition.",
+    "version": "2.0.0",
     "author": "Filter System",
     "filters": [
         {
             "runWith": "python",
             "script": "./main.py",
-            "name": "Guidebook Generator",
-            "description": "Converts markdown files to guidebook JSON format with enhanced error handling and progress reporting"
+            "name": "Advanced Guidebook Generator",
+            "description": "Converts markdown files with advanced frontmatter to guidebook JSON format supporting buttons, forms, versioning, and property placeholders"
         }
     ],
     "settings": {
@@ -16,6 +16,128 @@
         "supported_formats": [".md"],
         "log_level": "INFO",
         "validate_frontmatter": true,
-        "required_fields": ["title"]
+        "process_packs": false,
+        "ignored_namespaces": ["minecraft"],
+        "target_namespace": "5fs",
+        "key_list": ["name", "description"],
+        "entity": {},
+        "blocks": {},
+        "recipes": {},
+        "items": {}
+    },
+    "features": {
+        "page_types": {
+            "content_pages": "Navigation and content display with buttons and body text",
+            "form_pages": "Data collection with various field types (textField, toggle, slider, dropdown)",
+            "dialog_pages": "Confirmation dialogs with exactly 2 buttons"
+        },
+        "interactive_elements": {
+            "buttons": "Clickable buttons with actions (navigation, property manipulation, custom actions)",
+            "fields": "Form input fields with validation and property binding",
+            "events": "Page lifecycle events (on_open, on_close, on_first_open, on_submit_action)"
+        },
+        "advanced_features": {
+            "versioning": "Conditional page content based on property values",
+            "nested_pages": "Hierarchical page structure with automatic flattening",
+            "property_placeholders": "Dynamic content with {{p:property}}, {{c:constant}}, {{parser:function}} syntax",
+            "associated_blocks": "Direct page access when using guidebook on specific blocks",
+            "associated_items": "Creative mode item spawning integration",
+            "pack_processing": "Automatic guidebook generation from Minecraft behavior pack assets"
+        },
+        "property_system": {
+            "scopes": ["player", "world", "const"],
+            "placeholders": ["{{p:name}}", "{{p:name|default}}", "{{c:constant}}", "{{parser:function}}"],
+            "actions": ["set_properties", "increment_property", "decrement_property", "trigger_script_event"]
+        }
+    },
+    "frontmatter_reference": {
+        "basic_properties": {
+            "title": "string - Page display title",
+            "body": "string - Main content (optional, uses markdown content if not specified)",
+            "showInSearch": "boolean - Whether page appears in search results (default: true)",
+            "associated_block": "string - Block identifier for direct page access",
+            "associated_item": "string - Item identifier for creative mode item spawning"
+        },
+        "interactive_elements": {
+            "buttons": "array - Clickable buttons with text, action, and optional icon",
+            "fields": "array - Form input fields with type, label, property, and type-specific options"
+        },
+        "page_events": {
+            "on_open": "array - Actions triggered every time page opens",
+            "on_close": "array - Actions triggered when page closes",
+            "on_first_open": "array - Actions triggered only on first page visit",
+            "on_submit_action": "string - Custom action for form submission"
+        },
+        "versioning": {
+            "versions": "array - Different page versions based on property values",
+            "version_control_property": "object - Property that controls which version displays"
+        },
+        "nested_structure": {
+            "children": "array - Nested child pages (automatically flattened during processing)"
+        }
+    },
+    "validation_rules": {
+        "page_type_constraints": {
+            "content_page": "buttons + body (optional) - Cannot have fields",
+            "form_page": "fields only - Cannot have buttons",
+            "dialog_page": "exactly 2 buttons + body - Cannot have fields"
+        },
+        "required_combinations": {
+            "versions": "Requires version_control_property",
+            "fields": "Each field requires type, label, and property definition",
+            "buttons": "Each button requires text and action"
+        },
+        "property_definitions": {
+            "structure": "{ name: string, scope: 'player'|'world'|'const', defaultValue?: any }",
+            "validation": "Property names must be unique within scope"
+        }
+    },
+    "examples": {
+        "content_page": "Page with buttons for navigation and content display",
+        "form_page": "Page with fields for data collection (settings, feedback, etc.)",
+        "dialog_page": "Confirmation page with exactly two choice buttons",
+        "versioned_page": "Page that changes content based on player properties",
+        "nested_page": "Page with children that get flattened into separate pages"
+    },
+    "pack_processing": {
+        "description": "Automatically generate guidebook pages from Minecraft behavior pack assets",
+        "settings": {
+            "process_packs": {
+                "type": "boolean",
+                "default": false,
+                "description": "Enable automatic processing of Minecraft behavior pack assets"
+            },
+            "ignored_namespaces": {
+                "type": "array",
+                "default": ["minecraft"],
+                "description": "Asset namespaces to ignore during processing"
+            },
+            "target_namespace": {
+                "type": "string",
+                "default": "5fs",
+                "description": "Primary namespace to process (leave empty to process all non-ignored namespaces)"
+            },
+            "key_list": {
+                "type": "array",
+                "default": ["name", "description"],
+                "description": "Asset properties to extract from pack files"
+            }
+        },
+        "generated_content": {
+            "asset_pages": "Individual pages for entities, blocks, and items with name, description, and associated_item integration",
+            "recipe_pages": "Dedicated crafting recipe pages with visual patterns and ingredient lists",
+            "index_pages": "Category browsing pages for each asset type with navigation buttons",
+            "navigation": "Rich button-based navigation between related content",
+            "tracking": "Player progress tracking using on_open and on_first_open events"
+        },
+        "features": [
+            "Automatic asset discovery from behavior packs (5fs: namespace by default)",
+            "Recipe extraction and crafting pattern visualization", 
+            "Interactive navigation between related assets",
+            "Creative mode 'Get Item' button via associated_item",
+            "Progress tracking with player property events",
+            "Category index pages for entities, blocks, and items",
+            "Clean frontmatter with only valid specification properties"
+        ]
     }
 }

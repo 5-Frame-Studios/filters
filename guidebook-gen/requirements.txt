@@ -1,2 +1,4 @@
 python-frontmatter>=1.0.0
 PyYAML>=6.0
+reticulator==0.1.3b0
+dpath==2.1.2

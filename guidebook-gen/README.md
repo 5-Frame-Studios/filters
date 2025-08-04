@@ -1,72 +1,267 @@
-# Guidebook Generator Filter v1.1.0
+# Advanced Guidebook Generator v2.0.0
 
-Generates a guidebook JSON file from markdown documents with frontmatter metadata for Minecraft Bedrock Edition.
+**Complete rewrite with comprehensive frontmatter support!** Generates advanced interactive guidebook JSON files from markdown documents with extensive frontmatter metadata for Minecraft Bedrock Edition.
 
-## ✅ Backward Compatibility
+## 🚀 Major New Features in v2.0
 
-**This version is fully backward compatible with v1.0.0.** Existing projects using this filter will continue to work without any changes to their configuration files or markdown documents.
+- **📄 Multiple Page Types**: Content, Form, and Dialog pages with validation
+- **🎮 Interactive Elements**: Buttons, form fields, and page events
+- **🔄 Page Versioning**: Conditional content based on property values  
+- **🏗️ Nested Pages**: Hierarchical page structure with auto-flattening
+- **🔗 Property System**: Full placeholder support with player/world/const scopes
+- **✅ Advanced Validation**: Comprehensive frontmatter validation with detailed error reporting
+- **🎯 Associated Blocks/Items**: Direct page access and creative mode integration
 
-## Features
+## Page Types & Validation
 
-- **Markdown Processing**: Converts markdown files to Minecraft guidebook format
-- **Frontmatter Support**: Extracts metadata from YAML frontmatter
-- **Minecraft Formatting**: Converts markdown syntax to Minecraft formatting codes
-- **Enhanced Progress Reporting**: Shows processing progress for large directories (New in v1.1.0)
-- **Improved Error Handling**: Robust error handling with detailed logging (New in v1.1.0)
-- **Better Validation**: Validates frontmatter structure and required fields (New in v1.1.0)
-- **UTF-8 Support**: Full UTF-8 encoding support
-- **Optimized Performance**: Improved processing efficiency (New in v1.1.0)
+### Content Pages
+- **Purpose**: Navigation and content display
+- **Elements**: `buttons` + `body` (optional)
+- **Restrictions**: Cannot have `fields`
 
-## Quick Start
+### Form Pages  
+- **Purpose**: Data collection
+- **Elements**: `fields` only
+- **Restrictions**: Cannot have `buttons` (forms have built-in submit)
 
-For existing users, no changes are required. The filter works exactly as before but with improved reliability and performance.
+### Dialog Pages
+- **Purpose**: Confirmation dialogs
+- **Elements**: Exactly 2 `buttons` + `body`
+- **Restrictions**: Cannot have `fields`, must have exactly 2 buttons
 
-## Configuration
+## Interactive Elements
 
-### Basic Settings (Backward Compatible)
-
-Your existing configuration will continue to work:
-
-```json
-{
-    "source_dir": "data/guidebook/",
-    "output": "scripts/guidebook.json"
-}
+### Buttons
+```yaml
+buttons:
+  - text: "Next Page"
+    action: "navigateTo:advanced"
+    icon: "textures/ui/arrow_right"
+  - text: "Save Progress"
+    action:
+      - action: "set_properties"
+        properties:
+          - property: { name: "progress_saved", scope: "player" }
+            value: "true"
+      - "navigateTo:main"
 ```
 
-### Enhanced Settings (Optional - New in v1.1.0)
+### Form Fields
+```yaml
+fields:
+  - type: "textField"
+    label: "Your Name:"
+    property: { name: "player_name", scope: "player" }
+    placeholder: "Enter your name..."
+    
+  - type: "slider"
+    label: "Volume Level"
+    property: { name: "volume", scope: "player" }
+    min: 0
+    max: 100
+    step: 10
+    default: 50
+    
+  - type: "dropdown"
+    label: "Language:"
+    property: { name: "language", scope: "player" }
+    options: ["English", "Spanish", "French"]
+    default: 0
+```
 
-You can optionally add these new settings for enhanced functionality:
+## Property System
+
+### Property Placeholders
+- `{{p:property_name}}` - Player property value
+- `{{p:property_name|default}}` - Property with fallback
+- `{{c:player_name}}` - Player constants (name, gamemode, etc.)
+- `{{parser:current_time}}` - Parser functions
+
+### Property Scopes
+- **player**: Per-player data, persists across sessions
+- **world**: Global server data, shared by all players  
+- **const**: Read-only player constants (name, gamemode, level, etc.)
+
+## Configuration
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
 | `source_dir` | string | `data/guidebook/` | Directory containing markdown files |
 | `output` | string | `scripts/guidebook.json` | Output guidebook JSON file |
-| `supported_formats` | array | `[".md"]` | Supported file extensions |
-| `log_level` | string | `"INFO"` | Logging level (DEBUG, INFO, WARNING, ERROR) |
-| `validate_frontmatter` | boolean | `true` | Whether to validate frontmatter structure |
-| `required_fields` | array | `["title"]` | Required fields in frontmatter |
+| `log_level` | string | `"INFO"` | Logging level |
+| `validate_frontmatter` | boolean | `true` | Enable validation |
 
-## Markdown File Format
+## Complete Page Examples
 
-The markdown file format remains unchanged from v1.0.0:
-
+### Content Page Example
 ```markdown
 ---
-title: "Page Title"
-description: "Page description"
-icon: "textures/ui/icon"
+title: "Welcome Guide"
+showInSearch: true
+associated_block: "minecraft:lectern"
+associated_item: "minecraft:diamond"
+
+on_first_open:
+  - action: "set_property"
+    property: { name: "tutorial_started", scope: "player" }
+    value: "true"
+
+buttons:
+  - text: "Next: {{p:next_chapter|Chapter 2}}"
+    action: "navigateTo:chapter2"
+    icon: "textures/ui/arrow_right"
+  - text: "Settings"
+    action: "navigateTo:settings"
 ---
 
-# Page Content
+# Welcome to the Server!
 
-This is the page content with **bold** and *italic* text.
+Hello {{c:player_name}}! This is your **first** visit.
+
+Current progress: {{p:tutorial_progress|0}}%
 ```
 
-## Minecraft Formatting Conversion
+### Form Page Example  
+```markdown
+---
+title: "Server Settings"
+on_submit_action: "save_settings"
 
-The formatting conversion behavior is identical to v1.0.0:
+fields:
+  - type: "textField" 
+    label: "Display Name:"
+    property: { name: "display_name", scope: "player" }
+    placeholder: "{{c:player_name}}"
+    default: "{{c:player_name}}"
+    
+  - type: "toggle"
+    label: "Enable Notifications"
+    property: { name: "notifications", scope: "player" }
+    default: true
+    
+  - type: "slider"
+    label: "UI Scale:"
+    property: { name: "ui_scale", scope: "player" }
+    min: 50
+    max: 150
+    step: 10
+    default: 100
+    
+  - type: "dropdown"
+    label: "Language:"
+    property: { name: "language", scope: "player" }
+    options: ["English", "Español", "Français"]
+    default: 0
+---
 
+**Player Settings**
+
+Customize your experience on the server.
+```
+
+### Dialog Page Example
+```markdown
+---
+title: "Delete Confirmation"
+buttons:
+  - text: "Yes, Delete All"
+    action:
+      - action: "set_property"
+        property: { name: "player_data", scope: "player" }
+        value: "deleted"
+      - "navigateTo:main"
+  - text: "Cancel"
+    action: "back"
+---
+
+**⚠️ Warning: Permanent Action**
+
+Are you sure you want to delete all your player data?
+
+This action **cannot be undone**. All progress will be lost.
+```
+
+### Versioned Page Example
+```markdown
+---
+title: "Dynamic Content"
+versions:
+  - value: "beginner"
+    title: "Beginner Tutorial"
+    body: "Welcome new player! Start with the basics."
+    buttons:
+      - text: "Basic Tutorial"
+        action: "navigateTo:tutorial_basic"
+  - value: "advanced"
+    title: "Advanced Features"
+    body: "Ready for advanced content!"
+    buttons:
+      - text: "Advanced Tutorial"
+        action: "navigateTo:tutorial_advanced"
+
+version_control_property:
+  name: "skill_level"
+  scope: "player"
+  defaultValue: "beginner"
+---
+
+This content changes based on your skill level!
+```
+
+### Nested Page Example
+```markdown
+---
+title: "Chapter Hub"
+children:
+  - title: "Section 1: Basics"
+    body: "Learn the fundamentals"
+    buttons:
+      - text: "Continue"
+        action: "navigateTo:section2"
+  - title: "Section 2: Advanced"
+    body: "Master advanced techniques"
+---
+
+# Chapter Overview
+
+This chapter covers essential topics.
+```
+
+## Page Events & Actions
+
+### Event Types
+```yaml
+on_open:          # Every time page opens
+on_close:         # When page closes/navigates away  
+on_first_open:    # Only first visit per player
+on_submit_action: # Custom form submission (form pages)
+```
+
+### Action Types
+```yaml
+# Navigation
+"navigateTo:page_id"
+"back"
+"close"
+
+# Properties  
+action: "set_properties"
+properties:
+  - property: { name: "score", scope: "player" }
+    value: 100
+
+# Custom actions
+"search"              # Enable search
+"custom_action_name"  # Your registered action
+```
+
+## Advanced Features
+
+### Associated Integration
+- **associated_block**: Open page when using guidebook on specific block
+- **associated_item**: Add "Get Item" button in creative mode
+
+### Minecraft Formatting
 | Markdown | Minecraft | Description |
 |----------|-----------|-------------|
 | `**text**` | `§ltext§r` | Bold |
@@ -74,140 +269,26 @@ The formatting conversion behavior is identical to v1.0.0:
 | `~~text~~` | `§mtext§r` | Strikethrough |
 | `*text*` | `§otext§r` | Italic |
 | `` `text` `` | `§7text§r` | Code |
-| `[text](url)` | `text` | Links (URL removed) |
 | `&color` | `§color` | Color codes |
 
-## Page ID Generation
+## Migration from v1.x
 
-Page ID generation logic remains the same:
+### ✅ Fully Backward Compatible
+All existing v1.x markdown files work unchanged! The system automatically detects simple pages and treats them as Content pages.
 
-- Files named `main.md` use the directory name as ID
-- Other files use the full path without extension
-- Paths are normalized to use forward slashes
-
-## New in v1.1.0
-
-### Enhanced Error Handling
-- **Invalid Frontmatter**: Better error messages and recovery
-- **File Permissions**: More graceful handling of permission errors
-- **Malformed JSON**: Better validation of output JSON structure
-- **Missing Directories**: Improved directory creation with better error messages
-
-### Improved Performance
-- **Efficient File Discovery**: Faster scanning of large directory structures
-- **Optimized Regex**: Streamlined formatting conversion for better performance
-- **Memory Optimization**: Better memory usage for large markdown collections
-- **Class-Based Architecture**: Cleaner code organization for better maintainability
-
-### Better Logging
-- **Structured Logging**: Consistent log format with `[guidebook-gen]` prefix
-- **Progress Reporting**: See real-time progress when processing many files
-- **Configurable Levels**: Control verbosity with `log_level` setting
-- **Debug Information**: Detailed processing information when needed
-
-### Enhanced Validation
-- **Frontmatter Validation**: Optional validation of required fields
-- **Settings Validation**: Better validation of configuration parameters
-- **File Structure**: Improved validation of markdown file structure
-
-## Migration Guide
-
-### From v1.0.0 to v1.1.0
-
-**No migration required!** Your existing setup will work immediately.
-
-#### Optional Enhancements
-
-If you want to take advantage of new features, you can add these optional settings:
-
-```json
-{
-    "source_dir": "data/guidebook/",
-    "output": "scripts/guidebook.json",
-    "log_level": "INFO",
-    "validate_frontmatter": true
-}
+### 🆕 Optional Enhancements
+Add new features gradually:
+```markdown
+---
+title: "My Page"        # ✅ Works as before
+buttons:                # 🆕 Add interactivity
+  - text: "Click me"
+    action: "navigateTo:next"
+---
 ```
-
-## Examples
-
-### Existing Configuration (Still Works)
-```json
-{
-    "source_dir": "data/guidebook/",
-    "output": "scripts/guidebook.json"
-}
-```
-
-### Enhanced Configuration (Optional)
-```json
-{
-    "source_dir": "docs/guidebook/",
-    "output": "packs/behavior/scripts/guidebook.json",
-    "log_level": "DEBUG",
-    "validate_frontmatter": true,
-    "required_fields": ["title", "description"]
-}
-```
-
-### Directory Structure (Unchanged)
-```
-data/guidebook/
-├── getting_started/
-│   ├── main.md
-│   └── installation.md
-├── features/
-│   ├── main.md
-│   └── advanced.md
-└── troubleshooting.md
-```
-
-## Output Format
-
-The output format remains exactly the same as v1.0.0:
-
-```json
-{
-    "pages": [
-        {
-            "id": "getting_started",
-            "title": "Getting Started",
-            "description": "Learn the basics",
-            "body": "Welcome to the guide...",
-            "icon": "textures/ui/icon"
-        }
-    ]
-}
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"Source directory not found"**: Check that the `source_dir` path is correct
-2. **"No markdown files found"**: Ensure your directory contains `.md` files
-3. **"Missing required fields"**: Check that your frontmatter includes required fields
-4. **Permission errors**: Ensure the filter has write access to the output directory
-
-### Log Levels
-
-- **ERROR**: Only critical errors that prevent generation
-- **WARNING**: Non-critical issues (missing fields, etc.)
-- **INFO**: General progress information (recommended)
-- **DEBUG**: Detailed processing information for each file
-
-## Performance Improvements in v1.1.0
-
-- **25% faster** file discovery for large directories
-- **Better memory usage** when processing many markdown files
-- **Improved regex performance** for formatting conversion
-- **Cleaner code architecture** for easier maintenance
 
 ## Version History
 
-- **v1.1.0**: Enhanced error handling, improved performance, better validation (backward compatible)
+- **v2.0.0**: Complete rewrite with interactive elements, versioning, forms, validation
+- **v1.1.0**: Enhanced error handling, improved performance  
 - **v1.0.0**: Initial release
-
-## Support
-
-If you encounter any issues after upgrading, the filter maintains full backward compatibility. All existing configurations, markdown files, and workflows will continue to function exactly as before. 
