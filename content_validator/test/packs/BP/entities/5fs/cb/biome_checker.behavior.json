@@ -1,0 +1,307 @@
+{
+  "format_version": "1.21.70",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "5fs_cb:biome_type", // detector
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "5fs.cb.itembehavior:biome_type": {
+          "type": "int",
+          "default": -1,
+          "range": [-1, 23]
+        }
+      }
+    },
+    "components": {
+      "minecraft:timer": {
+        "time": 2.15,
+        "looping": true,
+        "time_down_event": {
+          "event": "5fs:instant_despawn",
+          "target": "self"
+        }
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:despawn": {
+        "despawn_from_distance": {
+          "max_distance": 128,
+          "min_distance": 64
+        },
+        "despawn_from_simulation_edge": true,
+        "remove_child_entities": false
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "breathes_air": true,
+        "breathes_lava": true,
+        "breathes_solids": true,
+        "breathes_water": true,
+        "suffocate_time": 0,
+        "inhale_time": 0,
+        "generates_bubbles": false
+      },
+      "minecraft:type_family": {
+        "family": ["5fs.cb.itembehavior:entity"]
+      },
+      "minecraft:collision_box": {
+        "width": -999999,
+        "height": -999999
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "deals_damage": "no"
+        }
+      },
+      "minecraft:physics": {
+        "has_collision": false,
+        "has_gravity": false
+      },
+      "minecraft:persistent": {},
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": {
+          "max_optimized_distance": 80.0,
+          "max_dropped_ticks": 7,
+          "use_motion_prediction_hints": true
+        }
+      }
+      // "minecraft:environment_sensor": {
+      //   "triggers": [
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "plains" },
+      //       "event": "5fs.cb.itembehavior:biome_type_0"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "sunflower_plains" },
+      //       "event": "5fs.cb.itembehavior:biome_type_1"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "dripstone_caves" },
+      //       "event": "5fs.cb.itembehavior:biome_type_2"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "deep_dark" },
+      //       "event": "5fs.cb.itembehavior:biome_type_3"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "swampland" },
+      //       "event": "5fs.cb.itembehavior:biome_type_4"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "flower_forest" },
+      //       "event": "5fs.cb.itembehavior:biome_type_5"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "meadow" },
+      //       "event": "5fs.cb.itembehavior:biome_type_6"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "mesa" },
+      //       "event": "5fs.cb.itembehavior:biome_type_7"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "mesa_plateau" },
+      //       "event": "5fs.cb.itembehavior:biome_type_8"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "mesa_bryce" },
+      //       "event": "5fs.cb.itembehavior:biome_type_9"
+      //     },
+      //     {
+      //       "filters": {
+      //         "test": "has_biome_tag",
+      //         "value": "mesa_plateau_mutated"
+      //       },
+      //       "event": "5fs.cb.itembehavior:biome_type_10"
+      //     },
+      //     {
+      //       "filters": {
+      //         "test": "has_biome_tag",
+      //         "value": "mesa_plateau_stone"
+      //       },
+      //       "event": "5fs.cb.itembehavior:biome_type_11"
+      //     },
+      //     {
+      //       "filters": {
+      //         "test": "has_biome_tag",
+      //         "value": "mesa_plateau_stone_mutated"
+      //       },
+      //       "event": "5fs.cb.itembehavior:biome_type_12"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "grove" },
+      //       "event": "5fs.cb.itembehavior:biome_type_13"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "snowy_slopes" },
+      //       "event": "5fs.cb.itembehavior:biome_type_14"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "frozen_peaks" },
+      //       "event": "5fs.cb.itembehavior:biome_type_15"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "jagged_peaks" },
+      //       "event": "5fs.cb.itembehavior:biome_type_16"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "stony_peaks" },
+      //       "event": "5fs.cb.itembehavior:biome_type_17"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "lush_caves" },
+      //       "event": "5fs.cb.itembehavior:biome_type_18"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "mangrove_swamp" },
+      //       "event": "5fs.cb.itembehavior:biome_type_19"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "the_end" },
+      //       "event": "5fs.cb.itembehavior:biome_type_20"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "hell" },
+      //       "event": "5fs.cb.itembehavior:biome_type_21"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "forest" },
+      //       "event": "5fs.cb.itembehavior:biome_type_22"
+      //     },
+      //     {
+      //       "filters": { "test": "has_biome_tag", "value": "birch_forest" },
+      //       "event": "5fs.cb.itembehavior:biome_type_23"
+      //     }
+      //   ]
+      // }
+    },
+    "component_groups": {
+      "5fs:instant_despawn": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "5fs:instant_despawn": {
+        "add": {
+          "component_groups": ["5fs:instant_despawn"]
+        }
+      },
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            //Watchtower
+            "filters": {
+              "test": "has_biome_tag",
+              "value": "taiga"
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 0
+            }
+          },
+          {
+            //Barn
+            "filters": [
+              {
+                "all_of": [
+                  {
+                    "test": "has_biome_tag",
+                    "value": "savanna"
+                  }
+                ]
+              }
+            ],
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 1
+            }
+          },
+          {
+            "filters": {
+              "any_of": [
+                {
+                  "test": "has_biome_tag",
+                  "value": "stone_beach"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "value": "beach"
+                }
+              ]
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 2
+            }
+          },
+          {
+            "filters": {
+              "test": "has_biome_tag",
+              "value": "roofed_forest"
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 3
+            }
+          },
+          {
+            "filters": {
+              "test": "has_biome_tag",
+              "value": "desert"
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 4
+            }
+          },
+          {
+            "filters": {
+              "test": "has_biome_tag",
+              "value": "extreme_hills"
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 5
+            }
+          },
+          {
+            "filters": {
+              "any_of": [
+                {
+                  "test": "has_biome_tag",
+                  "value": "swamp"
+                },
+                {
+                  "test": "has_biome_tag",
+                  "value": "mangrove_swamp"
+                }
+              ]
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 6
+            }
+          },
+          {
+            "filters": {
+              "test": "in_nether",
+              "subject": "self",
+              "value": true
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 7
+            }
+          },
+          {
+            "filters": {
+              "test": "has_biome_tag",
+              "subject": "self",
+              "value": "jungle"
+            },
+            "set_property": {
+              "5fs.cb.itembehavior:biome_type": 8
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:item": {
+    "description": {
+      "identifier": "5fs_cb:door_bamboo_foldable_glass_double",
+      "menu_category": {
+        "category": "items",
+        "group": "5fs_cb:itemGroup.name.jungle_spawn_eggs"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": {
+        "value": 64
+      },
+      "minecraft:entity_placer": {
+        "entity": "5fs_cb:door_bamboo_foldable_glass_double"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "5fs_cb:door_bamboo_foldable_glass_double"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "item.5fs_cb:door_bamboo_foldable_glass_double"
+      }
+    }
+  }
+}

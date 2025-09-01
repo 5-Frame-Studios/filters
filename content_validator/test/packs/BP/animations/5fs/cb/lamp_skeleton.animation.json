@@ -1,0 +1,19 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.5fs_cb.activate.lamp_skeleton_sound": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": ["/execute as @s[type=5fs_cb:lamp_skeleton,c=1] run playsound fire.fire @p ~~~"]
+      }
+    },
+    "animation.5fs_cb.activate.fireplace_frozen_sound": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": ["/execute as @s[type=5fs_cb:fireplace_frozen,c=1] run playsound fire.fire @p ~~~"]
+      }
+    }
+  }
+}

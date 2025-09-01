@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:jar_glowing_spider"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " G ",
+      " E ",
+      " L "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_bottle"
+      },
+      "E": {
+        "item": "minecraft:spider_eye"
+      },
+      "L": {
+        "item": "minecraft:glow_ink_sac"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:jar_glowing_spider",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:sportsbar_craft"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "AAA",
+      "CDC",
+      "BBB"
+    ],
+    "key": {
+      "A": {
+        "item": "minecraft:iron_block"
+      },
+      "B": {
+        "item": "minecraft:oak_planks"
+      },
+      "C": {
+        "item": "minecraft:diamond"
+      },
+      "D": {
+        "item": "minecraft:iron_door"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:sportsbar_craft"
+    }
+  }
+}

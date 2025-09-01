@@ -1,0 +1,29 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.5fs_cb.globe_snow" : {
+			"initial_state" : "default",
+			"states" : {
+                "default": {
+                    "transitions": [
+                        {"on": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+				"on" : {
+                    "animations": ["snow_globe"],
+					"transitions" : [
+                        {"off": "!query.is_sheared"}
+    				],
+                    "blend_transition": 0.2
+                },
+                "off": {
+                    "transitions": [
+                        {"on": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                }
+			}
+		}
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.5fs_cb.mob_sounds": {
+            "initial_state": "sound_off",
+            "states": {
+                "sound_off": {
+                    "transitions": [{"sound_on": "q.is_sheared"}],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:ceiling_fan_skeleton,c=1] run playsound item.bone_meal.use @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_parrot,c=1] run playsound mob.parrot.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_enderman,c=1] run playsound mob.endermen.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_allay,c=1] run playsound mob.allay.death @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_glow_squid,c=1] run playsound bubble.pop @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_blaze,c=1] run playsound mob.blaze.shoot @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_iron_golem,c=1] run playsound mob.irongolem.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_bat,c=1] run playsound mob.bat.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_axolotl,c=1] run playsound bubble.up @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_evoker,c=1] run playsound mob.evocation_fangs.attack @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_enderdragon,c=1] run playsound mob.clock_enderdragon.sound @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_chicken_cuckoo,c=1] run playsound mob.chicken.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_oak_glass_double,c=1] run playsound close.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_aquatic_double,c=1] run playsound close.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_sniffer,c=1] run playsound mob.sniffer.happy @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_strider,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_piglin_cuckoo,c=1] run playsound mob.piglin_brute.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_bamboo_foldable_glass_double,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_ender_dragon_wing,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_ender_dragon,c=1] run playsound mob.enderdragon.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_sandstone_cactus_double,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_camel,c=1] run playsound mob.camel.stand @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_deep_dark_double,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_warden,c=1] run playsound mob.warden.listening @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_allay_cuckoo,c=1] run playsound mob.warden.listening_angry @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_bat_wing_double,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_creeper_cuckoo,c=1] run playsound mob.creeper.say @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_frozen_spruce,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_snow_golem,c=1] run playsound mob.snowgolem.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:chandelier_snow_golem,c=1] run playsound mob.snowgolem.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_snow_golem,c=1] run playsound mob.snowgolem.death @p ~~~"
+
+                    ]
+                },
+                "sound_on": {
+                    "transitions": [{"sound_off": "!q.is_sheared"}],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:ceiling_fan_skeleton,c=1] run playsound item.bone_meal.use @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_parrot,c=1] run playsound mob.parrot.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_enderman,c=1] run playsound mob.endermen.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_allay,c=1] run playsound mob.allay.death @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_glow_squid,c=1] run playsound bubble.pop @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_blaze,c=1] run playsound mob.blaze.shoot @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_iron_golem,c=1] run playsound mob.irongolem.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:ceiling_fan_bat,c=1] run playsound mob.bat.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_axolotl,c=1] run playsound bubble.up @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_evoker,c=1] run playsound mob.evocation_fangs.attack @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_enderdragon,c=1] run playsound mob.clock_enderdragon.sound @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_chicken_cuckoo,c=1] run playsound mob.chicken.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_oak_glass_double,c=1] run playsound close.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_aquatic_double,c=1] run playsound close.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_sniffer,c=1] run playsound mob.sniffer.happy @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_strider,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_piglin_cuckoo,c=1] run playsound mob.piglin_brute.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_bamboo_foldable_glass_double,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_ender_dragon_wing,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_ender_dragon,c=1] run playsound mob.enderdragon.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_sandstone_cactus_double,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:plushie_camel,c=1] run playsound mob.camel.stand @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_deep_dark_double,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_warden,c=1] run playsound mob.warden.listening @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_allay_cuckoo,c=1] run playsound mob.warden.listening_angry @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_bat_wing_double,c=1] run playsound open.iron_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:clock_creeper_cuckoo,c=1] run playsound mob.creeper.say @p ~~~",
+                        "/execute as @s[type=5fs_cb:door_frozen_spruce,c=1] run playsound open.bamboo_wood_door @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_snow_golem,c=1] run playsound mob.snowgolem.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:chandelier_snow_golem,c=1] run playsound mob.snowgolem.hurt @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_snow_golem,c=1] run playsound mob.snowgolem.death @p ~~~"
+                    ]
+                }
+            }
+        }
+    }
+}

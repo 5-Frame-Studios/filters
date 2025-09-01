@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:fridge_snow_golem"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "III",
+      "IRM",
+      "III"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "R": {
+        "item": "minecraft:redstone"
+      },
+      "M": {
+        "item": "minecraft:snow"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:fridge_snow_golem",
+      "count": 1
+    }
+  }
+}

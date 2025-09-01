@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:barn_2_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["#RS", "#RH", "HCH"],
+    "key": {
+      "#": {
+        "item": "minecraft:green_terracotta"
+      },
+      "R": {
+        "item": "minecraft:red_terracotta"
+      },
+      "S": {
+        "item": "minecraft:smooth_quartz_stairs"
+      },
+      "H": {
+        "item": "minecraft:stripped_oak_log"
+      },
+      "C": {
+        "item": "minecraft:hay_block"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:barn_2_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:barn_2_craft"
+    }
+  }
+}

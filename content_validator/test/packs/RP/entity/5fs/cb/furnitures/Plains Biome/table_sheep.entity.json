@@ -1,0 +1,42 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:table_sheep",
+			"render_controllers": ["controller.render.table_sheep_variant"],
+			"geometry": {
+				"default": "geometry.5fs_cb.table"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/table/table_sheep"
+			},
+			"materials": {
+				"sheep": "sheep"
+			},
+            "spawn_egg": {
+				"texture": "plain_eggs",
+				"texture_index": 9
+            },
+			"animations": {
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"idle": "animation.5fs_cb.structure.idle",
+				"placement": "animation.5fs_cb.table_base.placement",
+
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"90_degree": "animation.5fs_cb.structure.90_degree",
+				"180_degree": "animation.5fs_cb.structure.180_degree",
+				"270_degree": "animation.5fs_cb.structure.270_degree"
+			},
+			"scripts": {
+				"animate": ["spawn", "placement",
+					{"90_degree": "q.variant == 1"},
+					{"180_degree": "q.variant == 2"},
+					{"270_degree": "q.variant == 3"},
+					{"item": "q.variant == 4"}
+				]
+			}
+        }
+    }
+}

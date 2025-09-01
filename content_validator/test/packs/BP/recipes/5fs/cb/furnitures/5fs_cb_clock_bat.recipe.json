@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:clock_bat"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "SCS",
+      " S "
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:phantom_membrane"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      },
+      "C": {
+        "item": "minecraft:clock"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:clock_bat",
+      "count": 1
+    }
+  }
+}

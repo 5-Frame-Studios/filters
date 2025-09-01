@@ -1,0 +1,31 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.5fs_cb.globe_snow.particle": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": ["/particle 5fs_cb:interact_2 ^^^"]
+      }
+    },
+    "animation.5fs_cb.frozen_fireplace.particle": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": [
+          "/particle 5fs_cb:turned_on_1 ^^0.2^",
+          "/particle 5fs_cb:flame ^^0.4^",
+          "/particle 5fs_cb:flame ^^0.4^-0.1",
+          "/particle 5fs_cb:flame ^^0.4^0.1"
+        ]
+      }
+    },
+    "animation.5fs_cb.clock_creeper_cuckoo.particle": {
+      "loop": false,
+      "animation_length": 1.5,
+      "timeline": {
+        "0.8": ["/particle 5fs_cb:open_2 ^^0.5^0.15"]
+      }
+    }
+  }
+}

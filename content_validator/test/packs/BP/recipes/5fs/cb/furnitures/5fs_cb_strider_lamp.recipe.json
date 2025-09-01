@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:strider_lamp"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " G ",
+      " T ",
+      " M "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "T": {
+        "item": "minecraft:torch"
+      },
+      "M": {
+        "item": "minecraft:magma_cream"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:strider_lamp",
+      "count": 1
+    }
+  }
+}

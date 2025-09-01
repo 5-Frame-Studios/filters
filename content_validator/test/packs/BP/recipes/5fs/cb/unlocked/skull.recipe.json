@@ -1,0 +1,35 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:skull_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABA", "CAC", "DED"],
+    "key": {
+      "A": {
+        "item": "minecraft:bone_block"
+      },
+      "B": {
+        "item": "minecraft:blackstone"
+      },
+      "C": {
+        "item": "minecraft:quartz_block"
+      },
+      "D": {
+        "item": "minecraft:brown_mushroom_block",
+        "data": 15
+      },
+      "E": {
+        "item": "minecraft:stripped_cherry_log"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:skull_craft"
+    }
+  }
+}

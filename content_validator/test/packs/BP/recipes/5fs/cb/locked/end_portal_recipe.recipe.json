@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:end_portal_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["#E#", "EEE", "#E#"],
+    "key": {
+      "#": {
+        "item": "minecraft:light_gray_concrete"
+      },
+      "E": {
+        "item": "minecraft:ender_eye"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:endportal_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:endportal_craft"
+    }
+  }
+}

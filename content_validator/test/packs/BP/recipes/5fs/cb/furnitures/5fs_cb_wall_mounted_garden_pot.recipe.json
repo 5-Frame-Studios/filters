@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:wall_mounted_garden_pot"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " B ",
+      " F ",
+      " S "
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:brick"
+      },
+      "F": {
+        "item": "minecraft:flower_pot"
+      },
+      "S": {
+        "item": "minecraft:string"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:wall_mounted_garden_pot",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:ruler"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "   ",
+      "SSS",
+      "   "
+    ],
+    "key": {
+      "S": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:ruler",
+      "count": 1
+    }
+  }
+}

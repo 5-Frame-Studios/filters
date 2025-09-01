@@ -1,0 +1,37 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:restaurant_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["#Q#", "JPJ", "JLJ"],
+    "key": {
+      "#": {
+        "item": "minecraft:deepslate_brick_stairs"
+      },
+      "Q": {
+        "item": "minecraft:quartz_stairs"
+      },
+      "J": {
+        "item": "minecraft:quartz_block",
+        "data": 2
+      },
+      "P": {
+        "item": "minecraft:pearlescent_froglight"
+      },
+      "L": {
+        "item": "minecraft:light_gray_concrete"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:restaurant_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:restaurant_craft"
+    }
+  }
+}

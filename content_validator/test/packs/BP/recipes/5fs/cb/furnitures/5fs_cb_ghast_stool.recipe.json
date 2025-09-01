@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:ghast_stool"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "LLL",
+      " S "
+    ],
+    "key": {
+      "L": {
+        "item": "minecraft:oak_log"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      },
+      "T": {
+        "item": "minecraft:ghast_tear"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:ghast_stool",
+      "count": 1
+    }
+  }
+}

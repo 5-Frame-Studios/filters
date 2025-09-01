@@ -1,0 +1,67 @@
+{
+    "format_version": "1.8.0",
+    "render_controllers": {
+        "controller.render.table_sheep_variant": {
+            "geometry": "Geometry.default",
+            "textures": ["Texture.default"],
+            "materials": [{"*": "Material.sheep"}]
+        },
+        "controller.render.lamp_snow_golem": {
+			"arrays": {
+				"textures": {
+					"Array.lamp": [
+						"Texture.default",
+						"Texture.lamp_on"
+					]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [
+				{
+					"*": "Material.default"
+				}
+			],
+			"textures": [
+				"Array.lamp[q.is_sheared]" //pick top texture based on entity variant.
+			]
+		},
+        "controller.render.chandelier_snow_golem": {
+			"arrays": {
+				"textures": {
+					"Array.chandelier": [
+						"Texture.default",
+						"Texture.chandelier_on"
+					]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [
+				{
+					"*": "Material.default"
+				}
+			],
+			"textures": [
+				"Array.chandelier[q.is_sheared]" //pick top texture based on entity variant.
+			]
+		},
+        "controller.render.fridge_snow_golem": {
+			"arrays": {
+				"textures": {
+					"Array.fridge": [
+						"Texture.default",
+						"Texture.open"
+					]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [
+				{
+					"*": "Material.default"
+				}
+			],
+			"textures": [
+				"Array.fridge[q.is_sheared]" //pick top texture based on entity variant.
+			]
+		}
+    }
+}

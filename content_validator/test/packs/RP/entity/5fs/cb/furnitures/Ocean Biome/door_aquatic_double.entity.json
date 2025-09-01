@@ -1,0 +1,51 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "5fs_cb:door_aquatic_double",
+      "render_controllers": ["controller.render.default"],
+      "geometry": {
+        "default": "geometry.5fs_cb.door_aquatic_double"
+      },
+      "textures": {
+        "default": "textures/5fs/cb/entity/furnitures/door/door_aquatic_double"
+      },
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "spawn_egg": {
+        "texture": "ocean_eggs",
+        "texture_index": 9
+      },
+      "animations": {
+        // ITEM DISPLAY
+        "item_display": "animation.5fs_cb.structure.item_display",
+        "item_scale": "animation.5fs_cb.structure.item_scale",
+        "item_animation_controller": "controller.animation.5fs_cb.structure.item",
+
+        // ROTATIONS
+        "origin": "animation.5fs_cb.static.rotation.origin",
+
+        // INTERACTION [opening and closing cage]
+        "open": "animation.5fs_cb.door_aquatic_double.open",
+        "close": "animation.5fs_cb.door_aquatic_double.close",
+        "door_animation_controller": "controller.animation.5fs_cb.door.close_open"
+      },
+      "scripts": {
+        "initialize": [
+          "v.spawned = q.life_time;",
+          "v.loaded = (v.spawned ?? 1) +  0.2;"
+        ],
+        "animate": [
+          "door_animation_controller",
+          {
+            "origin": "q.variant != 4"
+          },
+          {
+            "item_animation_controller": "q.variant == 4"
+          }
+        ]
+      }
+    }
+  }
+}

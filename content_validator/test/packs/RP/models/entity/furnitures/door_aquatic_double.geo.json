@@ -1,0 +1,51 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.door_aquatic_double",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "door",
+					"parent": "root",
+					"pivot": [-8, 20.5, 1],
+					"cubes": [
+						{"origin": [-6, 4, 1], "size": [12, 32, 0], "uv": [0, 0]},
+						{"origin": [-6, 4, 0.5], "size": [12, 32, 0], "uv": [32, 23]},
+						{"origin": [-6, 4, 1.5], "size": [12, 32, 0], "uv": [32, 23]},
+						{"origin": [6, 4, 0], "size": [2, 32, 2], "uv": [0, 32]},
+						{"origin": [-8, 4, 0], "size": [2, 32, 2], "uv": [24, 6]},
+						{"origin": [-8, 0, 0], "size": [16, 4, 2], "pivot": [0, 2, 1], "rotation": [0, 0, -180], "uv": [24, 0]},
+						{"origin": [-8, 36, 0], "size": [16, 4, 2], "uv": [24, 0]},
+						{"origin": [6, 13, -0.5], "size": [2, 14, 3], "inflate": -0.025, "uv": [32, 6]}
+					]
+				},
+				{
+					"name": "door2",
+					"parent": "root",
+					"pivot": [24, 20.5, 1],
+					"cubes": [
+						{"origin": [10, 4, 1], "size": [12, 32, 0], "uv": [0, 0], "mirror": true},
+						{"origin": [10, 4, 0.5], "size": [12, 32, 0], "uv": [32, 23], "mirror": true},
+						{"origin": [10, 4, 1.5], "size": [12, 32, 0], "uv": [32, 23], "mirror": true},
+						{"origin": [8, 4, 0], "size": [2, 32, 2], "uv": [0, 32], "mirror": true},
+						{"origin": [22, 4, 0], "size": [2, 32, 2], "uv": [24, 6], "mirror": true},
+						{"origin": [8, 0, 0], "size": [16, 4, 2], "pivot": [16, 2, 1], "rotation": [0, 0, 180], "uv": [24, 0], "mirror": true},
+						{"origin": [8, 36, 0], "size": [16, 4, 2], "uv": [24, 0], "mirror": true},
+						{"origin": [8, 13, -0.5], "size": [2, 14, 3], "inflate": -0.025, "uv": [32, 6], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:clock_chicken_cuckoo"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "SCS",
+      " S "
+    ],
+    "key": {
+      "T": {
+        "item": "minecraft:egg"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      },
+      "C": {
+        "item": "minecraft:clock"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:clock_chicken_cuckoo",
+      "count": 1
+    }
+  }
+}

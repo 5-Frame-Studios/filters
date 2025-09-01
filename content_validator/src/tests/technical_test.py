@@ -72,7 +72,6 @@ class TechnicalTest(BaseValidatorTest):
     
     def _check_experimental_features(self, pack_paths: Dict[str, str]):
         """Check for experimental features usage."""
-        experimental_indicators = ['experimental', 'beta', 'preview']
         pack_dirs = find_pack_directories()
         
         for pack_type, possible_paths in pack_dirs.items():
@@ -82,21 +81,64 @@ class TechnicalTest(BaseValidatorTest):
                         for file in files:
                             if file.endswith('.json'):
                                 file_path = os.path.join(root, file)
-                                try:
-                                    with open(file_path, 'r', encoding='utf-8') as f:
-                                        content = f.read().lower()
-                                    
-                                    for indicator in experimental_indicators:
-                                        if indicator in content:
-                                            self.add_result(
-                                                ValidationLevel.WARNING,
-                                                f"Potential experimental feature usage detected: '{indicator}'",
-                                                file_path
-                                            )
-                                
-                                except (UnicodeDecodeError):
-                                    pass
+                                self._check_experimental_in_file(file_path)
                     break  # Found the first valid path for this pack type
+    
+    def _check_experimental_in_file(self, file_path: str):
+        """Check for actual experimental features usage in a specific file."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Check for experimental features in manifest files
+            if 'manifest.json' in file_path:
+                if 'dependencies' in data:
+                    for dep in data['dependencies']:
+                        if isinstance(dep, dict) and dep.get('module_name') in ['@minecraft/server-gametest', '@minecraft/server-admin']:
+                            self.add_result(
+                                ValidationLevel.ERROR,
+                                f"Experimental module '{dep.get('module_name')}' detected - experimental features are not allowed",
+                                file_path,
+                                context={'module': dep.get('module_name')}
+                            )
+            
+            # Check for is_experimental: true in any JSON
+            self._check_experimental_recursive(data, file_path)
+            
+        except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+            pass
+    
+    def _check_experimental_recursive(self, data: Any, file_path: str, path: str = ""):
+        """Recursively check for experimental features in JSON data."""
+        if isinstance(data, dict):
+            for key, value in data.items():
+                current_path = f"{path}.{key}" if path else key
+                
+                # Check for is_experimental: true
+                if key == 'is_experimental' and value is True:
+                    self.add_result(
+                        ValidationLevel.ERROR,
+                        f"Experimental feature indicator 'experimental' found - experimental features are not allowed",
+                        file_path,
+                        context={'experimental_indicator': 'experimental', 'path': current_path}
+                    )
+                
+                # Check for experimental feature flags
+                if key in ['enable_experimental', 'experimental_features'] and value:
+                    self.add_result(
+                        ValidationLevel.ERROR,
+                        f"Experimental feature flag '{key}' enabled - experimental features are not allowed",
+                        file_path,
+                        context={'experimental_flag': key, 'path': current_path}
+                    )
+                
+                # Recurse into nested structures
+                self._check_experimental_recursive(value, file_path, current_path)
+                
+        elif isinstance(data, list):
+            for i, item in enumerate(data):
+                current_path = f"{path}[{i}]" if path else f"[{i}]"
+                self._check_experimental_recursive(item, file_path, current_path)
     
     def _check_vanilla_overrides(self, pack_paths: Dict[str, str]):
         """Check for vanilla content overrides."""
@@ -140,12 +182,71 @@ class TechnicalTest(BaseValidatorTest):
             if ':' in data:
                 namespace = data.split(':')[0]
                 if namespace in vanilla_namespaces:
-                    self.add_result(
-                        ValidationLevel.ERROR,
-                        f"Vanilla namespace '{namespace}' should not be overridden in Add-Ons",
-                        file_path,
-                        context={'value': data, 'path': path}
-                    )
+                    # Only flag vanilla namespace usage for NEW entity/block/item identifiers
+                    # Skip legitimate references like recipe ingredients, loot table items, etc.
+                    if self._is_identifier_definition(path, file_path):
+                        self.add_result(
+                            ValidationLevel.ERROR,
+                            f"Vanilla namespace '{namespace}' should not be overridden in Add-Ons",
+                            file_path,
+                            context={'value': data, 'path': path}
+                        )
+    
+    def _is_identifier_definition(self, path: str, file_path: str) -> bool:
+        """Check if this path represents a new identifier definition (not a reference)."""
+        # These are legitimate references, not new definitions
+        legitimate_reference_paths = [
+            'result.item',           # Recipe results can use minecraft: items
+            'key.item',             # Recipe ingredients can use minecraft: items  
+            'tags.item',            # Recipe tags can reference minecraft: items
+            'item',                 # General item references
+            'input',                # Recipe inputs
+            'output',               # Recipe outputs
+            'ingredient',           # Recipe ingredients
+            'materials',            # Crafting materials
+            'drops',                # Loot table drops
+            'pools.entries.name',   # Loot table entries
+            'give',                 # Give commands
+            'item_name',            # Item name references
+            'spawn_item',           # Spawn item references
+        ]
+        
+        # File types that commonly have legitimate minecraft: references
+        legitimate_reference_files = [
+            'recipe.json',
+            'loot_table.json',
+            'trade.json',
+            'crafting_item_catalog.json',
+            'trading.json'
+        ]
+        
+        # Check if this is a legitimate reference context
+        path_lower = path.lower()
+        for ref_path in legitimate_reference_paths:
+            if ref_path in path_lower:
+                return False
+        
+        # Check if this is a file type that commonly has references
+        file_name = file_path.split('\\')[-1].split('/')[-1]
+        for ref_file in legitimate_reference_files:
+            if ref_file in file_name:
+                return False
+        
+        # Check for entity/block/item identifier definitions (these should be flagged)
+        identifier_definition_paths = [
+            'minecraft:entity.description.identifier',
+            'minecraft:block.description.identifier', 
+            'minecraft:item.description.identifier',
+            'description.identifier',
+            'identifier'
+        ]
+        
+        for def_path in identifier_definition_paths:
+            if def_path in path_lower:
+                return True
+        
+        # Default to not flagging unless we're sure it's a new definition
+        return False
     
     def _check_setlore_restrictions(self, pack_paths: Dict[str, str]):
         """Check for setLore API restrictions."""
@@ -204,7 +305,7 @@ class TechnicalTest(BaseValidatorTest):
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            ticking_patterns = ['ticking', 'tickarea', 'tick_area']
+            ticking_patterns = ['ticking', 'tickarea', 'tick_area', 'tickingarea']
             for pattern in ticking_patterns:
                 if pattern in content.lower():
                     self.add_result(

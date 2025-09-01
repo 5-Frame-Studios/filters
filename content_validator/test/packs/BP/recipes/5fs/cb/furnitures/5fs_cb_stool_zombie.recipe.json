@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:stool_zombie"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " T ",
+      "LLL",
+      " S "
+    ],
+    "key": {
+      "L": {
+        "item": "minecraft:oak_log"
+      },
+      "S": {
+        "item": "minecraft:stick"
+      },
+      "T": {
+        "item": "minecraft:rotten_flesh"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:stool_zombie",
+      "count": 1
+    }
+  }
+}

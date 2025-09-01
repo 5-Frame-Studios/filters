@@ -1,0 +1,38 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.table_stray",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-7, 9, 16], "size": [14, 5, 0], "uv": [28, 34]},
+						{"origin": [-16, 14, -16], "size": [32, 2, 32], "uv": [0, 0]},
+						{"origin": [11.5, 5, -9], "size": [1, 2, 18], "uv": [38, 34]},
+						{"origin": [11, 0, -9], "size": [2, 15, 2], "pivot": [12, 11.5, -8], "rotation": [-10, 0, 0], "uv": [16, 57]},
+						{"origin": [-12.5, 5.5, -1], "size": [23, 1, 2], "pivot": [-12, 6.5, 0], "rotation": [0, 0, -25], "uv": [50, 54]},
+						{"origin": [11, 0, 7], "size": [2, 15, 2], "pivot": [12, 11.5, 8], "rotation": [10, 0, 0], "uv": [16, 57]},
+						{"origin": [-13, 0, 7], "size": [2, 15, 2], "pivot": [-12, 11.5, 8], "rotation": [10, 0, 0], "uv": [16, 57], "mirror": true},
+						{"origin": [-13, 0, -9], "size": [2, 15, 2], "pivot": [-12, 11.5, -8], "rotation": [-10, 0, 0], "uv": [16, 57], "mirror": true},
+						{"origin": [-12.5, 5, -9], "size": [1, 2, 18], "uv": [38, 34], "mirror": true},
+						{"origin": [-10.5, 5.5, -1], "size": [23, 1, 2], "pivot": [12, 6.5, 0], "rotation": [0, 0, 25], "uv": [50, 54], "mirror": true},
+						{"origin": [-13, 0, -9], "size": [2, 3, 2], "inflate": 0.25, "pivot": [-12, 11.5, -8], "rotation": [-10, 0, 0], "uv": [0, 34]},
+						{"origin": [11, 0, -9], "size": [2, 3, 2], "inflate": 0.25, "pivot": [12, 11.5, -8], "rotation": [-10, 0, 0], "uv": [0, 34], "mirror": true},
+						{"origin": [-13, 0, 7], "size": [2, 3, 2], "inflate": 0.25, "pivot": [-12, 11.5, 8], "rotation": [10, 0, 0], "uv": [0, 34]},
+						{"origin": [11, 0, 7], "size": [2, 3, 2], "inflate": 0.25, "pivot": [12, 11.5, 8], "rotation": [10, 0, 0], "uv": [0, 34], "mirror": true},
+						{"origin": [-7, 9, -16], "size": [14, 5, 0], "uv": [28, 34]}
+					]
+				}
+			]
+		}
+	]
+}

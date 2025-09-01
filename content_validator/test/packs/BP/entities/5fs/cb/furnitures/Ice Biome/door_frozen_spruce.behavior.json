@@ -1,0 +1,350 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "5fs_cb:door_frozen_spruce",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "5fs_cb:close_open": {
+          "client_sync": true,
+          "default": 0,
+          "range": [0, 1],
+          "type": "int" 
+        },
+        "5fs_cb:rotation": {
+          "client_sync": true,
+          "default": 0,
+          "range": [0, 360],
+          "type": "int"
+        }
+      },
+      "scripts": {
+        "animate": ["door"]
+      },
+      "animations": {
+        "door": "controller.animation.5fs_cb.door"
+      }
+    },
+    "component_groups": {
+      "5fs_cb:center": {
+        "minecraft:is_baby": {},
+        "minecraft:timer": {
+          "time": 1,
+          "looping": true,
+          "time_down_event": {
+            "event": "5fs_cb:no_sheared",
+            "target": "self"
+          }
+        }
+      },
+      //toggle function
+      "5fs_cb:toggle": {
+        "minecraft:is_sheared": {}
+      },
+      //solid entity
+      "5fs_cb:solid_entity": {
+        "minecraft:is_stackable": {},
+        "minecraft:push_through": {
+          "value": 1
+        }
+      },
+      //rotation function
+      "5fs_cb:default": {
+        "minecraft:variant": {
+          "value": 0
+        }
+      },
+      "5fs_cb:rotate_90": {
+        "minecraft:variant": {
+          "value": 1
+        }
+      },
+      "5fs_cb:rotate_180": {
+        "minecraft:variant": {
+          "value": 2
+        }
+      },
+      "5fs_cb:rotate_270": {
+        "minecraft:variant": {
+          "value": 3
+        }
+      },
+      //demolish function
+      "5fs_cb:item_scale": {
+        "minecraft:variant": {
+          "value": 4
+        },
+        "minecraft:collision_box": {
+          "width": 0.235,
+          "height": 0.4
+        },
+        "minecraft:entity_sensor": {
+          "sensor_range": 0.4,
+          "event": "5fs_cb:spawn_item",
+          "event_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "==",
+            "value": "player"
+          }
+        }
+      },
+      "5fs_cb:available_item": {
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "single_use": true,
+              "min_wait_time": 0,
+              "max_wait_time": 0,
+              "spawn_item": "5fs_cb:door_frozen_spruce"
+            }
+          ]
+        },
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.9,
+        "height": 2
+      },
+      "minecraft:custom_hit_test": {
+        "hitboxes": [       
+          {
+            "width": 1.3,
+            "height": 2.1,
+            "pivot": [0, 1.05, 0]
+          }
+        ]
+      },
+      "minecraft:type_family": {
+        "family": ["mob_table"]
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:pushable": {
+        "is_pushable": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1
+      },
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:health": {
+        "min": 1,
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            //rotate Structure
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_variant",
+                    "subject": "self",
+                    "operator": "!=",
+                    "value": 4
+                  },
+                  {
+                    "test": "has_equipment",
+                    "subject": "other",
+                    "value": "5fs_cb:wrench"
+                  },
+                  {
+                    "test": "is_sneaking",
+                    "operator": "!=",
+                    "subject": "other"
+                  },
+                  {
+                    "test": "has_component",
+                    "operator": "!=",
+                    "subject": "self",
+                    "value": "minecraft:is_sheared"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": "5fs_cb:sledgehammer"
+                  }
+                ]
+              },
+              "event": "5fs_cb:rotate_structure"
+            },
+            "cooldown": 1,
+            "use_item": false,
+            "play_sounds": "saddle",
+            "interact_text": "action.interact.structure_rotation"
+          },
+          {
+            //pick up structure
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_variant",
+                    "subject": "self",
+                    "operator": "!=",
+                    "value": 4
+                  },
+                  {
+                    "test": "has_equipment",
+                    "subject": "other",
+                    "value": "5fs_cb:sledgehammer"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": "5fs_cb:wrench"
+                  },
+                  {
+                    "test": "is_sneaking",
+                    "operator": "!=",
+                    "subject": "other"
+                  },
+                  // {
+                  //     "test": "has_component",
+                  //     "operator": "!=",
+                  //     "subject": "self",
+                  //     "value": "minecraft:is_sheared"
+                  // },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": "adventure"
+                  }
+                ]
+              },
+              "event": "5fs_cb:convert_to_item"
+            },
+            "use_item": false,
+            "play_sounds": "saddle",
+            "interact_text": "action.interact.structure_pickup"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_variant",
+                    "subject": "self",
+                    "operator": "!=",
+                    "value": 4
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "operator": "equals",
+                    "value": "player"
+                  }
+                ]
+              },
+              "event": "5fs_cb:close_open"
+            },
+            "interact_text": "action.interact.close_open",
+            "swing": true
+          }
+        ]
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": false
+          }
+        ]
+      }
+    },
+    "events": {
+      "5fs_cb:close_open": {
+        "sequence": [
+          {
+            "set_property": {
+              "5fs_cb:close_open": "q.property('5fs_cb:close_open') == 1 ? 0 : 1"
+            }
+          },
+          {
+            "queue_command": {
+              "command":[
+                "scriptevent 5fs_cb:furniture.open_close",
+                "playsound open.bamboo_wood_door @a[r=5]"
+              ]
+            }
+          }
+        ]
+      },
+      "5fs_cb:convert_to_item": {
+        "add": {
+          "component_groups": ["5fs_cb:item_scale"]
+        }, 
+        "remove": {
+          "component_groups": ["5fs_cb:toggle"]
+        },
+        "queue_command": {
+          "command": "scriptevent 5fs_cb:furniture.remove"
+        }
+      },
+      "5fs_cb:rotate_structure": {
+        "queue_command": {
+          "command": "scriptevent 5fs_cb:furniture.rotate"
+        }
+      },
+      "5fs_cb:spawn_item": {
+        "remove": {
+          "component_groups": ["5fs_cb:item_scale"]
+        },
+        "add": {
+          "component_groups": ["5fs_cb:available_item"]
+        }
+      },
+      "5fs_cb:toggle_interaction": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "has_component",
+              "operator": "!=",
+              "value": "minecraft:is_sheared"
+            },
+            "add": {
+              "component_groups": ["5fs_cb:toggle"]
+            }
+          },
+          {
+            "filters": {
+              "test": "has_component",
+              "value": "minecraft:is_sheared"
+            },
+            "remove": {
+              "component_groups": ["5fs_cb:toggle"]
+            }
+          }
+        ]
+      },
+      "5fs_cb:no_sheared": {
+        "remove": {
+          "component_groups": ["5fs_cb:center"]
+        }
+      },
+      //
+      "5fs_cb:solid_entity": {
+        "add": {
+          "component_groups": ["5fs_cb:solid_entity"]
+        }
+      },
+      "5fs_cb:no_solid_entity": {
+        "remove": {
+          "component_groups": ["5fs_cb:solid_entity"]
+        }
+      }
+    }
+  }
+}

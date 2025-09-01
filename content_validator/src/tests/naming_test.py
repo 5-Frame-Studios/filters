@@ -56,14 +56,29 @@ class NamingTest(BaseValidatorTest):
                     data = json.load(f)
                 
                 if 'minecraft:geometry' in data:
-                    geometry_id = data['minecraft:geometry']
-                    if not geometry_id.startswith(f"geometry.{self.namespace_info.namespace}."):
-                        self.add_result(
-                            ValidationLevel.WARNING,
-                            f"Geometry identifier should start with 'geometry.{self.namespace_info.namespace}.'",
-                            file_path,
-                            context={'current_id': geometry_id}
-                        )
+                    geometry_data = data['minecraft:geometry']
+                    
+                    # Handle both old format (string) and new format (list)
+                    geometry_ids = []
+                    if isinstance(geometry_data, str):
+                        geometry_ids = [geometry_data]
+                    elif isinstance(geometry_data, list):
+                        # Extract identifiers from geometry objects
+                        for geom in geometry_data:
+                            if isinstance(geom, dict) and 'description' in geom:
+                                identifier = geom['description'].get('identifier')
+                                if identifier:
+                                    geometry_ids.append(identifier)
+                    
+                    # Validate each geometry identifier
+                    for geometry_id in geometry_ids:
+                        if isinstance(geometry_id, str) and not geometry_id.startswith(f"geometry.{self.namespace_info.namespace}."):
+                            self.add_result(
+                                ValidationLevel.WARNING,
+                                f"Geometry identifier should start with 'geometry.{self.namespace_info.namespace}.'",
+                                file_path,
+                                context={'current_id': geometry_id}
+                            )
             
             except (json.JSONDecodeError, UnicodeDecodeError):
                 pass

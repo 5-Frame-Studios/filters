@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:restore_terrain"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "BWG",
+      " B ",
+      "   "
+    ],
+    "key": {
+      "B": {
+        "item": "minecraft:bone_meal"
+      },
+      "W": {
+        "item": "minecraft:water_bucket"
+      },
+      "G": {
+        "item": "minecraft:grass_block"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:restore_terrain",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:plushie_camel",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.plushie_camel"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/plushie/plushie_camel"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "desert_eggs",
+				"texture_index": 10
+            },
+			"animations": {
+				// ITEM DISPLAY
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"item_animation_controller": "controller.animation.5fs_cb.structure.item",
+
+				// PLACEMENT
+				"placement": "animation.5fs_cb.structure.placement",
+
+				// ROTATIONS
+				"origin": "animation.5fs_cb.structure.rotation.origin",
+				"90_degree": "animation.5fs_cb.structure.rotation.90_degree",
+				"180_degree": "animation.5fs_cb.structure.rotation.180_degree",
+				"270_degree": "animation.5fs_cb.structure.rotation.270_degree",
+
+				// INTERACTION [opening and closing cage]
+				"idle": "animation.5fs_cb.structure.idle",
+				"open": "animation.5fs_cb.plushie_camel.sit",
+				"close": "animation.5fs_cb.plushie_camel.stand",
+				"door_animation_controller": "controller.animation.5fs_cb.door"
+			},
+			"scripts": {
+				"animate": [
+					"origin",
+					"placement",
+					"door_animation_controller", // door animation controller open and close
+					{
+						"90_degree": "q.variant == 1"
+					},
+					{
+						"180_degree": "q.variant == 2"
+					},
+					{
+						"270_degree": "q.variant == 3"
+					},
+					{
+						"item_animation_controller": "q.variant == 4"
+					}
+				]
+			}
+        }
+    }
+}

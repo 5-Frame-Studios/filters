@@ -1,0 +1,53 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.door_bat_wing_double",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "door2",
+					"parent": "root",
+					"pivot": [24, 20, 1],
+					"cubes": [
+						{"origin": [23, 0, 0], "size": [1, 40, 2], "uv": [0, 0], "mirror": true},
+						{"origin": [8, 0, 0], "size": [1, 40, 2], "uv": [6, 0], "mirror": true},
+						{"origin": [15, 17, 0], "size": [2, 21, 2], "uv": [24, 26], "mirror": true},
+						{"origin": [9, 15, 0], "size": [14, 2, 2], "uv": [12, 22], "mirror": true},
+						{"origin": [9, 17, 1], "size": [6, 21, 0], "uv": [12, 26], "mirror": true},
+						{"origin": [17, 17, 1], "size": [6, 21, 0], "uv": [12, 26], "mirror": true},
+						{"origin": [9, 38, 0], "size": [14, 2, 2], "uv": [12, 18], "mirror": true},
+						{"origin": [9, -3, 0], "size": [14, 5, 2], "pivot": [16, 1, 1], "rotation": [0, 0, 180], "uv": [12, 11], "mirror": true},
+						{"origin": [9, 7, 0.5], "size": [14, 10, 1], "pivot": [16, 11, 1], "rotation": [0, 0, 180], "uv": [12, 0], "mirror": true}
+					]
+				},
+				{
+					"name": "door",
+					"parent": "root",
+					"pivot": [-8, 20, 1],
+					"cubes": [
+						{"origin": [-8, 0, 0], "size": [1, 40, 2], "uv": [0, 0]},
+						{"origin": [7, 0, 0], "size": [1, 40, 2], "uv": [6, 0]},
+						{"origin": [-1, 17, 0], "size": [2, 21, 2], "uv": [24, 26]},
+						{"origin": [-7, 15, 0], "size": [14, 2, 2], "uv": [12, 22]},
+						{"origin": [1, 17, 1], "size": [6, 21, 0], "uv": [12, 26]},
+						{"origin": [-7, 17, 1], "size": [6, 21, 0], "uv": [12, 26]},
+						{"origin": [-7, 38, 0], "size": [14, 2, 2], "uv": [12, 18]},
+						{"origin": [-7, -3, 0], "size": [14, 5, 2], "pivot": [0, 1, 1], "rotation": [0, 0, -180], "uv": [12, 11]},
+						{"origin": [-7, 7, 0.5], "size": [14, 10, 1], "pivot": [0, 11, 1], "rotation": [0, 0, -180], "uv": [12, 0]}
+					]
+				}
+			]
+		}
+	]
+}

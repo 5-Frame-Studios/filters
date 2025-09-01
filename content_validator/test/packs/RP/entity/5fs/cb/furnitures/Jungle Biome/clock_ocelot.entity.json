@@ -1,0 +1,36 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:clock_ocelot",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.clock"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/clock/clock_ocelot"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "jungle_eggs",
+				"texture_index": 4
+            },
+			"animations": {
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"spawn_control": "controller.animation.5fs_cb.structure_spawn_control",
+
+				"idle": "animation.5fs_cb.clock.idle",
+				"placement": "animation.5fs_cb.clock.placement",
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale"
+			},
+			"scripts": {
+				"animate": ["spawn", "spawn_control"
+				]
+			}
+        }
+    }
+}

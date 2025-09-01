@@ -1,0 +1,44 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:cash_register",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.cash_register"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/cash_register"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+                "base_color": "#00b7ff",
+                "overlay_color": "#09ff00"
+            },
+			"animations": {
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"turn_on": "animation.5fs_cb.cash_register.open",
+				"turn_off": "animation.5fs_cb.cash_register.idle",
+				"interact": "controller.animation.5fs_cb.lamp_skeleton_toggle",
+
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"90_degree": "animation.5fs_cb.structure.90_degree",
+				"180_degree": "animation.5fs_cb.structure.180_degree",
+				"270_degree": "animation.5fs_cb.structure.270_degree"
+			},
+			"scripts": {
+				"animate": ["spawn",
+					{"interact": "q.variant != 4"},
+					{"90_degree": "q.variant == 1"},
+					{"180_degree": "q.variant == 2"},
+					{"270_degree": "q.variant == 3"},
+					{"item": "q.variant == 4"}
+				]
+			}
+        }
+    }
+}

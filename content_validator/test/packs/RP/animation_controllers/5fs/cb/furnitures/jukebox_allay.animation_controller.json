@@ -1,0 +1,27 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+        "controller.animation.5fs_cb.jukebox_allay": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {"bob": "q.mark_variant > 0"},
+                        {"bob_off": "q.mark_variant == 0"}
+                    ]
+                },
+                "bob": {
+                    "animations": ["turn_on"],
+                    "transitions": [
+                        {"default": "q.mark_variant == 0"}
+                    ]
+                },
+                "bob_off": {
+                    "animations": ["turn_off"],
+                    "transitions": [
+                        {"default": "q.mark_variant > 0"}
+                    ]
+                }
+            }
+        }
+    }
+}

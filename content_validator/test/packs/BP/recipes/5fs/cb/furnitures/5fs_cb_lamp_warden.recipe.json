@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:lamp_warden"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " G ",
+      " T ",
+      " M "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "T": {
+        "item": "minecraft:torch"
+      },
+      "M": {
+        "item": "minecraft:sculk"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:lamp_warden",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:bean_bag_magma_cube",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.bean_bag_magma_cube"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/bean_bag/bean_bag_magma_cube"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "nether_eggs",
+				"texture_index": 10
+            },
+			"animations": {
+				// ITEM DISPLAY
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"item_animation_controller": "controller.animation.5fs_cb.structure.item",
+
+				// PLACEMENT
+				"placement": "animation.5fs_cb.structure.placement",
+
+				// ROTATIONS
+				"origin": "animation.5fs_cb.structure.rotation.origin",
+				"90_degree": "animation.5fs_cb.structure.rotation.90_degree",
+				"180_degree": "animation.5fs_cb.structure.rotation.180_degree",
+				"270_degree": "animation.5fs_cb.structure.rotation.270_degree"
+			},
+			"scripts": {
+				"animate": [
+					"origin",
+					"placement",
+					{
+						"90_degree": "q.variant == 1"
+					},
+					{
+						"180_degree": "q.variant == 2"
+					},
+					{
+						"270_degree": "q.variant == 3"
+					},
+					{
+						"item_animation_controller": "q.variant == 4"
+					}
+				]
+			}
+        }
+    }
+}

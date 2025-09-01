@@ -1,0 +1,20 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+		"controller.render.lamp_skeleton_uv_anim": {
+			"rebuild_animation_matrices": true,
+			"geometry": "Geometry.default",
+			"materials": [{"*": "Material.uv_anim"}],
+			"textures": ["Texture.uv_anim"],
+			"uv_anim": {
+				"offset": [ 0.0, "math.mod(math.floor(query.life_time * 6),16) / 16" ],
+				"scale": [ 1.0, "1 / 16" ]
+			}
+		},
+		"controller.render.lamp_skeleton_static": {
+			"geometry": "Geometry.default",
+			"materials": [{"*": "Material.default"}],
+			"textures": ["Texture.static"]
+		}
+	}
+}

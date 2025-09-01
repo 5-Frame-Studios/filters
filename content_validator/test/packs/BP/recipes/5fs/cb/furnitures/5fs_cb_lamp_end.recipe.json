@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:lamp_end"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " G ",
+      " T ",
+      " M "
+    ],
+    "key": {
+      "G": {
+        "item": "minecraft:glass_pane"
+      },
+      "T": {
+        "item": "minecraft:torch"
+      },
+      "M": {
+        "item": "minecraft:ender_pearl"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:lamp_end",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:door_aquatic_double"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PTP",
+      "PTP",
+      " H "
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:spruce_planks"
+      },
+      "T": {
+        "item": "minecraft:prismarine_shard"
+      },
+      "H": {
+        "item": "minecraft:iron_nugget"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:door_aquatic_double",
+      "count": 1
+    }
+  }
+}

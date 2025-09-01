@@ -1,0 +1,38 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.5fs_cb.door": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "close": "!query.is_sheared"
+                        }
+                    ]
+                },
+                "close": {
+                    "on_entry": ["@s 5fs_cb:solid_entity"],
+                    "transitions": [
+                        {
+                            "open": "query.is_sheared"
+                        }
+                    ]
+                },
+                "open": {
+                    "on_entry": ["@s 5fs_cb:no_solid_entity"],
+                    "transitions": [
+                        {
+                            "close": "!query.is_sheared"
+                        },
+                        {
+                            "variant4": "query.variant == 4"
+                        }
+                    ]
+                },
+                "variant4": {
+                    "on_entry": ["@s 5fs_cb:no_solid_entity"]
+                }
+            }
+        }
+    }
+}

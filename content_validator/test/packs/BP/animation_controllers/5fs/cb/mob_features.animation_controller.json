@@ -1,0 +1,642 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.5fs_cb.center_furniture": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "table": "q.has_any_family('mob_table') && q.is_baby"
+                        },
+                        {
+                            "table": "q.has_any_family('fridge_ig') && q.is_baby"
+                        }
+                    ]
+                },
+                "table": {
+                    "on_entry": [
+                        "/execute as @e[family=mob_table,c=1,r=1] align xyz run tp @s ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "!q.is_baby"
+                        }
+                    ]
+                },
+                "fridge": {
+                    "on_entry": [
+                        "/execute as @e[family=fridge_ig,c=1,r=1] align xyz run tp @s ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "!q.is_baby"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.cook_item": {
+            "states": {
+                "default": {
+                    "on_entry": [
+                        "/execute as @s[type=5fs_cb:grill_skeleton,c=1] run playsound extinguish.candle @p ~~~",
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 air 1",
+                        "/fill ~1~~1 ~-1~~-1 air [] replace minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "chicken": "q.mark_variant == 1"
+                        },
+                        {
+                            "porkchop": "q.mark_variant == 2"
+                        },
+                        {
+                            "beef": "q.mark_variant == 3"
+                        },
+                        {
+                            "mutton": "q.mark_variant == 4"
+                        },
+                        {
+                            "rabbit": "q.mark_variant == 5"
+                        }
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:grill_skeleton,c=1] run playsound fire.ignite @p ~~~"
+                    ]
+                },
+                "chicken": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 chicken 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "porkchop": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 porkchop 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "beef": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 beef 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "mutton": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 mutton 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "rabbit": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 rabbit 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.grill_frozen_stray.cook_item": {
+            "states": {
+                "default": {
+                    "on_entry": [
+                        "/execute as @s[type=5fs_cb:grill_frozen_stray,c=1] run playsound extinguish.candle @p ~~~",
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 air 1",
+                        "/fill ~1~~1 ~-1~~-1 air [] replace minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "chicken": "q.mark_variant == 1"
+                        },
+                        {
+                            "porkchop": "q.mark_variant == 2"
+                        },
+                        {
+                            "beef": "q.mark_variant == 3"
+                        },
+                        {
+                            "mutton": "q.mark_variant == 4"
+                        },
+                        {
+                            "rabbit": "q.mark_variant == 5"
+                        }
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:grill_frozen_stray,c=1] run playsound fire.ignite @p ~~~"
+                    ]
+                },
+                "chicken": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 chicken 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "porkchop": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 porkchop 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "beef": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 beef 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "mutton": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 mutton 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "rabbit": {
+                    "animations": [
+                        "particle",
+                        "sound"
+                    ],
+                    "on_entry": [
+                        "/replaceitem entity @e[family=grill,c=1,r=1] slot.weapon.mainhand 0 rabbit 1",
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.clear_inv": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "count_down": "q.is_sheared"
+                        }
+                    ],
+                    "on_entry": [
+                        "/clear @e[type=5fs_cb:trash_enderman,c=1,r=5]",
+                        "/playsound mob.endermen.portal @p"
+                    ]
+                },
+                "count_down": {
+                    "transitions": [
+                        {
+                            "default": "!q.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.trash_can_bogged.clear_inv": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "count_down": "q.is_sheared"
+                        }
+                    ],
+                    "on_entry": [
+                        "/clear @e[type=5fs_cb:trash_can_bogged,c=1,r=5]",
+                        "/playsound bundle.remove_one @p"
+                    ]
+                },
+                "count_down": {
+                    "transitions": [
+                        {
+                            "default": "!q.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.toggle_light": {
+            "initial_state": "light_off",
+            "states": {
+                "light_off": {
+                    "on_entry": [
+                        "/fill ~1~~1 ~-1~~-1 air [] replace minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:lamp_cow,c=1,r=1] run playsound mob.cow.say @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_parrot,c=1,r=1] run playsound  mob.parrot.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_end,c=1,r=1] run playsound  block.end_portal_frame.fill @p ~~~",
+                        "/execute as @s[type=5fs_cb:strider_lamp,c=1,r=1] run playsound  mob.strider.tempt @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_warden,c=1,r=1] run playsound  power.on.sculk_sensor @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_guardian,c=1,r=1] run playsound  mob.elderguardian.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_creeper,c=1,r=1] run playsound  random.fuse @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_iron_golem,c=1,r=1] run playsound  mob.irongolem.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:chandelier_glow_squid,c=1,r=1] run playsound bubble.up @p ~~~",
+                        "/execute as @s[type=5fs_cb:blaze_chandelier,c=1,r=1] run playsound mob.blaze.shoot @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_on": "q.is_sheared"
+                        }
+                    ]
+                },
+                "light_on": {
+                    "on_entry": [
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:lamp_cow,c=1,r=1] run playsound mob.cow.say @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_parrot,c=1,r=1] run playsound  mob.parrot.idle @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_end,c=1,r=1] run playsound  block.end_portal_frame.fill @p ~~~",
+                        "/execute as @s[type=5fs_cb:strider_lamp,c=1,r=1] run playsound  mob.strider.tempt @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_warden,c=1,r=1] run playsound  power.on.sculk_sensor @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_guardian,c=1,r=1] run playsound  mob.elderguardian.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:lamp_creeper,c=1,r=1] run playsound  extinguish.candle @p ~~~",
+                        "/execute as @s[type=5fs_cb:fridge_iron_golem,c=1,r=1] run playsound  mob.irongolem.hit @p ~~~",
+                        "/execute as @s[type=5fs_cb:chandelier_glow_squid,c=1,r=1] run playsound bubble.up @p ~~~",
+                        "/execute as @s[type=5fs_cb:blaze_chandelier,c=1,r=1] run playsound mob.blaze.shoot @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_off": "!q.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.lamp_skeleton": {
+            "initial_state": "light_off",
+            "states": {
+                "light_off": {
+                    "on_entry": [
+                        "/fill ~1~~1 ~-1~~-1 air [] replace minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:lamp_skeleton,c=1,r=1] run playsound fire.ignite @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_on": "q.is_sheared"
+                        }
+                    ]
+                },
+                "light_on": {
+                    "animations": [
+                        "lamp_skeleton"
+                    ],
+                    "on_entry": [
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:lamp_skeleton,c=1,r=1] run playsound extinguish.candle @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_off": "!q.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.fireplace_frozen": {
+            "initial_state": "light_off",
+            "states": {
+                "light_off": {
+                    "on_entry": [
+                        "/fill ~1~~1 ~-1~~-1 air [] replace minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:fireplace_frozen,c=1,r=1] run playsound fire.ignite @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_on": "q.is_sheared"
+                        }
+                    ]
+                },
+                "light_on": {
+                    "animations": [
+                        "fireplace_frozen"
+                    ],
+                    "on_entry": [
+                        "/setblock ~~~ minecraft:light_block [\"block_light_level\": 15]"
+                    ],
+                    "on_exit": [
+                        "/execute as @s[type=5fs_cb:fireplace_frozen,c=1,r=1] run playsound extinguish.candle @p ~~~"
+                    ],
+                    "transitions": [
+                        {
+                            "light_off": "!q.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.cycle_music": {
+            "states": {
+                "default": {
+                    "on_entry": [
+                        "/stopsound @a"
+                    ],
+                    "transitions": [
+                        {
+                            "C418-13": "q.mark_variant == 1"
+                        },
+                        {
+                            "C418-cat": "q.mark_variant == 2"
+                        },
+                        {
+                            "C418-blocks": "q.mark_variant == 3"
+                        },
+                        {
+                            "C418-chirp": "q.mark_variant == 4"
+                        },
+                        {
+                            "C418-far": "q.mark_variant == 5"
+                        },
+                        {
+                            "C418-mall": "q.mark_variant == 6"
+                        },
+                        {
+                            "C418-mellohi": "q.mark_variant == 7"
+                        },
+                        {
+                            "C418-stal": "q.mark_variant == 8"
+                        },
+                        {
+                            "C418-strad": "q.mark_variant == 9"
+                        },
+                        {
+                            "C418-ward": "q.mark_variant == 10"
+                        },
+                        {
+                            "C418-11": "q.mark_variant == 11"
+                        },
+                        {
+                            "C418-wait": "q.mark_variant == 12"
+                        },
+                        {
+                            "Samuel_aberg-5": "q.mark_variant == 13"
+                        },
+                        {
+                            "Lena_Raine-otherside": "q.mark_variant == 14"
+                        },
+                        {
+                            "Lena_Raine-pigstep": "q.mark_variant == 15"
+                        }
+                    ]
+                },
+                "C418-13": {
+                    "animations": [
+                        "record.13"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-cat": {
+                    "animations": [
+                        "record.cat"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-blocks": {
+                    "animations": [
+                        "record.blocks"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-chirp": {
+                    "animations": [
+                        "record.chirp"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-far": {
+                    "animations": [
+                        "record.far"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-mall": {
+                    "animations": [
+                        "record.mall"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-mellohi": {
+                    "animations": [
+                        "record.mellohi"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-stal": {
+                    "animations": [
+                        "record.stal"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-strad": {
+                    "animations": [
+                        "record.strad"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-ward": {
+                    "animations": [
+                        "record.ward"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-11": {
+                    "animations": [
+                        "record.11"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "C418-wait": {
+                    "animations": [
+                        "record.wait"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "Samuel_aberg-5": {
+                    "animations": [
+                        "record.5"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "Lena_Raine-otherside": {
+                    "animations": [
+                        "record.otherside"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                },
+                "Lena_Raine-pigstep": {
+                    "animations": [
+                        "record.pigstep"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "q.mark_variant == 0"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.chair_squid": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "has_rider": "query.has_rider"
+                        }
+                    ]
+                },
+                "has_rider": {
+                    "on_entry": [
+                        "/effect @p[c=1,r=1] blindness 100"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "!query.has_rider"
+                        }
+                    ],
+                    "on_exit": [
+                        "/effect @a[r=10] clear"
+                    ]
+                }
+            }
+        }
+    }
+}

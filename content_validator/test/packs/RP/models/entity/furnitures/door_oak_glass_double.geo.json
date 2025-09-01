@@ -1,0 +1,45 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.door_oak_glass_double",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "door",
+					"parent": "root",
+					"pivot": [-8, 20.5, 1],
+					"cubes": [
+						{"origin": [7, 17, 0], "size": [1, 16, 2], "uv": [34, 28]},
+						{"origin": [-1, 17, 1], "size": [8, 16, 0], "uv": [18, 28]},
+						{"origin": [-8, 33, 0], "size": [16, 7, 2], "uv": [0, 19]},
+						{"origin": [-8, 17, 0], "size": [7, 16, 2], "uv": [0, 28]},
+						{"origin": [-8, 0, 0], "size": [16, 17, 2], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "door2",
+					"parent": "root",
+					"pivot": [24, 20.5, 1],
+					"cubes": [
+						{"origin": [8, 17, 0], "size": [1, 16, 2], "uv": [34, 28], "mirror": true},
+						{"origin": [9, 17, 1], "size": [8, 16, 0], "uv": [18, 28], "mirror": true},
+						{"origin": [8, 33, 0], "size": [16, 7, 2], "uv": [0, 19], "mirror": true},
+						{"origin": [17, 17, 0], "size": [7, 16, 2], "uv": [0, 28], "mirror": true},
+						{"origin": [8, 0, 0], "size": [16, 17, 2], "uv": [0, 0], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

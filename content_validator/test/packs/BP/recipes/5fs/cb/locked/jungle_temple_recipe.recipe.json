@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:jungle_pyramid_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [" # ", "###", "SSS"],
+    "key": {
+      "#": {
+        "item": "minecraft:green_terracotta"
+      },
+      "S": {
+        "item": "minecraft:sandstone"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:junglepyramid_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:junglepyramid_craft"
+    }
+  }
+}

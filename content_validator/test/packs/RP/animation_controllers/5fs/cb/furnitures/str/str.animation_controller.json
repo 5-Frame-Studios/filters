@@ -1,0 +1,24 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.5fs_cb.structure.item": {
+            "states": {
+                "default": {
+                    "animations": [
+                        "item_scale"
+                    ],
+                    "transitions": [
+                        {
+                            "entity_item": "q.any_animation_finished"
+                        }
+                    ]
+                },
+                "entity_item": {
+                    "animations": [
+                        "item_display"
+                    ]
+                }
+            }
+        }
+    }
+}

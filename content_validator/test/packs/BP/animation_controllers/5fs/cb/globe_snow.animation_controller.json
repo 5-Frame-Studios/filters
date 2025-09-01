@@ -1,0 +1,92 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.5fs_cb.globe_snow": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "snow_falling": "query.is_sheared"
+                        }
+                    ]
+                },
+                "snow_falling": {
+                    "animations": ["globe_snow"],
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        },
+                        {
+                            "variant4": "query.variant == 4"
+                        }
+                    ]
+                },
+                "variant4": {
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.frozen_fireplace": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "fire": "query.is_sheared"
+                        }
+                    ]
+                },
+                "fire": {
+                    "animations": ["frozen_fireplace_fire"],
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        },
+                        {
+                            "variant4": "query.variant == 4"
+                        }
+                    ]
+                },
+                "variant4": {
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        }
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.clock_creeper_cuckoo": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "fire": "query.is_sheared"
+                        }
+                    ]
+                },
+                "fire": {
+                    "animations": ["explosion"],
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        },
+                        {
+                            "variant4": "query.variant == 4"
+                        }
+                    ]
+                },
+                "variant4": {
+                    "transitions": [
+                        {
+                            "default": "!query.is_sheared"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

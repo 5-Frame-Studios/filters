@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:chandelier_glow_squid"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "C C",
+      "TMT",
+      " C "
+    ],
+    "key": {
+      "C": {
+        "item": "minecraft:chain"
+      },
+      "T": {
+        "item": "minecraft:torch"
+      },
+      "M": {
+        "item": "minecraft:glow_ink_sac"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:chandelier_glow_squid",
+      "count": 1
+    }
+  }
+}

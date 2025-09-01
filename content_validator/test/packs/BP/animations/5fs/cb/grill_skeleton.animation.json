@@ -1,0 +1,19 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.5fs_cb.activate.particle": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": ["/particle minecraft:basic_flame_particle ~~0.8~"]
+      }
+    },
+    "animation.5fs_cb.activate.sound": {
+      "loop": true,
+      "animation_length": 1.05,
+      "timeline": {
+        "0.0": ["/execute as @s[type=5fs_cb:grill_skeleton,c=1] run playsound fire.fire @p ~~~"]
+      }
+    }
+  }
+}

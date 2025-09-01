@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:modern_house_1_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABC", "ADE", "FFG"],
+    "key": {
+      "A": {
+        "item": "minecraft:brown_concrete"
+      },
+      "B": {
+        "item": "minecraft:light_gray_concrete"
+      },
+      "C": {
+        "item": "minecraft:cyan_terracotta"
+      },
+      "D": {
+        "item": "minecraft:dark_oak_door"
+      },
+      "E": {
+        "item": "minecraft:stripped_dark_oak_log"
+      },
+      "F": {
+        "item": "minecraft:white_concrete"
+      },
+      "G": {
+        "item": "minecraft:stonebrick"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:modernhouse_1_craft"
+    }
+  }
+}

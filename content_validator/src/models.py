@@ -14,6 +14,7 @@ class ValidationLevel(Enum):
     ERROR = "error"
     WARNING = "warning"
     INFO = "info"
+    POSSIBLE_ISSUE = "possible_issue"
 
 
 class ValidationResult:
@@ -36,6 +37,7 @@ class ValidationReport:
     total_errors: int = 0
     total_warnings: int = 0
     total_info: int = 0
+    total_possible_issues: int = 0
     validation_results: List[ValidationResult] = field(default_factory=list)
     namespace_usage: Dict[str, Set[str]] = field(default_factory=lambda: defaultdict(set))
     file_structure_issues: List[str] = field(default_factory=list)
@@ -51,6 +53,8 @@ class ValidationReport:
             self.total_errors += 1
         elif result.level == ValidationLevel.WARNING:
             self.total_warnings += 1
+        elif result.level == ValidationLevel.POSSIBLE_ISSUE:
+            self.total_possible_issues += 1
         else:
             self.total_info += 1
     
@@ -64,6 +68,7 @@ class ValidationReport:
         self.total_errors += other_report.total_errors
         self.total_warnings += other_report.total_warnings
         self.total_info += other_report.total_info
+        self.total_possible_issues += other_report.total_possible_issues
         
         # Merge validation results
         self.validation_results.extend(other_report.validation_results)
@@ -101,6 +106,7 @@ class ValidationReport:
             'total_errors': self.total_errors,
             'total_warnings': self.total_warnings,
             'total_info': self.total_info,
+            'total_possible_issues': self.total_possible_issues,
             'is_valid': self.is_valid()
         }
 

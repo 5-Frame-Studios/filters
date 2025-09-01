@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:trash_can_bogged"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "INI",
+      "I I",
+      "ITI"
+    ],
+    "key": {
+      "I": {
+        "item": "minecraft:iron_ingot"
+      },
+      "N": {
+        "item": "minecraft:iron_nugget"
+      },
+      "T": {
+        "item": "minecraft:moss_block"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:trash_can_bogged",
+      "count": 1
+    }
+  }
+}

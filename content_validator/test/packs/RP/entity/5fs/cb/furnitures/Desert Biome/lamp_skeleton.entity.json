@@ -1,0 +1,52 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:lamp_skeleton",
+			"render_controllers": [
+				{"controller.render.lamp_skeleton_static": "!q.is_sheared"},
+				{"controller.render.lamp_skeleton_uv_anim": "q.is_sheared"}
+			],
+			"geometry": {
+				"default": "geometry.5fs_cb.lamp_skeleton"
+			},
+			"textures": {
+				"uv_anim": "textures/5fs/cb/entity/furnitures/lamp/lamp_skeleton_anim",
+				"static": "textures/5fs/cb/entity/furnitures/lamp/lamp_skeleton_static"
+			},
+			"materials": {
+				"uv_anim": "player_animated",
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "desert_eggs",
+				"texture_index": 6
+            },
+			"animations": {
+				//Generic Animation Controllers
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"spawn_control": "controller.animation.5fs_cb.structure_spawn_control",
+				"lamp_skeleton": "controller.animation.5fs_cb.lamp_skeleton_toggle",
+				//Lamp Skeleton Special Animations
+				"placement": "animation.5fs_cb.lamp_skeleton.placement",
+				"turn_on": "animation.5fs_cb.lamp_skeleton.turn_on",
+				"turn_off": "animation.5fs_cb.lamp_skeleton.turn_off",
+				//Generic Animations
+				"idle": "animation.5fs_cb.structure.idle",
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"90_degree": "animation.5fs_cb.structure.90_degree",
+				"180_degree": "animation.5fs_cb.structure.180_degree",
+				"270_degree": "animation.5fs_cb.structure.270_degree"
+			},
+			"scripts": {
+				"animate": ["spawn", "spawn_control","lamp_skeleton",
+					{"90_degree": "q.variant == 1"},
+					{"180_degree": "q.variant == 2"},
+					{"270_degree": "q.variant == 3"}
+				]
+			}
+        }
+    }
+}

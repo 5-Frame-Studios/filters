@@ -1,0 +1,110 @@
+{
+    "format_version": "1.8.0",
+    "animations": {
+      "animation.5fs_cb.record_13": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.13 @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_cat": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.cat @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_blocks": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.blocks @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_chirp": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.chirp @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_far": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.far @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_mall": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.mall @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_mellohi": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.mellohi @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_stal": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.stal @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_strad": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.strad @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_ward": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.ward @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_11": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.11 @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_wait": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.wait @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_5": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.5 @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_otherside": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.otherside @a[r=10]"]
+        }
+      },
+      "animation.5fs_cb.record_pigstep": {
+        "loop": true,
+        "animation_length": 31,
+        "timeline": {
+          "0.0": ["/playsound record.pigstep @a[r=10]"]
+        }
+      }
+    }
+  }

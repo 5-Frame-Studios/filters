@@ -1,0 +1,72 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		// "animation.5fs_cb.structure.idle": {
+		// 	"loop": true
+		// },
+		"animation.5fs_cb.structure.origin": {
+			"loop": true,
+			"bones": {
+				"root": {
+					"rotation": [0, "math.round(query.body_y_rotation/90)*90-query.body_y_rotation", 0]
+				}
+			}
+		},
+		"animation.5fs_cb.structure.90_degree": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"root": {
+					"rotation": [0, 90, 0]
+				}
+			}
+		},
+		"animation.5fs_cb.structure.180_degree": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"root": {
+					"rotation": [0, 180, 0]
+				}
+			}
+		},
+		"animation.5fs_cb.structure.270_degree": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"root": {
+					"rotation": [0, 270, 0]
+				}
+			}
+		}//,
+		// "animation.5fs_cb.structure.item_display": {
+		// 	"loop": true,
+		// 	"animation_length": 2,
+		// 	"bones": {
+		// 		"root": {
+		// 			"rotation": {
+		// 				"0.0": [0, 0, 0],
+		// 				"2.0": [0, -360, 0]
+		// 			},
+		// 			"position": {
+		// 				"0.0": [0, 0, 0],
+		// 				"0.5": [0, 2, 0],
+		// 				"1.0": [0, 0, 0],
+		// 				"1.5": [0, 2, 0],
+		// 				"2.0": [0, 0, 0]
+		// 			},
+		// 			"scale": 0.45
+		// 		}
+		// 	}
+		// },
+		// "animation.5fs_cb.structure.item_scale": {
+		// 	"loop": "hold_on_last_frame",
+		// 	"animation_length": 0.5,
+		// 	"bones": {
+		// 		"root": {
+		// 			"scale": {
+		// 				"0.0": [1, 1, 1],
+		// 				"0.5": [0.45, 0.45, 0.45]
+		// 			}
+		// 		}
+		// 	}
+		// }
+	}
+}

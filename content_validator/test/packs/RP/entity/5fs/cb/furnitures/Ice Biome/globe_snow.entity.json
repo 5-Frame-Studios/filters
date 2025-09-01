@@ -1,0 +1,50 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:globe_snow",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.globe_snow"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/globe_snow"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "ice_eggs",
+				"texture_index": 5
+            },
+			"particle_effects": {
+				"snow_raining": "5fs_cb:snow_raining"
+			},
+			"animations": {
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"idle": "animation.5fs_cb.structure.idle",
+				"placement": "animation.5fs_cb.table_base.placement",
+
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"90_degree": "animation.5fs_cb.structure.90_degree",
+				"180_degree": "animation.5fs_cb.structure.180_degree",
+				"270_degree": "animation.5fs_cb.structure.270_degree",
+
+				"snow_globe": "animation.5fs_cb.snow_globe.shake",
+
+				"snow_raining": "animation.5fs_cb.structure.globe_snow",
+				"snow_globe_anim": "controller.animation.5fs_cb.globe_snow"
+			},
+			"scripts": {
+				"animate": ["spawn", "placement", "snow_globe_anim", "snow_raining",
+					{"90_degree": "q.variant == 1"},
+					{"180_degree": "q.variant == 2"},
+					{"270_degree": "q.variant == 3"},
+					{"item": "q.variant == 4"}
+				]
+			}
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:cashier",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.cashier"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/cashier"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+              "texture": "spawn_egg",
+              "texture_index": 14
+            },
+            "scripts": {
+                "animate": ["look_at_target"]
+            },
+            "animations": {
+                "look_at_target": "animation.5fs_cb.common.look_at_target"
+            }
+        }
+    }
+}

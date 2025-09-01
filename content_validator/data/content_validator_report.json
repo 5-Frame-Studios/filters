@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "total_files_checked": 0,
+    "total_errors": 5,
+    "total_warnings": 2,
+    "total_info": 0,
+    "total_possible_issues": 0,
+    "is_valid": false
+  },
+  "results": [
+    {
+      "level": "error",
+      "message": "Behavior Pack directory not found (checked: packs/BP/, packs/behavior/, packs/behavior_pack/, BP/, behavior/, behavior_pack/)",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "error",
+      "message": "Resource Pack directory not found (checked: packs/RP/, packs/resource/, packs/resource_pack/, RP/, resource/, resource_pack/)",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "error",
+      "message": "BP manifest.json not found (checked: packs/BP, packs/behavior, packs/behavior_pack, BP, behavior, behavior_pack)",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "error",
+      "message": "RP manifest.json not found (checked: packs/RP, packs/resource, packs/resource_pack, RP, resource, resource_pack)",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "error",
+      "message": "No valid namespace detected",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "warning",
+      "message": "No guidebook structure found - .mcstructure files may be missing",
+      "file_path": null,
+      "line_number": null,
+      "context": {}
+    },
+    {
+      "level": "warning",
+      "message": "Add-On has very few files (0) - ensure sufficient content for approval",
+      "file_path": null,
+      "line_number": null,
+      "context": {
+        "total_files": 0
+      }
+    }
+  ],
+  "namespace_info": {
+    "namespace": null,
+    "studio_name": null,
+    "pack_name": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.stool",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-7, 14, -7], "size": [14, 2, 14], "uv": [0, 0]},
+						{"origin": [-6, 9, -6], "size": [12, 1, 12], "uv": [0, 17]},
+						{"origin": [4, 0, 4], "size": [2, 14, 2], "pivot": [5, 7, 5], "rotation": [85.0095, 87.49525, 82.50474], "uv": [0, 31]},
+						{"origin": [-6, 0, 4], "size": [2, 14, 2], "pivot": [-5, 7, 5], "rotation": [2.49527, 0.21782, 2.5095], "uv": [0, 31]},
+						{"origin": [4, 0, -6], "size": [2, 14, 2], "pivot": [5, 7, -5], "rotation": [-177.50473, -0.21782, 177.4905], "uv": [0, 31]},
+						{"origin": [-6, 0, -6], "size": [2, 14, 2], "pivot": [-5, 7, -5], "rotation": [-94.9905, -87.49525, 97.49526], "uv": [0, 31]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,62 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:trash_can_bogged",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.trash_can_bogged"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/trash_can/trash_can_bogged"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "jungle_eggs",
+				"texture_index": 11
+            },
+			"animations": {
+				// ITEM DISPLAY
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"item_animation_controller": "controller.animation.5fs_cb.structure.item",
+
+				// PLACEMENT
+				"placement": "animation.5fs_cb.structure.placement",
+
+				// ROTATIONS
+				"origin": "animation.5fs_cb.structure.rotation.origin",
+				"90_degree": "animation.5fs_cb.structure.rotation.90_degree",
+				"180_degree": "animation.5fs_cb.structure.rotation.180_degree",
+				"270_degree": "animation.5fs_cb.structure.rotation.270_degree",
+
+				// INTERACTION [opening and closing cage]
+				"idle": "animation.5fs_cb.structure.idle",
+				"interaction": "animation.5fs_cb.trash_can_bogged.empty",
+				"toggle_control": "controller.animation.5fs_cb.trash_can_bogged"
+			},
+			"scripts": {
+				"animate": [
+					"origin",
+					"placement",
+					"toggle_control", 
+					{
+						"90_degree": "q.variant == 1"
+					},
+					{
+						"180_degree": "q.variant == 2"
+					},
+					{
+						"270_degree": "q.variant == 3"
+					},
+					{
+						"item_animation_controller": "q.variant == 4"
+					}
+				]
+			}
+
+        }
+    }
+}

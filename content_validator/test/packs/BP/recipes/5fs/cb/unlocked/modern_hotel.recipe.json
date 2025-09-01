@@ -1,0 +1,34 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:modern_hotel_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["AAB", "CDB", "DEB"],
+    "key": {
+      "A": {
+        "item": "minecraft:gray_concrete"
+      },
+      "B": {
+        "item": "minecraft:stripped_spruce_log"
+      },
+      "C": {
+        "item": "minecraft:sea_lantern"
+      },
+      "D": {
+        "item": "minecraft:white_concrete"
+      },
+      "E": {
+        "item": "minecraft:azalea_leaves"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:modernhotel_craft"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:door_strider"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "PTP",
+      "PTP",
+      " H "
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:crimson_planks"
+      },
+      "T": {
+        "item": "minecraft:magma_cream"
+      },
+      "H": {
+        "item": "minecraft:iron_nugget"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:door_strider",
+      "count": 1
+    }
+  }
+}

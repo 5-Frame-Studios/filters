@@ -1,0 +1,43 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "5fs_cb:wall_mounted_garden_pot",
+			"render_controllers": [
+				"controller.render.default"
+			],
+			"geometry": {
+				"default": "geometry.5fs_cb.wall_mounted_garden_pot"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/wall_mounted/wall_mounted_garden_pot"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+			"spawn_egg": {
+				"texture": "plain_eggs",
+				"texture_index": 11
+			},
+			"animations": {
+				// ITEM DISPLAY
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"item_animation_controller": "controller.animation.5fs_cb.structure.item",
+				// PLACEMENT
+				"placement": "animation.5fs_cb.structure.placement",
+				// ROTATIONS
+				"origin": "animation.5fs_cb.structure.rotation.origin"
+			},
+			"scripts": {
+				"animate": [
+					"origin",
+					"placement",
+					{
+						"item_animation_controller": "q.variant == 4"
+					}
+				]
+			}
+		}
+	}
+}

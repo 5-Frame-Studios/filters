@@ -1,0 +1,29 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+        "controller.animation.5fs_cb.lamp_skeleton_toggle": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {"fire_on": "q.is_sheared"},
+                        {"fire_off": "!q.is_sheared"}
+                    ]
+                },
+                "fire_on": {
+                    "animations": ["turn_on"],
+                    "transitions": [
+                        {"default": "q.any_animation_finished && !q.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "fire_off": {
+                    "animations": ["turn_off"],
+                    "transitions": [
+                        {"default": "q.any_animation_finished && q.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                }
+            }
+        }
+    }
+}

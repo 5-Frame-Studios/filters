@@ -1,0 +1,65 @@
+{
+    "format_version": "1.18.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "5fs_cb:cashier",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false
+        },
+        "components": {
+            "minecraft:type_family": {
+              "family": ["npc", "mob"]
+            },
+            "minecraft:persistent": {},
+            "minecraft:movement": {
+              "value": 0.5
+            },
+            "minecraft:collision_box": {
+              "width": 0.6,
+              "height": 2.1
+            },
+            "minecraft:behavior.look_at_player": {
+              "priority": 0,
+              "look_distance": 6.0,
+              "probability": 0.02
+            },
+            "minecraft:npc": {
+              "npc_data": {
+                "portrait_offsets": {
+                  "translate": [-7, 50, 0],
+                  "scale": [1.75, 1.75, 1.75]
+                },
+                "picker_offsets": {
+                  "translate": [0, 20, 0],
+                  "scale": [1.7, 1.7, 1.7]
+                },
+                "skin_list": [
+                  {"variant": 0},
+                  {"variant": 1},
+                  {"variant": 2}
+                ]
+              }
+            },
+            "minecraft:nameable": {
+              "always_show": true,
+              "allow_name_tag_renaming": false
+            },
+            "minecraft:push_through": {
+                "value": 1
+            },
+            "minecraft:physics": {},
+            "minecraft:pushable": {
+                "is_pushable": false
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            }
+        }
+    }
+}

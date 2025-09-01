@@ -1,0 +1,31 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:fireplace_frozen"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "SIS",
+      "ICI",
+      "SIS"
+    ],
+    "key": {
+      "S": {
+        "item": "minecraft:snow"
+      },
+      "I": {
+        "item": "minecraft:packed_ice"
+      },
+      "C": {
+        "item": "minecraft:campfire"
+      }
+    },
+    "result": {
+      "item": "5fs_cb:fireplace_frozen",
+      "count": 1
+    }
+  }
+}

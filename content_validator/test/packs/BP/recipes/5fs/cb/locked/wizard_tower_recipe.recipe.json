@@ -1,0 +1,36 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:small_tower_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["#E#", "#D#", "BAB"],
+    "key": {
+      "#": {
+        "item": "minecraft:stripped_dark_oak_wood"
+      },
+      "E": {
+        "item": "minecraft:enchanting_table"
+      },
+      "D": {
+        "item": "minecraft:diorite"
+      },
+      "B": {
+        "item": "minecraft:brown_terracotta"
+      },
+      "A": {
+        "item": "minecraft:amethyst_block"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:wizardhouse_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:wizardhouse_craft"
+    }
+  }
+}

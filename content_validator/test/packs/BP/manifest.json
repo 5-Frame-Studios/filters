@@ -1,27 +1,65 @@
 {
-	"format_version": 2,
-	"header": {
-		"name": "Test Add-On BP",
-		"description": "Test behavior pack for content validator",
-		"uuid": "12345678-1234-1234-1234-123456789012",
-		"version": [1, 0, 0],
-		"min_engine_version": [1, 20, 0],
-		"pack_scope": "world"
-	},
-	"modules": [
-		{
-			"type": "data",
-			"uuid": "87654321-4321-4321-4321-210987654321",
-			"version": [1, 0, 0]
-		}
-	],
-	"metadata": {
-		"product_type": "addon"
-	},
-	"dependencies": [
-		{
-			"uuid": "98765432-5432-5432-5432-321098765432",
-			"version": [1, 0, 0]
-		}
-	]
+    "format_version": 2,
+    "header": {
+        "name": "pack.name",
+        "description": "pack.description",
+        "uuid": "d31ce935-e2ea-443a-bf36-57456de3a38b",
+        "version": [
+            1,
+            0,
+            24
+        ],
+        "min_engine_version": [
+            1,
+            20,
+            70
+        ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "f14a05f2-fcf6-4a34-b5f7-b5b2fffb417b",
+            "version": [
+                1,
+                0,
+                24
+            ]
+        },
+        {
+            "description": "Scripting module",
+            "type": "script",
+            "uuid": "e311dce4-fbaf-4a69-9944-97be16edc901",
+            "language": "javascript",
+            "version": [
+                0,
+                0,
+                1
+            ],
+            "entry": "scripts/5fs/cb/index.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "eb0582f8-c5bb-4d29-b314-9596d3e65981",
+            "version": [
+                1,
+                0,
+                24
+            ]
+        },
+        {
+            "module_name": "@minecraft/server",
+            "version": "2.1.0"
+        },
+        {
+            "module_name": "@minecraft/server-ui",
+            "version": "2.0.0"
+        }
+    ],
+    "metadata": {
+        "product_type": "addon",
+        "authors": [
+            "5 Frame Studios"
+        ]
+    }
 }

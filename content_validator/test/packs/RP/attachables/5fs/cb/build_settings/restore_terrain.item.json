@@ -1,0 +1,22 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "5fs_cb:restore_terrain",
+      "render_controllers": [
+        "controller.render.item_default"
+      ],
+      "materials": {
+        "default": "entity_alphatest",
+        "enchanted": "entity_alphatest_glint"
+      },
+      "textures": {
+        "default": "textures/5fs/cb/items/build_settings/restore_terrain",
+        "enchanted": "textures/5fs/cb/items/build_settings/restore_terrain"
+      },
+      "geometry": {
+        "default": "geometry.5fs_blankitem"
+      }
+    }
+  }
+}

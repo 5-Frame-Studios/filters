@@ -1,27 +1,46 @@
 {
-	"format_version": 2,
-	"header": {
-		"name": "Test Add-On RP",
-		"description": "Test resource pack for content validator",
-		"uuid": "98765432-5432-5432-5432-321098765432",
-		"version": [1, 0, 0],
-		"min_engine_version": [1, 20, 0],
-		"pack_scope": "world"
-	},
-	"modules": [
-		{
-			"type": "resources",
-			"uuid": "12345678-1234-1234-1234-123456789012",
-			"version": [1, 0, 0]
-		}
-	],
-	"metadata": {
-		"product_type": "addon"
-	},
-	"dependencies": [
-		{
-			"uuid": "12345678-1234-1234-1234-123456789012",
-			"version": [1, 0, 0]
-		}
-	]
+    "format_version": 2,
+    "header": {
+        "name": "pack.name",
+        "description": "pack.description",
+        "uuid": "eb0582f8-c5bb-4d29-b314-9596d3e65981",
+        "version": [
+            1,
+            0,
+            24
+        ],
+        "min_engine_version": [
+            1,
+            20,
+            70
+        ],
+        "pack_scope": "world"
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "2a721d3f-7cba-4071-9d36-9d92c0824321",
+            "version": [
+                1,
+                0,
+                24
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "d31ce935-e2ea-443a-bf36-57456de3a38b",
+            "version": [
+                1,
+                0,
+                24
+            ]
+        }
+    ],
+    "metadata": {
+        "product_type": "addon",
+        "authors": [
+            "5 Frame Studios"
+        ]
+    }
 }

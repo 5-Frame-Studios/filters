@@ -1,0 +1,179 @@
+{
+    "format_version": "1.18.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "5fs_cb:clock_axolotl",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "scripts": {"animate": ["general"]},
+            "animations": {"general": "controller.animation.5fs_cb.mob_sounds"}
+        },
+        "component_groups": {
+            "5fs_cb:spawn": {
+                "minecraft:physics":{
+                    "has_gravity": false
+                }
+            },
+            //toggle function
+            "5fs_cb:toggle": {
+                "minecraft:is_sheared": {},
+                "minecraft:timer": {
+                    "time": 3.9,
+                    "looping": false,
+                    "time_down_event": {
+                        "event": "5fs_cb:toggle_interaction",
+                        "target": "self"
+                    }
+                }
+            },
+            //demolish function
+            "5fs_cb:item_scale": {
+                "minecraft:variant": {
+                    "value": 4
+                },
+                "minecraft:physics":{
+                    "has_gravity": true
+                },
+                "minecraft:collision_box": {
+                    "width": 0.235,
+                    "height": 0.4
+                },
+				"minecraft:entity_sensor": {
+					"sensor_range": 0.4,
+					"event": "5fs_cb:spawn_item",
+					"event_filters": {
+						"test": "is_family",
+						"subject": "other",
+						"operator": "==",
+						"value": "player"
+					}
+				}
+            },
+            "5fs_cb:available_item": {
+                "minecraft:spawn_entity": {
+                    "entities": [
+                        {
+                            "single_use": true,
+                            "min_wait_time": 0,
+                            "max_wait_time": 0,
+                            "spawn_item": "5fs_cb:clock_axolotl"
+                        }
+                    ]
+                },
+                "minecraft:instant_despawn":{}
+            }
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "width": 0.5,
+                "height": 0.3
+            },
+            "minecraft:pushable": {
+                "is_pushable": false
+            },
+            "minecraft:interact": {
+                "interactions": [                    {
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "subject": "other",
+                                        "value": "5fs_cb:sledgehammer"
+                                    },
+                                    {
+                                        "test": "has_tag",
+                                        "subject": "other",
+                                        "operator": "!=",
+                                        "value": "adventure"
+                                    }
+                                ]
+                            },
+                            "event": "5fs_cb:convert_to_item"
+                        },
+                        "use_item": false,
+                        "play_sounds": "saddle",
+                        "interact_text": "action.interact.structure_pickup"
+                    },
+                    {
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_component",
+                                        "operator": "!=",
+                                        "subject": "self",
+                                        "value": "minecraft:is_sheared"
+                                    },
+                                    {
+                                        "test": "has_equipment",
+                                        "subject": "other",
+                                        "operator": "!=",
+                                        "value": "5fs_cb:wrench"
+                                    },
+                                    {
+                                        "test": "has_equipment",
+                                        "subject": "other",
+                                        "operator": "!=",
+                                        "value": "5fs_cb:sledgehammer"
+                                    }
+                                ]
+                            },
+                            "event": "5fs_cb:toggle_interaction"
+                        },
+                        "interact_text": "action.interact.turn_on"
+                    }
+                ]
+            },   
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            }
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {"component_groups": ["5fs_cb:spawn"]}
+            },
+            "5fs_cb:convert_to_item": {
+                "add": {"component_groups":[ "5fs_cb:item_scale"]},
+                "remove": {"component_groups": ["5fs_cb:toggle"]}
+            },
+            "5fs_cb:spawn_item": {
+                "remove": {
+                    "component_groups": ["5fs_cb:item_scale"]
+                },
+                "add": {
+                    "component_groups": ["5fs_cb:available_item"]
+                }
+            },
+            "5fs_cb:toggle_interaction": {
+                "sequence": [
+                    {
+                        "filters": {
+                            "test": "has_component",
+                            "operator": "!=",
+                            "value": "minecraft:is_sheared"
+                        },
+                        "add": {
+                            "component_groups": ["5fs_cb:toggle"]
+                        }
+                    },
+                    {
+                        "filters": {
+                            "test": "has_component",
+                            "value": "minecraft:is_sheared"
+                        },
+                        "remove": {
+                            "component_groups": ["5fs_cb:toggle"]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

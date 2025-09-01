@@ -1,0 +1,49 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.fridge_iron_golem",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [0, 0, -7], "size": [12, 32, 14], "uv": [0, 0], "mirror": true},
+						{"origin": [-12, 0, -7], "size": [12, 32, 14], "uv": [39, 33]},
+						{"origin": [10, 32, -9], "size": [2, 1, 4], "uv": [0, 0], "mirror": true},
+						{"origin": [-12, 32, -9], "size": [2, 1, 4], "uv": [0, 0]},
+						{"origin": [-12, 3, -9], "size": [2, 1, 2], "uv": [39, 7]},
+						{"origin": [10, 3, -9], "size": [2, 1, 2], "uv": [39, 7], "mirror": true},
+						{"origin": [-1, 31, -12], "size": [2, 4, 2], "uv": [39, 0]},
+						{"origin": [-4, 32, -10], "size": [8, 10, 8], "uv": [78, 23]},
+						{"origin": [-16, 2.5, -4], "size": [4, 30, 6], "uv": [21, 78], "mirror": true},
+						{"origin": [12, 2.5, -4], "size": [4, 30, 6], "uv": [0, 78]}
+					]
+				},
+				{
+					"name": "bone3",
+					"parent": "root",
+					"pivot": [11, 18, -8],
+					"cubes": [
+						{"origin": [0, 4, -9], "size": [12, 28, 2], "uv": [100, 42]}
+					]
+				},
+				{
+					"name": "bone4",
+					"parent": "root",
+					"pivot": [-11, 18, -8],
+					"cubes": [
+						{"origin": [-12, 4, -9], "size": [12, 28, 2], "uv": [53, 0]}
+					]
+				}
+			]
+		}
+	]
+}

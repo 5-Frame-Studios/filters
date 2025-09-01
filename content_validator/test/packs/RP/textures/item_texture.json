@@ -1,0 +1,519 @@
+{
+  "resource_pack_name": "pack.name",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "5fs_cb:guidebook": {
+      "textures": "textures/5fs/cb/items/guidebook"
+    },
+    "5fs_cb_blank": {
+      "textures": "textures/5fs/cb/items/build_settings/blank"
+    },
+    "5fs_cb_build_rotate_clockwise": {
+      "textures": "textures/5fs/cb/items/build_settings/rotate_clockwise"
+    },
+    "5fs_cb_build_rotate_counterclockwise": {
+      "textures": "textures/5fs/cb/items/build_settings/rotate_counterclockwise"
+    },
+    "5fs_cb_build_reject": {
+      "textures": "textures/5fs/cb/items/build_settings/reject"
+    },
+    "5fs_cb_build_accept": {
+      "textures": "textures/5fs/cb/items/build_settings/accept"
+    },
+    "5fs_cb_build_blank": {
+      "textures": "textures/5fs/cb/items/build_settings/blank"
+    },
+    "5fs_cb_restore_terrain": {
+      "textures": "textures/5fs/cb/items/build_settings/restore_terrain"
+    },
+    "5fs_cb_build_move_north": {
+      "textures": "textures/5fs/cb/items/build_settings/move_north"
+    },
+    "5fs_cb_build_move_south": {
+      "textures": "textures/5fs/cb/items/build_settings/move_south"
+    },
+    "5fs_cb_build_move_east": {
+      "textures": "textures/5fs/cb/items/build_settings/move_east"
+    },
+    "5fs_cb_build_move_west": {
+      "textures": "textures/5fs/cb/items/build_settings/move_west"
+    },
+    "5fs_cb_bank_craft": {
+      "textures": "textures/5fs/cb/items/bank_craft"
+    },
+    "5fs_cb_barn_0_craft": {
+      "textures": "textures/5fs/cb/items/barn_0_craft"
+    },
+    "5fs_cb_barn_1_craft": {
+      "textures": "textures/5fs/cb/items/barn_1_craft"
+    },
+    "5fs_cb_barn_2_craft": {
+      "textures": "textures/5fs/cb/items/barn_2_craft"
+    },
+    "5fs_cb_bedbug_craft": {
+      "textures": "textures/5fs/cb/items/bedbug_craft"
+    },
+    "5fs_cb_bridge_0_craft": {
+      "textures": "textures/5fs/cb/items/bridge_0_craft"
+    },
+    "5fs_cb_bridge_1_craft": {
+      "textures": "textures/5fs/cb/items/bridge_1_craft"
+    },
+    "5fs_cb_bunker_craft": {
+      "textures": "textures/5fs/cb/items/bunker_craft"
+    },
+    "5fs_cb_creeperhead_craft": {
+      "textures": "textures/5fs/cb/items/creeperhead_craft"
+    },
+    "5fs_cb_dragonhead_craft": {
+      "textures": "textures/5fs/cb/items/dragonhead_craft"
+    },
+    "5fs_cb_endportal_craft": {
+      "textures": "textures/5fs/cb/items/endportal_craft"
+    },
+    "5fs_cb_house_0_craft": {
+      "textures": "textures/5fs/cb/items/house_0_craft"
+    },
+    "5fs_cb_house_1_craft": {
+      "textures": "textures/5fs/cb/items/house_1_craft"
+    },
+    "5fs_cb_house_2_craft": {
+      "textures": "textures/5fs/cb/items/house_2_craft"
+    },
+    "5fs_cb_junglepyramid_craft": {
+      "textures": "textures/5fs/cb/items/junglepyramid_craft"
+    },
+    "5fs_cb_largepyramid_craft": {
+      "textures": "textures/5fs/cb/items/largepyramid_craft"
+    },
+    "5fs_cb_luckyblock_craft": {
+      "textures": "textures/5fs/cb/items/luckyblock_craft"
+    },
+    "5fs_cb_modernhotel_craft": {
+      "textures": "textures/5fs/cb/items/modernhotel_craft"
+    },
+    "5fs_cb_modernhouse_0_craft": {
+      "textures": "textures/5fs/cb/items/modernhouse_0_craft"
+    },
+    "5fs_cb_modernhouse_1_craft": {
+      "textures": "textures/5fs/cb/items/modernhouse_1_craft"
+    },
+    "5fs_cb_netherportal_craft": {
+      "textures": "textures/5fs/cb/items/netherportal_craft"
+    },
+    "5fs_cb_pyramid_craft": {
+      "textures": "textures/5fs/cb/items/pyramid_craft"
+    },
+    "5fs_cb_restaurant_craft": {
+      "textures": "textures/5fs/cb/items/restaurant_craft"
+    },
+    "5fs_cb_skull_craft": {
+      "textures": "textures/5fs/cb/items/skull_craft"
+    },
+    "5fs_cb_smalltower_craft": {
+      "textures": "textures/5fs/cb/items/smalltower_craft"
+    },
+    "5fs_cb_sportsbar_craft": {
+      "textures": "textures/5fs/cb/items/sportsbar_craft"
+    },
+    "5fs_cb_watchtower_craft": {
+      "textures": "textures/5fs/cb/items/watchtower_craft"
+    },
+    "5fs_cb_wizardhouse_craft": {
+      "textures": "textures/5fs/cb/items/wizardhouse_craft"
+    },
+    "5fs_cb_zombiehand_craft": {
+      "textures": "textures/5fs/cb/items/zombiehand_craft"
+    },
+
+    //furnitures//
+    
+    "5fs_cb:bookshelf_spider": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/bookshelf_spider.png"
+    },
+    "5fs_cb:ceiling_fan_bat": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/ceiling_fan_bat.png"
+    },
+    "5fs_cb:chair_creeper": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/chair_creeper.png"
+    },
+    "5fs_cb:clock_bat": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/clock_bat.png"
+    },
+    "5fs_cb:clock_creeper_cuckoo": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/clock_creeper_cuckoo.png"
+    },
+    "5fs_cb:door_bat_wing_double": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/door_bat_wing_double.png"
+    },
+    "5fs_cb:jar_glowing_spider": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/jar_glowing_spider.png"
+    },
+    "5fs_cb:lamp_creeper": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/lamp_creeper.png"
+    },
+    "5fs_cb:stool_zombie": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/stool_zombie.png"
+    },
+    "5fs_cb:table_spider": {
+      "textures": "textures/5fs/cb/items/cave_spawn_eggs/table_spider.png"
+    },
+    "5fs_cb:bookshelf_lush": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/bookshelf_lush.png"
+    },
+    "5fs_cb:ceiling_fan_allay": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/ceiling_fan_allay.png"
+    },
+    "5fs_cb:chair_warden": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/chair_warden.png"
+    },
+    "5fs_cb:clock_allay_cuckoo": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/clock_allay_cuckoo.png"
+    },
+    "5fs_cb:clock_shrieker": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/clock_shrieker.png"
+    },
+    "5fs_cb:door_deep_dark_double": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/door_deep_dark_double.png"
+    },
+    "5fs_cb:fridge_warden": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/fridge_warden.png"
+    },
+    "5fs_cb:jukebox_allay": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/jukebox_allay.png"
+    },
+    "5fs_cb:lamp_warden": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/lamp_warden.png"
+    },
+    "5fs_cb:stool_shrieker": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/stool_shrieker.png"
+    },
+    "5fs_cb:table_sculk": {
+      "textures": "textures/5fs/cb/items/deep_dark_spawn_eggs/table_sculk.png"
+    },
+    "5fs_cb:bean_bag_armadillo": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/bean_bag_armadillo.png"
+    },
+    "5fs_cb:bookshelf_sandstone": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/bookshelf_sandstone.png"
+    },
+    "5fs_cb:ceiling_fan_skeleton": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/ceiling_fan_skeleton.png"
+    },
+    "5fs_cb:chair_cactus": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/chair_cactus.png"
+    },
+    "5fs_cb:clock_skeleton": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/clock_skeleton.png"
+    },
+    "5fs_cb:door_sandstone_cactus_double": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/door_sandstone_cactus_double.png"
+    },
+    "5fs_cb:grill_skeleton": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/grill_skeleton.png"
+    },
+    "5fs_cb:lamp_skeleton": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/lamp_skeleton.png"
+    },
+    "5fs_cb:plushie_camel": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/plushie_camel.png"
+    },
+    "5fs_cb:stool_rabbit": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/stool_rabbit.png"
+    },
+    "5fs_cb:table_husk": {
+      "textures": "textures/5fs/cb/items/desert_spawn_eggs/table_husk.png"
+    },
+    "5fs_cb:bookshelf_portal": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/bookshelf_portal.png"
+    },
+    "5fs_cb:ceiling_fan_enderman": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/ceiling_fan_enderman.png"
+    },
+    "5fs_cb:chair_portal": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/chair_portal.png"
+    },
+    "5fs_cb:clock_enderdragon": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/clock_enderdragon.png"
+    },
+    "5fs_cb:door_ender_dragon_wing": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/door_ender_dragon_wing.png"
+    },
+    "5fs_cb:lamp_end": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/lamp_end.png"
+    },
+    "5fs_cb:plushie_ender_dragon": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/plushie_ender_dragon.png"
+    },
+    "5fs_cb:stool_enderman": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/stool_enderman.png"
+    },
+    "5fs_cb:stool_shulker": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/stool_shulker.png"
+    },
+    "5fs_cb:table_portal": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/table_portal.png"
+    },
+    "5fs_cb:trash_enderman": {
+      "textures": "textures/5fs/cb/items/end_spawn_eggs/trash_enderman.png"
+    },
+    "5fs_cb:bookshelf_frozen": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/bookshelf_frozen.png"
+    },
+    "5fs_cb:chair_snow_fox": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/chair_snow_fox.png"
+    },
+    "5fs_cb:chandelier_snow_golem": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/chandelier_snow_golem.png"
+    },
+    "5fs_cb:door_frozen_spruce": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/door_frozen_spruce.png"
+    },
+    "5fs_cb:fireplace_frozen": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/fireplace_frozen.png"
+    },
+    "5fs_cb:fridge_snow_golem": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/fridge_snow_golem.png"
+    },
+    "5fs_cb:globe_snow": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/globe_snow.png"
+    },
+    "5fs_cb:grill_frozen_stray": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/grill_frozen_stray.png"
+    },
+    "5fs_cb:lamp_snow_golem": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/lamp_snow_golem.png"
+    },
+    "5fs_cb:stool_stray": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/stool_stray.png"
+    },
+    "5fs_cb:table_stray": {
+      "textures": "textures/5fs/cb/items/ice_spawn_eggs/table_stray.png"
+    },
+    "5fs_cb:bookshelf_parrot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/bookshelf_parrot.png"
+    },
+    "5fs_cb:cage_parrot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/cage_parrot.png"
+    },
+    "5fs_cb:ceiling_fan_parrot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/ceiling_fan_parrot.png"
+    },
+    "5fs_cb:chair_bamboo": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/chair_bamboo.png"
+    },
+    "5fs_cb:clock_ocelot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/clock_ocelot.png"
+    },
+    "5fs_cb:door_bamboo_foldable_glass_double": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/door_bamboo_foldable_glass_double.png"
+    },
+    "5fs_cb:house_ocelot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/house_ocelot.png"
+    },
+    "5fs_cb:lamp_parrot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/lamp_parrot.png"
+    },
+    "5fs_cb:stool_ocelot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/stool_ocelot.png"
+    },
+    "5fs_cb:table_ocelot": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/table_ocelot.png"
+    },
+    "5fs_cb:trash_can_bogged": {
+      "textures": "textures/5fs/cb/items/jungle_spawn_eggs/trash_can_bogged.png"
+    },
+    "5fs_cb:bean_bag_magma_cube": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/bean_bag_magma_cube.png"
+    },
+    "5fs_cb:blaze_ceiling_fan": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/blaze_ceiling_fan.png"
+    },
+    "5fs_cb:blaze_chandelier": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/blaze_chandelier.png"
+    },
+    "5fs_cb:bookshelf_wither_skeleton": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/bookshelf_wither_skeleton.png"
+    },
+    "5fs_cb:ceiling_fan_blaze": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/ceiling_fan_blaze.png"
+    },
+    "5fs_cb:chair_magmacube": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/chair_magmacube.png"
+    },
+    "5fs_cb:chandelier_blaze": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/chandelier_blaze.png"
+    },
+    "5fs_cb:clock_piglin_cuckoo": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/clock_piglin_cuckoo.png"
+    },
+    "5fs_cb:clock_wither": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/clock_wither.png"
+    },
+    "5fs_cb:door_strider": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/door_strider.png"
+    },
+    "5fs_cb:ghast_stool": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/ghast_stool.png"
+    },
+    "5fs_cb:lamp_strider": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/lamp_strider.png"
+    },
+    "5fs_cb:magma_cube_chair": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/magma_cube_chair.png"
+    },
+    "5fs_cb:piglin_table": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/piglin_table.png"
+    },
+    "5fs_cb:stool_ghast": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/stool_ghast.png"
+    },
+    "5fs_cb:strider_lamp": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/strider_lamp.png"
+    },
+    "5fs_cb:table_piglin": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/table_piglin.png"
+    },
+    "5fs_cb:wither_bookshelf": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/wither_bookshelf.png"
+    },
+    "5fs_cb:wither_clock": {
+      "textures": "textures/5fs/cb/items/nether_spawn_eggs/wither_clock.png"
+    },
+    "5fs_cb:bean_bag_glow_squid": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/bean_bag_glow_squid.png"
+    },
+    "5fs_cb:bookshelf_drowned": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/bookshelf_drowned.png"
+    },
+    "5fs_cb:ceiling_fan_glow_squid": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/ceiling_fan_glow_squid.png"
+    },
+    "5fs_cb:chair_squid": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/chair_squid.png"
+    },
+    "5fs_cb:chandelier_glow_squid": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/chandelier_glow_squid.png"
+    },
+    "5fs_cb:clock_axolotl": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/clock_axolotl.png"
+    },
+    "5fs_cb:door_aquatic_double": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/door_aquatic_double.png"
+    },
+    "5fs_cb:lamp_guardian": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/lamp_guardian.png"
+    },
+    "5fs_cb:plushie_sniffer": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/plushie_sniffer.png"
+    },
+    "5fs_cb:stool_dolphin": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/stool_dolphin.png"
+    },
+    "5fs_cb:table_turtle": {
+      "textures": "textures/5fs/cb/items/ocean_spawn_eggs/table_turtle.png"
+    },
+    "5fs_cb:bookshelf_villager": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/bookshelf_villager.png"
+    },
+    "5fs_cb:ceiling_fan_iron_golem": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/ceiling_fan_iron_golem.png"
+    },
+    "5fs_cb:chair_pig": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/chair_pig.png"
+    },
+    "5fs_cb:clock_chicken_cuckoo": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/clock_chicken_cuckoo.png"
+    },
+    "5fs_cb:clock_evoker": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/clock_evoker.png"
+    },
+    "5fs_cb:door_oak_glass_double": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/door_oak_glass_double.png"
+    },
+    "5fs_cb:fridge_iron_golem": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/fridge_iron_golem.png"
+    },
+    "5fs_cb:lamp_cow": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/lamp_cow.png"
+    },
+    "5fs_cb:stool_villager": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/stool_villager.png"
+    },
+    "5fs_cb:table_sheep": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/table_sheep.png"
+    },
+    "5fs_cb:wall_mounted_garden_pot": {
+      "textures": "textures/5fs/cb/items/plains_spawn_eggs/wall_mounted_garden_pot.png"
+    },
+    "5fs_cb:ruler": {
+      "textures": "textures/5fs/cb/items/special_tools/ruler.png"
+    },
+    "5fs_cb:sledgehammer": {
+      "textures": "textures/5fs/cb/items/special_tools/sledgehammer.png"
+    },
+    "5fs_cb:wrench": {
+      "textures": "textures/5fs/cb/items/special_tools/wrench.png"
+    },
+    "5fs_cb:cave_token": {
+      "textures": "textures/5fs/cb/items/token/cave_token.png"
+    },
+    "5fs_cb:deep_dark_token": {
+      "textures": "textures/5fs/cb/items/token/deep_dark_token.png"
+    },
+    "5fs_cb:desert_token": {
+      "textures": "textures/5fs/cb/items/token/desert_token.png"
+    },
+    "5fs_cb:end_token": {
+      "textures": "textures/5fs/cb/items/token/end_token.png"
+    },
+    "5fs_cb:frozen_token": {
+      "textures": "textures/5fs/cb/items/token/frozen_token.png"
+    },
+    "5fs_cb:jungle_token": {
+      "textures": "textures/5fs/cb/items/token/jungle_token.png"
+    },
+    "5fs_cb:nether_token": {
+      "textures": "textures/5fs/cb/items/token/nether_token.png"
+    },
+    "5fs_cb:ocean_token": {
+      "textures": "textures/5fs/cb/items/token/ocean_token.png"
+    },
+    "5fs_cb:penguin_token": {
+      "textures": "textures/5fs/cb/items/token/penguin_token.png"
+    },
+    "5fs_cb:plains_token": {
+      "textures": "textures/5fs/cb/items/token/plains_token.png"
+    },
+    "5fs_cb:ultimate_token": {
+      "textures": "textures/5fs/cb/items/token/ultimate_token.png"
+    },
+    "5fs_cb:cave_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/cave_trader.png"
+    },
+    "5fs_cb:deep_dark_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/deep_dark_trader.png"
+    },
+    "5fs_cb:desert_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/desert_trader.png"
+    },
+    "5fs_cb:end_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/end_trader.png"
+    },
+    "5fs_cb:ice_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/ice_trader.png"
+    },
+    "5fs_cb:jungle_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/jungle_trader.png"
+    },
+    "5fs_cb:nether_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/nether_trader.png"
+    },
+    "5fs_cb:ocean_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/ocean_trader.png"
+    },
+    "5fs_cb:plains_trader": {
+      "textures": "textures/5fs/cb/items/traders_spawn_eggs/plains_trader.png"
+    }
+  }
+}

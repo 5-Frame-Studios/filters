@@ -1,0 +1,34 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:modern_house_0_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABB", "BCD", "EED"],
+    "key": {
+      "A": {
+        "item": "minecraft:stripped_spruce_log"
+      },
+      "B": {
+        "item": "minecraft:light_gray_concrete"
+      },
+      "C": {
+        "item": "minecraft:black_stained_glass"
+      },
+      "D": {
+        "item": "minecraft:gray_concrete"
+      },
+      "E": {
+        "item": "minecraft:white_concrete"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:modernhouse_0_craft"
+    }
+  }
+}

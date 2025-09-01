@@ -4,7 +4,7 @@ File structure and size validation functionality.
 
 import os
 import glob
-from typing import List
+from typing import List, Dict
 from .models import ValidationResult, ValidationLevel
 from .utils import logger, find_pack_directories, get_first_existing_path
 import json
@@ -61,6 +61,27 @@ class FileValidator:
         required_depth = self.settings.get('organization_specific', {}).get('required_folder_depth', 3)
         pack_dirs = find_pack_directories()
         
+        # Special files that are allowed at 2-folder depth
+        allowed_2_depth_files = {
+            'crafting_item_catalog.json',  # BP/item_catalog/
+            'sound_definitions.json',      # RP/sounds/
+            'item_texture.json',           # RP/textures/
+            'textures_list.json',          # RP/textures/
+            'terrain_texture.json',        # RP/textures/
+            'flipbook_textures.json',      # RP/textures/
+            'en_US.lang',                  # BP/texts/ or RP/texts/
+            'languages.json',              # BP/texts/ or RP/texts/
+            'music_definitions.json',      # RP/sounds/
+        }
+        
+        # Special directories that are allowed at 2-folder depth
+        allowed_2_depth_dirs = {
+            'texts',     # For language files
+            'sounds',    # For sound definitions
+            'textures',  # For texture definitions
+            'item_catalog',  # For crafting catalog
+        }
+        
         for pack_type, possible_paths in pack_dirs.items():
             for path in possible_paths:
                 if os.path.exists(path):
@@ -73,6 +94,18 @@ class FileValidator:
                             # Skip files that should be at root level (like manifest.json)
                             if len(path_parts) <= 1:
                                 continue
+                            
+                            # Check if this is a special file allowed at 2-folder depth
+                            filename = path_parts[-1]
+                            if len(path_parts) == 2:
+                                # Check if file is in an allowed 2-depth directory
+                                parent_dir = path_parts[0]
+                                if parent_dir in allowed_2_depth_dirs or filename in allowed_2_depth_files:
+                                    continue
+                                
+                                # Check for language files (any .lang file in texts/)
+                                if parent_dir == 'texts' and filename.endswith('.lang'):
+                                    continue
                             
                             if len(path_parts) < required_depth:
                                 report.add_result(ValidationResult(
@@ -106,14 +139,17 @@ class FileValidator:
                     break  # Found the first valid path for this pack type
     
     def validate_size_limits(self, report) -> None:
-        """Validate file size and count limits."""
+        """Validate file size and count limits using actual zip compression."""
         logger.info("Validating size limits...")
         
-        total_size = 0
         total_files = 0
         ignored_dirs = self.settings.get('ignored_directories', [])
         pack_dirs = find_pack_directories()
         
+        # Get actual compressed size by creating a zip in memory
+        compressed_size = self._get_actual_compressed_size(pack_dirs, ignored_dirs)
+        
+        # Count files
         for pack_type, possible_paths in pack_dirs.items():
             for path in possible_paths:
                 if os.path.exists(path):
@@ -121,15 +157,7 @@ class FileValidator:
                         # Skip ignored directories
                         if any(ignored in root for ignored in ignored_dirs):
                             continue
-                        
-                        for file in files:
-                            file_path = os.path.join(root, file)
-                            try:
-                                file_size = os.path.getsize(file_path)
-                                total_size += file_size
-                                total_files += 1
-                            except OSError:
-                                pass
+                        total_files += len(files)
                     break  # Found the first valid path for this pack type
         
         # Check file count limit
@@ -141,18 +169,57 @@ class FileValidator:
                 context={'total_files': total_files, 'limit': file_count_limit}
             ))
         
-        # Check file size limit
+        # Check compressed size limit (25MB limit applies to zipped add-on)
         size_limit_mb = self.settings.get('file_size_limit_mb', 25)
         size_limit_bytes = size_limit_mb * 1024 * 1024
         
-        if total_size > size_limit_bytes:
+        if compressed_size > size_limit_bytes:
             report.add_result(ValidationResult(
                 ValidationLevel.ERROR,
-                f"Total size ({total_size / (1024*1024):.2f}MB) exceeds limit ({size_limit_mb}MB)",
-                context={'total_size_mb': total_size / (1024*1024), 'limit_mb': size_limit_mb}
+                f"Compressed add-on size ({compressed_size / (1024*1024):.2f}MB) exceeds limit ({size_limit_mb}MB)",
+                context={'compressed_size_mb': compressed_size / (1024*1024), 'limit_mb': size_limit_mb}
+            ))
+        elif compressed_size > size_limit_bytes * 0.8:  # Warn if > 80% of limit
+            report.add_result(ValidationResult(
+                ValidationLevel.WARNING,
+                f"Compressed add-on size ({compressed_size / (1024*1024):.2f}MB) is approaching limit ({size_limit_mb}MB)",
+                context={'compressed_size_mb': compressed_size / (1024*1024), 'limit_mb': size_limit_mb}
             ))
         
-        logger.info(f"Size validation complete: {total_files} files, {total_size / (1024*1024):.2f}MB")
+        logger.info(f"Size validation complete: {total_files} files, {compressed_size / (1024*1024):.2f}MB compressed")
+    
+    def _get_actual_compressed_size(self, pack_dirs: Dict[str, List[str]], ignored_dirs: List[str]) -> int:
+        """Calculate actual compressed size by creating a zip in memory."""
+        import zipfile
+        import io
+        
+        zip_buffer = io.BytesIO()
+        
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as zip_file:
+            for pack_type, possible_paths in pack_dirs.items():
+                for path in possible_paths:
+                    if os.path.exists(path):
+                        for root, dirs, files in os.walk(path):
+                            # Skip ignored directories
+                            if any(ignored in root for ignored in ignored_dirs):
+                                continue
+                            
+                            for file in files:
+                                file_path = os.path.join(root, file)
+                                try:
+                                    # Create relative path for zip
+                                    rel_path = os.path.relpath(file_path, os.path.dirname(path))
+                                    zip_file.write(file_path, rel_path)
+                                except (OSError, ValueError):
+                                    # Skip files that can't be read or have invalid paths
+                                    pass
+                        break  # Found the first valid path for this pack type
+        
+        # Get the compressed size
+        compressed_size = zip_buffer.tell()
+        zip_buffer.close()
+        
+        return compressed_size
     
     def validate_block_permutations(self, report) -> None:
         """Validate block permutation limits."""

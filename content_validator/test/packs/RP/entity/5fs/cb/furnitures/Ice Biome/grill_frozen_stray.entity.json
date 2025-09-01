@@ -1,0 +1,45 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:grill_frozen_stray",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.grill_frozen_stray"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/grill_frozen_stray"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "ice_eggs",
+				"texture_index": 10
+            },
+			"animations": {
+				//Generic Animation Controllers
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"spawn_control": "controller.animation.5fs_cb.structure_spawn_control",
+				//Lamp Skeleton Special Animations
+				"placement": "animation.5fs_cb.grill_skeleton.placement",
+				//Generic Animations
+				"hold_item": "animation.5fs_cb.grill_skeleton.hold_item",
+				"idle": "animation.5fs_cb.structure.idle",
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale",
+				"90_degree": "animation.5fs_cb.structure.90_degree",
+				"180_degree": "animation.5fs_cb.structure.180_degree",
+				"270_degree": "animation.5fs_cb.structure.270_degree"
+			},
+			"scripts": {
+				"animate": ["spawn", "spawn_control", "hold_item",
+					{"90_degree": "q.variant == 1"},
+					{"180_degree": "q.variant == 2"},
+					{"270_degree": "q.variant == 3"}
+				]
+			}
+        }
+    }
+}

@@ -34,6 +34,7 @@ class ReportGenerator:
                     'total_errors': report.total_errors,
                     'total_warnings': report.total_warnings,
                     'total_info': report.total_info,
+                    'total_possible_issues': report.total_possible_issues,
                     'is_valid': report.is_valid()
                 },
                 'results': [
@@ -84,6 +85,7 @@ class ReportGenerator:
             table.add_row("Errors", str(report.total_errors))
             table.add_row("Warnings", str(report.total_warnings))
             table.add_row("Info", str(report.total_info))
+            table.add_row("Possible Issues", str(report.total_possible_issues))
             table.add_row("Valid", "Yes" if report.is_valid() else "No")
             
             self.console.print(table)
@@ -110,6 +112,7 @@ class ReportGenerator:
         logger.info(f"Errors: {report.total_errors}")
         logger.info(f"Warnings: {report.total_warnings}")
         logger.info(f"Info: {report.total_info}")
+        logger.info(f"Possible Issues: {report.total_possible_issues}")
         logger.info(f"Valid: {'Yes' if report.is_valid() else 'No'}")
         
         if namespace_info.namespace:

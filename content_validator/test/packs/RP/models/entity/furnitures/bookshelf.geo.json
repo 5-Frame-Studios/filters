@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.bookshelf",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 5,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, -0.85714],
+					"cubes": [
+						{"origin": [-16, 0, -8], "size": [32, 32, 16], "uv": [0, 0]},
+						{"origin": [-16, 15, -8], "size": [32, 2, 16], "uv": [0, 68]},
+						{"origin": [-16, 7, -8], "size": [32, 2, 16], "uv": [0, 49]},
+						{"origin": [-16, 23, -8], "size": [32, 2, 16], "uv": [0, 106]},
+						{"origin": [-16, 0, -8], "size": [32, 2, 16], "uv": [0, 87]},
+						{"origin": [-16, 30, -8], "size": [32, 2, 16], "uv": [0, 87]},
+						{"origin": [-16, 0, -6], "size": [32, 32, 0], "uv": [81, 49]}
+					]
+				}
+			]
+		}
+	]
+}

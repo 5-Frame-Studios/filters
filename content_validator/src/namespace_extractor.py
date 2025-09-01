@@ -20,35 +20,96 @@ class NamespaceExtractor:
     
     def extract_namespace_info(self) -> NamespaceInfo:
         """Extract namespace information from pack files."""
-        # Try to find namespace from various sources with flexible paths
-        namespace_sources = [
-            "BP/manifest.json",
-            "RP/manifest.json",
-            "behavior/manifest.json",
-            "resource/manifest.json",
-            "behavior_pack/manifest.json",
-            "resource_pack/manifest.json",
-            "packs/behavior/manifest.json",
-            "packs/resource/manifest.json",
-            "BP/entities/*.json",
-            "BP/blocks/*.json",
-            "BP/items/*.json",
-            "behavior/entities/*.json",
-            "behavior/blocks/*.json",
-            "behavior/items/*.json"
-        ]
+        # Use find_pack_directories to get the correct paths in any environment
+        from .utils import find_pack_directories
+        pack_dirs = find_pack_directories()
         
-        for source in namespace_sources:
-            if "*" in source:
-                # Handle glob patterns
-                try:
-                    files = glob.glob(source)
-                    for file_path in files:
-                        self._extract_namespace_from_file(file_path)
-                except Exception as e:
-                    logger.debug(f"Error globbing {source}: {e}")
-            else:
-                self._extract_namespace_from_file(source)
+        logger.debug(f"Namespace extraction: pack_dirs = {pack_dirs}")
+        
+        # Try to find namespace from pack directories
+        for pack_type, possible_paths in pack_dirs.items():
+            for path in possible_paths:
+                if os.path.exists(path):
+                    logger.debug(f"Namespace extraction: checking path {path}")
+                    # Try manifest file first
+                    manifest_path = os.path.join(path, "manifest.json")
+                    if os.path.exists(manifest_path):
+                        logger.debug(f"Namespace extraction: trying manifest {manifest_path}")
+                        self._extract_namespace_from_file(manifest_path)
+                        if self.namespace_info.namespace:
+                            break
+                    
+                    # Try entity files
+                    entity_patterns = [
+                        os.path.join(path, "entities", "*.json"),
+                        os.path.join(path, "entities", "*", "*.json"),
+                        os.path.join(path, "entities", "*", "*", "*.json"),
+                        os.path.join(path, "entities", "*", "*", "*", "*.json"),
+                        os.path.join(path, "entities", "*", "*", "*", "*", "*.json")
+                    ]
+                    
+                    for pattern in entity_patterns:
+                        try:
+                            files = glob.glob(pattern)
+                            for file_path in files:
+                                self._extract_namespace_from_file(file_path)
+                                if self.namespace_info.namespace:
+                                    break
+                            if self.namespace_info.namespace:
+                                break
+                        except Exception as e:
+                            logger.debug(f"Error globbing {pattern}: {e}")
+                    
+                    if self.namespace_info.namespace:
+                        break
+                    
+                    # Try item files
+                    item_patterns = [
+                        os.path.join(path, "items", "*.json"),
+                        os.path.join(path, "items", "*", "*.json"),
+                        os.path.join(path, "items", "*", "*", "*.json"),
+                        os.path.join(path, "items", "*", "*", "*", "*.json"),
+                        os.path.join(path, "items", "*", "*", "*", "*", "*.json")
+                    ]
+                    
+                    for pattern in item_patterns:
+                        try:
+                            files = glob.glob(pattern)
+                            for file_path in files:
+                                self._extract_namespace_from_file(file_path)
+                                if self.namespace_info.namespace:
+                                    break
+                            if self.namespace_info.namespace:
+                                break
+                        except Exception as e:
+                            logger.debug(f"Error globbing {pattern}: {e}")
+                    
+                    if self.namespace_info.namespace:
+                        break
+                    
+                    # Try block files
+                    block_patterns = [
+                        os.path.join(path, "blocks", "*.json"),
+                        os.path.join(path, "blocks", "*", "*.json"),
+                        os.path.join(path, "blocks", "*", "*", "*.json")
+                    ]
+                    
+                    for pattern in block_patterns:
+                        try:
+                            files = glob.glob(pattern)
+                            for file_path in files:
+                                self._extract_namespace_from_file(file_path)
+                                if self.namespace_info.namespace:
+                                    break
+                            if self.namespace_info.namespace:
+                                break
+                        except Exception as e:
+                            logger.debug(f"Error globbing {pattern}: {e}")
+                    
+                break  # Found the first valid path for this pack type
+            
+            if self.namespace_info.namespace:
+                break
         
         if self.namespace_info.namespace:
             logger.info(f"Detected namespace: {self.namespace_info.namespace}")
@@ -65,35 +126,92 @@ class NamespaceExtractor:
     
     def _extract_namespace_from_file(self, file_path: str):
         """Extract namespace from a specific file."""
-        data = safe_json_load(file_path)
-        if not data:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, UnicodeDecodeError, OSError, FileNotFoundError):
             return
         
-        # Look for namespace in various fields
+        if not isinstance(data, dict):
+            return
+        
+        # Look for namespace in various structures
+        namespaces_found = set()
+        
+        # Check minecraft:entity structure
+        if 'minecraft:entity' in data:
+            entity_data = data['minecraft:entity']
+            if isinstance(entity_data, dict) and 'description' in entity_data:
+                description = entity_data['description']
+                if isinstance(description, dict) and 'identifier' in description:
+                    identifier = description['identifier']
+                    if isinstance(identifier, str) and ':' in identifier:
+                        namespace = identifier.split(':')[0]
+                        if namespace not in self.settings.get('forbidden_namespaces', ['minecraft']):
+                            namespaces_found.add(namespace)
+        
+        # Check minecraft:item structure
+        if 'minecraft:item' in data:
+            item_data = data['minecraft:item']
+            if isinstance(item_data, dict) and 'description' in item_data:
+                description = item_data['description']
+                if isinstance(description, dict) and 'identifier' in description:
+                    identifier = description['identifier']
+                    if isinstance(identifier, str) and ':' in identifier:
+                        namespace = identifier.split(':')[0]
+                        if namespace not in self.settings.get('forbidden_namespaces', ['minecraft']):
+                            namespaces_found.add(namespace)
+        
+        # Check minecraft:block structure
+        if 'minecraft:block' in data:
+            block_data = data['minecraft:block']
+            if isinstance(block_data, dict) and 'description' in block_data:
+                description = block_data['description']
+                if isinstance(description, dict) and 'identifier' in description:
+                    identifier = description['identifier']
+                    if isinstance(identifier, str) and ':' in identifier:
+                        namespace = identifier.split(':')[0]
+                        if namespace not in self.settings.get('forbidden_namespaces', ['minecraft']):
+                            namespaces_found.add(namespace)
+        
+        # Check common identifier fields at root level
+        identifier_fields = ['identifier', 'name', 'id']
+        for field in identifier_fields:
+            if field in data:
+                value = data[field]
+                if isinstance(value, str) and ':' in value:
+                    namespace = value.split(':')[0]
+                    if namespace not in self.settings.get('forbidden_namespaces', ['minecraft']):
+                        namespaces_found.add(namespace)
+        
+        # Recursively search for any identifier-like fields
+        self._extract_namespace_recursive(data, namespaces_found)
+        
+        # Use the first valid namespace found
+        if namespaces_found:
+            # Prefer longer namespaces (more specific)
+            self.namespace_info.namespace = max(namespaces_found, key=len)
+            logger.debug(f"Found namespace '{self.namespace_info.namespace}' in {file_path}")
+    
+    def _extract_namespace_recursive(self, data, namespaces_found, path=""):
+        """Recursively search for namespace identifiers."""
         if isinstance(data, dict):
-            # Check common identifier fields
-            identifier_fields = ['identifier', 'name', 'id']
-            for field in identifier_fields:
-                if field in data:
-                    value = data[field]
-                    if isinstance(value, str) and ':' in value:
-                        namespace = value.split(':')[0]
-                        if namespace not in self.settings.get('forbidden_namespaces', []):
-                            self.namespace_info.namespace = namespace
-                            return
-            
-            # Check for minecraft:entity structure
-            if 'minecraft:entity' in data:
-                entity_data = data['minecraft:entity']
-                if isinstance(entity_data, dict) and 'description' in entity_data:
-                    description = entity_data['description']
-                    if isinstance(description, dict) and 'identifier' in description:
-                        identifier = description['identifier']
-                        if isinstance(identifier, str) and ':' in identifier:
-                            namespace = identifier.split(':')[0]
-                            if namespace not in self.settings.get('forbidden_namespaces', []):
-                                self.namespace_info.namespace = namespace
-                                return
+            for key, value in data.items():
+                current_path = f"{path}.{key}" if path else key
+                
+                # Look for identifier fields
+                if key in ['identifier', 'name', 'id'] and isinstance(value, str) and ':' in value:
+                    namespace = value.split(':')[0]
+                    if namespace not in self.settings.get('forbidden_namespaces', ['minecraft']):
+                        namespaces_found.add(namespace)
+                
+                # Recurse into nested structures
+                self._extract_namespace_recursive(value, namespaces_found, current_path)
+                
+        elif isinstance(data, list):
+            for i, item in enumerate(data):
+                current_path = f"{path}[{i}]" if path else f"[{i}]"
+                self._extract_namespace_recursive(item, namespaces_found, current_path)
     
     def validate_namespace_requirements(self, report) -> None:
         """Validate namespace requirements."""

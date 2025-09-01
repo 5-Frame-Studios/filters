@@ -1,0 +1,37 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:clock_evoker",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.clock_evoker"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/clock/clock_evoker"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "plain_eggs",
+				"texture_index": 5
+            },
+			"animations": {
+				"item": "controller.animation.5fs_cb.structure_scale",
+				"spawn_control": "controller.animation.5fs_cb.structure_toggle_control",
+				"idle": "animation.5fs_cb.clock_evoker.idle",
+				"placement": "animation.5fs_cb.clock_evoker.placement",
+				"interaction": "animation.5fs_cb.clock_evoker.toggle",
+
+				"spawn": "animation.5fs_cb.structure.origin",
+				"item_display": "animation.5fs_cb.structure.item_display",
+				"item_scale": "animation.5fs_cb.structure.item_scale"
+			},
+			"scripts": {
+				"animate": ["spawn", "spawn_control"
+				]
+			}
+        }
+    }
+}

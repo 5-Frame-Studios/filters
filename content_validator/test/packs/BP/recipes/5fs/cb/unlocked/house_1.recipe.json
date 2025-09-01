@@ -1,0 +1,35 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:house_1_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABA", "CDC", "EEE"],
+    "key": {
+      "A": {
+        "item": "minecraft:quartz_block"
+      },
+      "B": {
+        "item": "minecraft:deepslate_bricks"
+      },
+      "C": {
+        "item": "minecraft:brown_mushroom_block",
+        "data": 15
+      },
+      "D": {
+        "item": "minecraft:birch_door"
+      },
+      "E": {
+        "item": "minecraft:calcite"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:house_1_craft"
+    }
+  }
+}

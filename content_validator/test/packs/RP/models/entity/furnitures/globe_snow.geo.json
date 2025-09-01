@@ -1,0 +1,90 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.globe_snow",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-4, 0, -4], "size": [8, 1, 8], "uv": [0, 16]},
+						{"origin": [-4, 1.975, -4], "size": [8, 8, 8], "uv": [0, 0]},
+						{"origin": [-3, 1, -3], "size": [6, 1, 6], "uv": [0, 25]},
+						{"origin": [-4, 2.1, -4], "size": [8, 0, 8], "uv": [24, 16]},
+						{"origin": [-4, 2.35, -4], "size": [8, 0, 8], "uv": [32, 8]}
+					],
+					"locators": {
+						"snow": {
+							"offset": [0, 9, 0],
+							"rotation": [0, 0, -180]
+						}
+					}
+				},
+				{
+					"name": "snow_golem2",
+					"parent": "root",
+					"pivot": [-2, 2.44645, 2],
+					"rotation": [0, 45, 0],
+					"cubes": [
+						{"origin": [-3, 2, 1], "size": [2, 2, 2], "uv": [24, 25], "mirror": true},
+						{"origin": [-3, 3.75, 1], "size": [2, 2, 2], "inflate": -0.25, "uv": [24, 29], "mirror": true},
+						{"origin": [-3, 5.25, 1], "size": [2, 2, 2], "uv": [0, 32], "mirror": true},
+						{"origin": [-2.5, 2.46967, 2.73744], "size": [1, 3, 1], "inflate": -0.25, "pivot": [-2, 4.46967, 3.23744], "rotation": [45, 0, 0], "uv": [32, 0], "mirror": true}
+					]
+				},
+				{
+					"name": "arm",
+					"parent": "snow_golem2",
+					"pivot": [-2, 4.96967, 1.26256],
+					"cubes": [
+						{"origin": [-2.5, 2.46967, 0.26256], "size": [1, 3, 1], "inflate": -0.25, "pivot": [-2, 4.46967, 0.76256], "rotation": [-45, 0, 0], "uv": [32, 4], "mirror": true}
+					]
+				},
+				{
+					"name": "snow2",
+					"parent": "arm",
+					"pivot": [-1.75, 3.71967, -0.48744],
+					"cubes": [
+						{"origin": [-2.25, 3.21967, -0.98744], "size": [1, 1, 1], "inflate": -0.25, "uv": [8, 32], "mirror": true}
+					]
+				},
+				{
+					"name": "snow_golem3",
+					"parent": "root",
+					"pivot": [2, 2.44645, -2],
+					"rotation": [0, 45, 0],
+					"cubes": [
+						{"origin": [1, 2, -3], "size": [2, 2, 2], "uv": [24, 25]},
+						{"origin": [1, 3.75, -3], "size": [2, 2, 2], "inflate": -0.25, "uv": [24, 29]},
+						{"origin": [1, 5.25, -3], "size": [2, 2, 2], "uv": [0, 32]},
+						{"origin": [1.5, 2.46967, -3.73744], "size": [1, 3, 1], "inflate": -0.25, "pivot": [2, 4.46967, -3.23744], "rotation": [-45, 0, 0], "uv": [32, 0]}
+					]
+				},
+				{
+					"name": "arm2",
+					"parent": "snow_golem3",
+					"pivot": [2, 4.96967, -1.26256],
+					"cubes": [
+						{"origin": [1.5, 2.46967, -1.26256], "size": [1, 3, 1], "inflate": -0.25, "pivot": [2, 4.46967, -0.76256], "rotation": [45, 0, 0], "uv": [32, 4]}
+					]
+				},
+				{
+					"name": "snow3",
+					"parent": "arm2",
+					"pivot": [1.75, 5.21967, 0.48744],
+					"cubes": [
+						{"origin": [1.25, 3.21967, -0.01256], "size": [1, 1, 1], "inflate": -0.25, "uv": [8, 32]}
+					]
+				}
+			]
+		}
+	]
+}

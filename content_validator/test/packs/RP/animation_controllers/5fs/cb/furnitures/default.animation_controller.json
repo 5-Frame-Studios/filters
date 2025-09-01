@@ -1,0 +1,153 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.5fs_cb.structure_door" : {
+			"initial_state" : "default",
+			"states" : {
+                "default": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"door_open": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+				"door_open" : {
+                    "animations": ["open"],
+					"transitions" : [
+                        {"door_close": "!query.is_sheared"}
+    				],
+                    "blend_transition": 0.2
+                },
+                "door_close": {
+                    "animations": ["close"],
+                    "transitions": [
+                        {"door_open": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                }
+			}
+		},
+		"controller.animation.5fs_cb.power_toggle" : {
+			"initial_state" : "power_off",
+			"states" : {
+                "power_off": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"power_on": "query.mark_variant >= 1"}
+                    ],
+                    "blend_transition": 0.2
+                },
+				"power_on" : {
+                    "animations": ["disc"],
+					"transitions" : [
+                        {"power_off": "query.mark_variant == 0"}
+    				],
+                    "blend_transition": 0.2
+                }
+			}
+		},
+        "controller.animation.5fs_cb.structure_scale": {
+          "states": {
+            "default": {
+              "animations": ["item_scale"],
+              "transitions": [
+                {"entity_item": "q.any_animation_finished"}
+              ]
+            },
+            "entity_item": {
+              "animations": ["item_display"]
+            }
+          }
+        },
+        "controller.animation.5fs_cb.structure_spawn_control": {
+            "states": {
+                "default": {
+                    "animations": ["placement"],
+                    "transitions": [
+                        {"idle_display": "q.any_animation_finished"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "idle_display": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"item": "q.variant == 4"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "item": {
+                    "animations": ["item"]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.structure_toggle_control": {
+            "states": {
+                "default": {
+                    "animations": ["placement"],
+                    "transitions": [
+                        {"idle_display": "q.any_animation_finished"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "idle_display": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"item": "q.variant == 4"},
+                        {"toggle_anim": "q.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "toggle_anim": {
+                    "animations": ["interaction"],
+                    "transitions": [
+                        {"idle_display": "q.any_animation_finished && !q.is_sheared"}
+                    ]
+                },
+                "item": {
+                    "animations": ["item"]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.trash_can_bogged": {
+            "states": {
+                "default": {
+                    "animations": ["placement"],
+                    "transitions": [
+                        {"idle_display": "q.any_animation_finished"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "idle_display": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"toggle_anim": "q.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+                "toggle_anim": {
+                    "animations": ["interaction"],
+                    "transitions": [
+                        {"idle_display": "q.any_animation_finished && !q.is_sheared"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.5fs_cb.grill.smoke": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {"smoke": "q.mark_variant > 0"}
+                    ]
+                },
+                "smoke": {
+                    "particle_effects": [
+                        {"effect": "grill_smoke"}
+                    ],
+                    "transitions": [
+                        {"default": "q.mark_variant == 0"}
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -44,6 +44,10 @@ class BaseValidatorTest(ABC):
         """Helper method to add validation results."""
         self.report.add_result(ValidationResult(level, message, file_path, context))
     
+    def add_possible_issue(self, message: str, file_path: str = None, context: Dict[str, Any] = None):
+        """Helper method to add possible issue results."""
+        self.add_result(ValidationLevel.POSSIBLE_ISSUE, message, file_path, context)
+    
     def log_info(self, message: str):
         """Helper method to log info messages."""
         logger.info(f"[{self.get_test_name()}] {message}")

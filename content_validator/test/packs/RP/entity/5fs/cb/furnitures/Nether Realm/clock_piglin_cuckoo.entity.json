@@ -1,0 +1,46 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "5fs_cb:clock_piglin_cuckoo",
+			"render_controllers": ["controller.render.default"],
+			"geometry": {
+				"default": "geometry.5fs_cb.clock_piglin_cuckoo"
+			},
+			"textures": {
+				"default": "textures/5fs/cb/entity/furnitures/clock/clock_piglin_cuckoo"
+			},
+			"materials": {
+				"default": "entity_alphatest"
+			},
+            "spawn_egg": {
+				"texture": "nether_eggs",
+				"texture_index": 11
+            },
+			"animations": {
+				// ITEM DISPLAY
+				"item_display": "animation.5fs_cb.structure.clock_chicken_cuckoo.item_display",
+				"item_scale": "animation.5fs_cb.structure.clock_chicken_cuckoo.item_scale",
+				"item_animation_controller": "controller.animation.5fs_cb.structure.item",
+				// PLACEMENT
+				"placement": "animation.5fs_cb.structure.clock_chicken_cuckoo.placement",
+				// ROTATIONS
+				"origin": "animation.5fs_cb.structure.rotation.origin",
+				// INTERACTION
+				"idle": "animation.5fs_cb.clock_piglin_cuckoo.idle",
+				"toggle": "animation.5fs_cb.clock_piglin_cuckoo.toggle",
+				"interaction_animation_controller": "controller.animation.5fs_cb.clock"
+			},
+			"scripts": {
+				"animate": [
+					"origin",
+					"placement",
+					"interaction_animation_controller",
+					{
+						"item_animation_controller": "q.variant == 4"
+					}
+				]
+			}
+        }
+    }
+}

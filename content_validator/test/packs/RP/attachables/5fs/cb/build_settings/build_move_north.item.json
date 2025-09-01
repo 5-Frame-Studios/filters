@@ -1,0 +1,22 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "5fs_cb:build_move_north",
+      "render_controllers": [
+        "controller.render.item_default"
+      ],
+      "materials": {
+        "default": "entity_alphatest",
+        "enchanted": "entity_alphatest_glint"
+      },
+      "textures": {
+        "default": "textures/5fs/cb/items/build_settings/build_move_north",
+        "enchanted": "textures/5fs/cb/items/build_settings/build_move_north"
+      },
+      "geometry": {
+        "default": "geometry.5fs_blankitem"
+      }
+    }
+  }
+}

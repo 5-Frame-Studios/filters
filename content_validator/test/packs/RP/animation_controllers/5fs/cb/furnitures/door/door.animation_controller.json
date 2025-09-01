@@ -1,0 +1,58 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.5fs_cb.door" : {
+			"initial_state" : "default",
+			"states" : {
+                "default": {
+                    "animations": ["idle"],
+                    "transitions": [
+                        {"door_open": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                },
+				"door_open" : {
+                    "animations": ["open"],
+					"transitions" : [
+                        {"door_close": "!query.is_sheared"}
+    				],
+                    "blend_transition": 0.2
+                },
+                "door_close": {
+                    "animations": ["close"],
+                    "transitions": [
+                        {"door_open": "query.is_sheared"}
+                    ],
+                    "blend_transition": 0.2
+                }
+			}
+		},
+        "controller.animation.5fs_cb.door.close_open": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                "animations": [
+                    "close"
+                ],
+                "transitions": [
+                    {
+                    "open": "q.property('5fs_cb:close_open') == 1"
+                    }
+                ],
+                "blend_transition": 0.2
+                },
+                "open": {
+                "animations": [
+                    "open"
+                ],
+                "transitions": [
+                    {
+                    "default": "q.property('5fs_cb:close_open') == 0"
+                    }
+                ],
+                "blend_transition": 0.2
+                }
+            }
+        }
+    }
+}

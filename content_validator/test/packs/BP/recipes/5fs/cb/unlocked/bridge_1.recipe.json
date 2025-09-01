@@ -1,0 +1,43 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:bridge_1_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["ABA", "CDE", "FGH"],
+    "key": {
+      "A": {
+        "item": "minecraft:stripped_oak_log"
+      },
+      "B": {
+        "item": "minecraft:mangrove_planks"
+      },
+      "C": {
+        "item": "minecraft:stone"
+      },
+      "D": {
+        "item": "minecraft:tuff"
+      },
+      "E": {
+        "item": "minecraft:andesite"
+      },
+      "F": {
+        "item": "minecraft:cobbled_deepslate"
+      },
+      "G": {
+        "item": "minecraft:smooth_basalt"
+      },
+      "H": {
+        "item": "minecraft:deepslate_bricks"
+      }
+    },
+    "unlock": {
+      "context": "AlwaysUnlocked"
+    },
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:bridge_1_craft"
+    }
+  }
+}

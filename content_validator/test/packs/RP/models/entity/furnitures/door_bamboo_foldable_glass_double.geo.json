@@ -1,0 +1,45 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.5fs_cb.door_bamboo_foldable_glass_double",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "1",
+					"parent": "root",
+					"pivot": [-8, 20, 0],
+					"cubes": [
+						{"origin": [-8, 0, 0], "size": [1, 40, 2], "uv": [28, 0]},
+						{"origin": [7, 0, 0], "size": [1, 40, 2], "uv": [34, 0]},
+						{"origin": [-7, 37, 0], "size": [14, 2, 2], "uv": [40, 0]},
+						{"origin": [-7, 1, 0], "size": [14, 2, 2], "uv": [40, 0]},
+						{"origin": [-7, 2, 1], "size": [14, 36, 0], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "2",
+					"parent": "1",
+					"pivot": [8, 20, 2],
+					"cubes": [
+						{"origin": [8, 0, 0], "size": [1, 40, 2], "uv": [28, 0]},
+						{"origin": [23, 0, 0], "size": [1, 40, 2], "uv": [34, 0]},
+						{"origin": [9, 37, 0], "size": [14, 2, 2], "uv": [40, 0]},
+						{"origin": [9, 1, 0], "size": [14, 2, 2], "uv": [40, 0]},
+						{"origin": [9, 2, 1], "size": [14, 36, 0], "uv": [0, 0]}
+					]
+				}
+			]
+		}
+	]
+}

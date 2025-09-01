@@ -93,10 +93,10 @@ def get_regolith_environment() -> Dict[str, str]:
 
 
 def find_pack_directories() -> Dict[str, List[str]]:
-    """Find pack directories with flexible naming (Regolith paths first)."""
+    """Find pack directories with flexible naming (Regolith temp paths first)."""
     return {
-        'BP': ['packs/BP', 'packs/behavior', 'packs/behavior_pack', 'BP', 'behavior', 'behavior_pack'],
-        'RP': ['packs/RP', 'packs/resource', 'packs/resource_pack', 'RP', 'resource', 'resource_pack']
+        'BP': ['BP', 'behavior', 'behavior_pack', 'packs/BP', 'packs/behavior', 'packs/behavior_pack'],
+        'RP': ['RP', 'resource', 'resource_pack', 'packs/RP', 'packs/resource', 'packs/resource_pack']
     }
 
 

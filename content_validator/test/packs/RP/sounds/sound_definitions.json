@@ -1,0 +1,361 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "ch_npc1": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc1",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc2": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc2",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc3": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc3",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc4": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc4",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc5": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc5",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc6": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc6",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc7": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc7",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc8": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc8",
+          "volume": 5
+        }
+      ]
+    },
+    "ch_npc9": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/ch_npc9",
+          "volume": 5
+        }
+      ]
+    },
+    // ############### Craftable Bases ###############
+    "defeated_dragon": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/dragondefeat",
+          "volume": 5
+        }
+      ]
+    },
+    "equipped_dragon_head": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/dragonhead",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_enchant_table": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/enchanttable",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_beach_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/beach",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_desert_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/desert",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_jungle_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/jungle",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_nether_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/nether",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_savannah_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/savannah",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_roofed_forest_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/bunker",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_mountain_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/zombiehand",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_swamp_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/bedbug",
+          "volume": 5
+        }
+      ]
+    },
+    "discovered_taiga_biome": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/unlocks/watchtower",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_furnace_0": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/furnace_0",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_furnace_1": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/furnace_1",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_crafter_0": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/crafter_0",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_crafter_1": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/crafter_1",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_stonecutter_0": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/crafter_0",
+          "volume": 5
+        }
+      ]
+    },
+    "npc_stonecutter_1": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/crafter_1",
+          "volume": 5
+        }
+      ]
+    },
+    "build_start": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/structure/build_start",
+          "volume": 0.5
+        }
+      ]
+    },
+    "build_fall": {
+      "__use_legacy_max_distance": false,
+      "category": "ui",
+      "sounds": [
+        {
+          "name": "sounds/5fs/craftable_builds/structure/build_fall",
+          "volume": 0.5
+        }
+      ]
+    },
+    "type.sound.null": {
+      "category": "neutral",
+      "sounds": []
+    },
+    // ###############  MODERN SECURITY FURNITURE ###############
+    "furniture_place": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/furnitureplace",
+          "stream": true,
+          "volume": 0.2
+        }
+      ]
+    },
+    "coin_flash": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/coin_flash",
+          "stream": true,
+          "volume": 1
+        }
+      ]
+    },
+    "vault_opening": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/vault_opening",
+          "stream": true,
+          "volume": 1
+        }
+      ]
+    },
+    "spray": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/spray",
+          "stream": true,
+          "volume": 1
+        }
+      ]
+    },
+    "siren": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/siren",
+          "stream": true,
+          "volume": 1
+        }
+      ]
+    },
+    "armored_vehicle.loop": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/5fs/modern_security/armored_vehicle",
+          "stream": true,
+          "volume": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "5fs_cb:bedbug_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": ["#C#", "MBM", "M M"],
+    "key": {
+      "#": {
+        "item": "minecraft:verdant_froglight"
+      },
+      "C": {
+        "item": "minecraft:coal_block"
+      },
+      "M": {
+        "item": "minecraft:mud_bricks"
+      },
+      "B": {
+        "item": "minecraft:black_terracotta"
+      }
+    },
+    "unlock": [
+      {
+        "item": "5fs_cb:bedbug_craft"
+      }
+    ],
+    "result": {
+      "count": 1,
+      "item": "5fs_cb:bedbug_craft"
+    }
+  }
+}

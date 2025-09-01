@@ -1,0 +1,109 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:crafting_items_catalog": {
+    "categories": [
+      {
+        "category_name": "nature",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "minecraft:spawn_egg",
+              "name": "minecraft:itemGroup.name.mobEgg"
+            },
+            "items": []
+          }
+        ]
+      },
+      {
+        "category_name": "equipment",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:wrench",
+              "name": "5fs_cb:itemGroup.name.special_tools"
+            },
+            "items": []
+          }
+        ]
+      },
+      {
+        "category_name": "items",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:barn_0_craft",
+              "name": "5fs_cb:itemGroup.name.builds" 
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_spider",
+              "name": "5fs_cb:itemGroup.name.cave_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_lush",
+              "name": "5fs_cb:itemGroup.name.deep_dark_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bean_bag_armadillo",
+              "name": "5fs_cb:itemGroup.name.desert_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_portal",
+              "name": "5fs_cb:itemGroup.name.end_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_frozen",
+              "name": "5fs_cb:itemGroup.name.ice_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_parrot",
+              "name": "5fs_cb:itemGroup.name.jungle_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bean_bag_magma_cube",
+              "name": "5fs_cb:itemGroup.name.nether_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bean_bag_glow_squid",
+              "name": "5fs_cb:itemGroup.name.ocean_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "group_identifier": {
+              "icon": "5fs_cb:bookshelf_villager",
+              "name": "5fs_cb:itemGroup.name.plains_spawn_eggs"
+            },
+            "items": []
+          },
+          {
+            "items": []
+          }
+        ]
+      }
+    ]
+  }
+}
