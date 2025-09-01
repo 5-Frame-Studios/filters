@@ -89,13 +89,21 @@ def main():
         logger.info("Running all validation tests...")
         report = validator.validate_addon()
         
+        # Check if we should exit on error
+        exit_on_error = settings.get('exit_on_error', True)
+        
         # Exit with appropriate code
         if report.is_valid():
             logger.info("✅ Add-On validation passed!")
             sys.exit(0)
         else:
-            logger.error("❌ Add-On validation failed!")
-            sys.exit(1)
+            if exit_on_error:
+                logger.error("❌ Add-On validation failed!")
+                sys.exit(1)
+            else:
+                logger.error("❌ Add-On validation failed!")
+                logger.info("📊 Continuing due to exit_on_error=false setting")
+                sys.exit(0)
             
     except Exception as e:
         logger.error(f"Fatal error during validation: {e}")

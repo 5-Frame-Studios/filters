@@ -5,7 +5,7 @@
     "filters": [
         {
             "runWith": "python",
-            "script": "./main.py",
+            "script": "./filter.py",
             "name": "Content Validator",
             "description": "Validates Add-On content against marketplace guidelines with comprehensive reporting"
         }
@@ -15,6 +15,7 @@
         "strict_mode": true,
         "generate_report": true,
         "report_format": "json",
+        "exit_on_error": true,
         "check_namespace_conflicts": true,
         "validate_file_structure": true,
         "check_manifest_requirements": true,
