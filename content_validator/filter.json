@@ -1,0 +1,93 @@
+{
+    "description": "Comprehensive content validation filter for Minecraft Bedrock Add-Ons. Validates compliance with marketplace guidelines including namespace requirements, file structure, manifest settings, naming conventions, and technical restrictions. Ensures Add-Ons meet all marketplace requirements for release.",
+    "version": "1.0.0",
+    "author": "Filter System",
+    "filters": [
+        {
+            "runWith": "python",
+            "script": "./main.py",
+            "name": "Content Validator",
+            "description": "Validates Add-On content against marketplace guidelines with comprehensive reporting"
+        }
+    ],
+    "settings": {
+        "log_level": "INFO",
+        "strict_mode": true,
+        "generate_report": true,
+        "report_format": "json",
+        "check_namespace_conflicts": true,
+        "validate_file_structure": true,
+        "check_manifest_requirements": true,
+        "validate_naming_conventions": true,
+        "check_technical_restrictions": true,
+        "file_size_limit_mb": 25,
+        "file_count_limit": 3500,
+        "block_permutation_limit": 10000,
+        "ignored_directories": ["Marketing Art", "Store Art"],
+        "required_manifest_fields": [
+            "pack_scope",
+            "metadata.product_type"
+        ],
+        "forbidden_namespaces": ["minecraft"],
+        "required_folder_structure": {
+            "textures": ["studio_name", "pack_name"],
+            "functions": ["studio_name", "pack_name"],
+            "loot_tables": ["studio_name", "pack_name"],
+            "sounds": ["studio_name", "pack_name"],
+            "trading": ["studio_name", "pack_name"]
+        },
+        "naming_patterns": {
+            "geometry": "geometry.{namespace}.",
+            "animation": "animation.{namespace}.entity.",
+            "animation_controller": "controller.animation.{namespace}.entity.",
+            "render_controller": "controller.render.{namespace}.entity.",
+            "feature_rule": "feature.rule.{namespace}.",
+            "sound_reference": "{namespace}_",
+            "texture_reference": "{namespace}:",
+            "npc_scene": "{namespace}_",
+            "tags_scoreboard": "{namespace}_"
+        },
+        "organization_specific": {
+            "required_namespace_prefix": "FFS",
+            "required_folder_depth": 3,
+            "required_folder_structure": "type/FFS/XY",
+            "max_subcategories": 2,
+            "version_format": [1, 0, 0],
+            "debug_statement_patterns": ["console.log", "debug", "temp", "TODO", "FIXME"],
+            "forbidden_text_patterns": ["minecraft:written_book"],
+            "required_metadata": {
+                "product_type": "addon"
+            },
+            "required_header": {
+                "pack_scope": "world"
+            }
+        },
+        "minecraft_creator_tools": {
+            "enabled": true,
+            "validation_suite": "addon",
+            "timeout_seconds": 300,
+            "output_format": "json",
+            "log_verbose": true,
+            "include_mct_results": true
+        },
+        "addon_guidelines": {
+            "enabled": true,
+            "check_prohibited_content": true,
+            "check_vanilla_modifications": true,
+            "check_namespace_requirements": true,
+            "check_title_requirements": true,
+            "check_size_requirements": true,
+            "check_experimental_features": true,
+            "check_ui_modifications": true,
+            "check_player_modifications": true,
+            "check_dimension_modifications": true,
+            "check_weapons_policy": true,
+            "check_external_dependencies": true,
+            "size_limit_mb": 25,
+            "min_file_count": 5,
+            "prohibited_terminology": ["mod", "modded", "modification"],
+            "disallowed_genres": ["one_block", "skyblock", "lucky_block", "random_op", "x_ray", "xray"],
+            "forbidden_items": ["horse_armor", "ender_pearl", "saddle", "portal_frame", "written_book"]
+        }
+    }
+}

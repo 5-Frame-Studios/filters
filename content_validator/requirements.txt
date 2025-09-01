@@ -1,0 +1,14 @@
+# Core dependencies
+rich>=10.0.0
+colorama>=0.4.4
+
+# Optional dependencies for enhanced validation
+PyYAML>=6.0
+jsonschema>=4.0.0
+dpath>=2.0.0
+
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0
