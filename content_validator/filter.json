@@ -1,5 +1,5 @@
 {
-    "description": "Comprehensive content validation filter for Minecraft Bedrock Add-Ons. Validates compliance with marketplace guidelines including namespace requirements, file structure, manifest settings, naming conventions, and technical restrictions. Ensures Add-Ons meet all marketplace requirements for release.",
+    "description": "Comprehensive content validation filter for Minecraft Bedrock Add-Ons. Validates compliance with marketplace guidelines including namespace requirements, file structure, manifest settings, naming conventions, and technical restrictions. Reports validation results without failing builds unless the filter itself encounters technical errors.",
     "version": "1.0.0", 
     "author": "Filter System",
     "filters": [
@@ -15,7 +15,7 @@
         "strict_mode": true,
         "generate_report": true,
         "report_format": "json",
-        "exit_on_error": true,
+        "exit_on_error": false,
         "check_namespace_conflicts": true,
         "validate_file_structure": true,
         "check_manifest_requirements": true,

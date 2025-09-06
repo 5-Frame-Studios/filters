@@ -45,6 +45,7 @@ def main():
         
         # Parse settings
         settings = parse_settings()
+        logger.info(f"Loaded settings: {settings}")
         
         # Get Regolith environment info
         env_info = get_regolith_environment()
@@ -91,6 +92,7 @@ def main():
         
         # Check if we should exit on error
         exit_on_error = settings.get('exit_on_error', True)
+        logger.info(f"Exit on error setting: {exit_on_error}")
         
         # Exit with appropriate code
         if report.is_valid():

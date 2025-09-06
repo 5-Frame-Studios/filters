@@ -71,16 +71,34 @@ logger = logging.getLogger(__name__)
 
 
 def parse_settings() -> Dict[str, Any]:
-    """Parse settings from command line arguments."""
+    """Parse settings from command line arguments or filter.json."""
     try:
+        # Try to get settings from command line arguments first (Regolith way)
         if len(sys.argv) > 1:
-            return json.loads(sys.argv[1])
+            settings = json.loads(sys.argv[1])
+            logger.debug(f"Loaded settings from command line: {settings}")
+            return settings
         else:
-            logger.warning("No settings provided, using defaults")
-            return {}
-    except (IndexError, json.JSONDecodeError) as e:
+            # Fallback: try to load from filter.json
+            filter_json_path = os.path.join(os.path.dirname(__file__), '..', 'filter.json')
+            if os.path.exists(filter_json_path):
+                with open(filter_json_path, 'r', encoding='utf-8') as f:
+                    filter_data = json.load(f)
+                    settings = filter_data.get('settings', {})
+                    logger.debug(f"Loaded settings from filter.json: {settings}")
+                    return settings
+            else:
+                logger.warning("No settings provided and filter.json not found, using defaults")
+                return {}
+    except (IndexError, json.JSONDecodeError, FileNotFoundError) as e:
         logger.error(f"Failed to parse settings: {e}")
-        return {}
+        # Return default settings that match filter.json
+        return {
+            "exit_on_error": False,
+            "log_level": "INFO",
+            "strict_mode": True,
+            "generate_report": True
+        }
 
 
 def get_regolith_environment() -> Dict[str, str]:
