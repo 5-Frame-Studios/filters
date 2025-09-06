@@ -46,6 +46,7 @@ def main():
         # Parse settings
         settings = parse_settings()
         logger.info(f"Loaded settings: {settings}")
+        logger.info(f"Generate report setting: {settings.get('generate_report', True)}")
         
         # Get Regolith environment info
         env_info = get_regolith_environment()

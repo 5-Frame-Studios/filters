@@ -26,6 +26,8 @@ class ReportGenerator:
     def generate_report(self, report: ValidationReport, namespace_info) -> None:
         """Generate final validation report."""
         logger.info("Generating validation report...")
+        logger.info(f"Report generation enabled: {self.settings.get('generate_report', True)}")
+        logger.info(f"Report summary: {report.total_errors} errors, {report.total_warnings} warnings, {report.total_possible_issues} possible issues")
         
         if self.settings.get('generate_report', True):
             report_data = {
@@ -62,6 +64,9 @@ class ReportGenerator:
                 json.dump(report_data, f, indent=2)
             
             logger.info(f"Validation report saved to {report_path}")
+            logger.info(f"Report contains {len(report_data['results'])} validation results")
+        else:
+            logger.info("Report generation disabled by settings")
         
         # Display summary
         self._display_summary(report, namespace_info)
