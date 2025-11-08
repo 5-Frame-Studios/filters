@@ -445,6 +445,33 @@ def process_versions(page_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     return processed_pages
 
 
+def load_source_config(source_dir: str) -> None:
+    """Load configuration from `_config.json` residing in the source directory."""
+    config_path = os.path.join(source_dir, "_config.json")
+    if not os.path.isfile(config_path):
+        logger.debug(f"No _config.json found in {source_dir}")
+        return
+
+    try:
+        with open(config_path, "r", encoding="utf-8") as config_file:
+            config_data = json.load(config_file)
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse {config_path}: {e}")
+        return
+    except Exception as e:
+        logger.error(f"Error reading {config_path}: {e}")
+        return
+
+    if not isinstance(config_data, dict):
+        logger.error(f"{config_path} must contain a JSON object at the top level")
+        return
+
+    if "search_results_page" in config_data:
+        register_search_results_config(config_data["search_results_page"], config_path)
+    else:
+        logger.debug(f"{config_path} does not define search_results_page")
+
+
 def process_markdown_file(file_path: str, source_dir: str) -> List[Dict[str, Any]]:
     """Process a single markdown file and return page data."""
     try:
@@ -1105,6 +1132,9 @@ def main():
             logger.info("Processing Minecraft packs for asset information")
             pack_pages = process_minecraft_packs(settings)
             all_pages.extend(pack_pages)
+
+        # Load configuration from source directory (_config.json)
+        load_source_config(source_dir)
 
         # Always try to gather markdown pages as well
         logger.info(f"Gathering guidebook pages from {source_dir}")
