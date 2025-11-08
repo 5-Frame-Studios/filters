@@ -1,0 +1,147 @@
+{
+    "description": "Content Packager for Minecraft Bedrock Marketplace submission. Packages Resource Packs, Behavior Packs, and Add-Ons according to marketplace guidelines with proper folder structure, manifest generation, and CLI interface for user input.",
+    "version": "1.0.0",
+    "author": "Filter System",
+    "filters": [
+        {
+            "runWith": "python",
+            "script": "./main.py",
+            "name": "Content Packager",
+            "description": "Packages Minecraft Bedrock content for marketplace submission with interactive CLI and settings persistence"
+        }
+    ],
+    "settings": {
+        "log_level": "INFO",
+        "auto_mode": false,
+        "interactive_mode": true,
+        "content_types": ["mashup", "skin_pack", "texture_pack", "texture_pack_skin_pack", "world", "world_skin_pack", "addon"],
+        "default_content_type": "addon",
+        "output_directory": "./packaged_content",
+        "include_marketing_assets": true,
+        "include_store_assets": true,
+        "validate_manifests": true,
+        "generate_uuids": true,
+        "folder_name_limit": 10,
+        "required_assets": {
+            "mashup": ["partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots", "panorama"],
+            "skin_pack": ["partner_art", "key_art", "high_res_key_art"],
+            "texture_pack": ["partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots"],
+            "texture_pack_skin_pack": ["partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots"],
+            "world": ["pack_icon", "partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots", "panorama"],
+            "world_skin_pack": ["pack_icon", "partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots", "panorama"],
+            "addon": ["partner_art", "key_art", "high_res_key_art", "screenshots", "high_res_screenshots", "panorama"]
+        },
+        "asset_specifications": {
+            "store_art": {
+                "key_art": {"dimensions": "800x450", "format": "JPG", "naming": "contentname_Thumbnail_0.jpg"},
+                "screenshots": {"dimensions": "800x450", "format": "JPG", "naming": "contentname_screenshot_{index}.jpg", "count": 5},
+                "panorama": {"dimensions": "1000-4000x450", "format": "JPG", "naming": "contentname_panorama_0.jpg"},
+                "pack_icon": {"dimensions": "256x256", "format": "JPG", "naming": "contentname_packicon_0.jpg"}
+            },
+            "marketing_art": {
+                "key_art": {"dimensions": "1920x1080", "format": "JPG", "naming": "ContentName_MarketingKeyArt.jpg"},
+                "screenshots": {"dimensions": "1920x1080", "format": "JPG", "naming": "ContentName_MarketingScreenshot_{index}.jpg", "count": 5},
+                "partner_art": {"dimensions": "1920x1080", "format": "JPG", "naming": "ContentName_PartnerArt.jpg"}
+            }
+        },
+        "folder_structure": {
+            "mashup": {
+                "content": {
+                    "world_template": {
+                        "behavior_packs": "BP_{acronym}",
+                        "resource_packs": "RP_{acronym}",
+                        "texts": ["en_US.lang", "languages.json"],
+                        "db": ["level.dat", "levelname.txt", "manifest.json", "world_behavior_packs.json", "world_icon.jpeg", "world_resource_packs.json"]
+                    },
+                    "resource_packs": "RP_{acronym}",
+                    "skin_pack": "skin_pack"
+                }
+            },
+            "skin_pack": {
+                "content": {
+                    "skin_pack": "skin_pack"
+                }
+            },
+            "texture_pack": {
+                "content": {
+                    "resource_packs": "RP_{acronym}"
+                }
+            },
+            "texture_pack_skin_pack": {
+                "content": {
+                    "resource_packs": "RP_{acronym}",
+                    "skin_pack": "skin_pack"
+                }
+            },
+            "world": {
+                "content": {
+                    "world_template": {
+                        "behavior_packs": "BP_{acronym}",
+                        "resource_packs": "RP_{acronym}",
+                        "texts": ["en_US.lang", "languages.json"],
+                        "db": ["level.dat", "levelname.txt", "manifest.json", "world_behavior_packs.json", "world_icon.jpeg", "world_resource_packs.json"]
+                    }
+                }
+            },
+            "world_skin_pack": {
+                "content": {
+                    "world_template": {
+                        "behavior_packs": "BP_{acronym}",
+                        "resource_packs": "RP_{acronym}",
+                        "texts": ["en_US.lang", "languages.json"],
+                        "db": ["level.dat", "levelname.txt", "manifest.json", "world_behavior_packs.json", "world_icon.jpeg", "world_resource_packs.json"]
+                    },
+                    "skin_pack": "skin_pack"
+                }
+            },
+            "addon": {
+                "content": {
+                    "world_template": {
+                        "behavior_packs": "BP_{acronym}",
+                        "resource_packs": "RP_{acronym}",
+                        "texts": ["en_US.lang", "languages.json"],
+                        "db": ["level.dat", "levelname.txt", "manifest.json", "world_behavior_packs.json", "world_icon.jpeg", "world_resource_packs.json"]
+                    },
+                    "resource_packs": "RP_{acronym}",
+                    "skin_pack": "skin_pack"
+                }
+            }
+        },
+        "manifest_templates": {
+            "resource_pack": {
+                "format_version": 2,
+                "header": {
+                    "name": "pack.name",
+                    "description": "pack.description",
+                    "version": [1, 0, 0],
+                    "uuid": "{uuid}",
+                    "min_engine_version": [1, 20, 0]
+                },
+                "modules": [
+                    {
+                        "type": "resources",
+                        "uuid": "{module_uuid}",
+                        "version": [1, 0, 0]
+                    }
+                ]
+            },
+            "behavior_pack": {
+                "format_version": 2,
+                "header": {
+                    "name": "pack.name",
+                    "description": "pack.description",
+                    "version": [1, 0, 0],
+                    "uuid": "{uuid}",
+                    "min_engine_version": [1, 20, 0]
+                },
+                "modules": [
+                    {
+                        "type": "data",
+                        "uuid": "{module_uuid}",
+                        "version": [1, 0, 0]
+                    }
+                ]
+            }
+        }
+    }
+}
